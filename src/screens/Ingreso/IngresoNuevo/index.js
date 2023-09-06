@@ -17,7 +17,7 @@ import ModalError from '../../../components/ModalError';
 import { agregarContrasenaUsuario, agregarNombreUsuario, agregarUsuario } from '../../../store/slices/usuarioSlice';
 import { useDispatch } from 'react-redux';
 import IconInputButton from '../../../components/IconInputButton';
-import LinkMedium from '../../../components/LinkMedium';
+import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
 
 const IngresoNuevo = ({ navigation }) => {
 
