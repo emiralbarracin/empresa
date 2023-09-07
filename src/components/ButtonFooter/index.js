@@ -1,21 +1,20 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import React from 'react';
 import styles from './styles';
+import colors from '../../styles/colors';
 
-const ButtonFooter = ({title, onPress}) => {
+const ButtonFooter = ({ title, onPress, loading }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.title}>{title}</Text>
+        {loading ? (
+          <ActivityIndicator size="small" color={colors.white} />
+        ) : (
+          <Text style={styles.title}>{title}</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
 };
 
 export default ButtonFooter;
-
-{
-  /* <TouchableHighlight style={styles.button} onPress={onPress} underlayColor={colors.colorB}>
-  <Text style={styles.title}>{title}</Text>
-</TouchableHighlight> */
-}

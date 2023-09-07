@@ -19,15 +19,19 @@ import { onSetStorageToken, onSetStorageUser } from '../../store/storage/storage
 import { onSetStorageIdEmpresa } from '../../store/storage/storageIdEmpresa';
 import tokenWithCompany from '../../services/tokenWithCompany';
 import { environment } from '../../services/environment';
+import HorizontalLine from '../../components/HorizontalLinea';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 const Inicio = ({ navigation }) => {
+
+  const [cargando, setCargando] = useState(true);
 
   //useSelector recibe el estado global y luego le indico que solo quiero el estado del slice que es manejado por el identificador usuarioStore (el estado llega a useSelector gracias al componente Provider al cual le pasamos el store)
   const usuarioQueLlega = useSelector(state => state.usuarioStore);
   //console.log('usuarioQueLlega >>> ', usuarioQueLlega)
   //accedo al estado del slice y guardo los valores en nombreQueLlega y correoQueLlega
   const nombreQueLlega = usuarioQueLlega.nombre;
-  const correoQueLlega = usuarioQueLlega.correo;
+  //const correoQueLlega = usuarioQueLlega.correo;
 
   const nombreEmpresaRTK = useSelector(state => state.usuarioStore.nombreEmpresa);
   const idEmpresaRTK = useSelector(state => state.usuarioStore.idEmpresa);
@@ -106,6 +110,7 @@ const Inicio = ({ navigation }) => {
 
             //console.log('HbCuentaUltimosMovimientos >>> ', JSON.stringify(res2, null, 4))
             setUltimosMovimientos(res2.output)
+            setCargando(false)
 
           } else {
             console.log('ERROR BECuentaUltimosMovimientos');
@@ -141,74 +146,79 @@ const Inicio = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
+      {cargando ? (
+        <LoadingIndicator />
+      ) : (
 
-      <View style={styles.body}>
+        <View style={styles.body}>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '1%' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '1%' }}>
 
-          <View style={styles.usuario}>
-            <TitleSmall title={`${nombreEmpresaRTK}`} />
-            {/* <TitleSmall title={`${nombreEmpresaRTK} | ${nombreQueLlega}`} /> */}
-          </View>
+            <View style={styles.usuario}>
+               <TitleSmall title={`${nombreEmpresaRTK} | ${nombreQueLlega}`} /> 
+            </View>
 
-          <View style={{ marginRight: '4%', alignItems: 'flex-end' }}>
+            <View style={{ marginRight: '4%', alignItems: 'flex-end' }}>
 
-            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row' }}>
 
-              <TouchableOpacity onPress={() => navigation.navigate('IngresoEmpresaListado')}>
-                <MaterialCommunityIcons name={'sync'} style={{ fontSize: 20, color: colors.colorA, marginRight: '10%' }} />
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('IngresoEmpresaListado')}>
+                  <MaterialCommunityIcons name={'sync'} style={{ fontSize: 20, color: colors.colorA, marginRight: '10%' }} />
+                </TouchableOpacity>
 
-              <TouchableOpacity onPress={handleOjo}>
-                <MaterialCommunityIcons name={ojoAbierto ? 'eye' : 'eye-off'} style={{ fontSize: 20, color: colors.colorA }} />
-              </TouchableOpacity>
+                <TouchableOpacity onPress={handleOjo}>
+                  <MaterialCommunityIcons name={ojoAbierto ? 'eye' : 'eye-off'} style={{ fontSize: 20, color: colors.colorA }} />
+                </TouchableOpacity>
+
+              </View>
 
             </View>
 
           </View>
 
+          <CardCuenta
+            saldo={ojoAbierto ? <MoneyConverter money={codigoMoneda} value={saldo} /> : '*****'}
+            tipoCuenta={tipoCuenta}
+            tipoMoneda={tipoMoneda}
+            numeroCuenta={numeroCuenta}
+            onPressMovimientos={handleMovimientos}
+            onPressCBU={handleCBU}
+          />
+
+          <View style={styles.buttonsContainer}>
+            <ButtonSquare iconName="handshake" title={'Créditos'} onPress={() => navigation.navigate('CreditoProducto')} />
+            <ButtonSquare iconName="arrow-top-right" title={'Plazos fijos'} onPress={() => navigation.navigate('PlazoFijoProducto')} />
+            <ButtonSquare iconName="arrow-left-top" title={'Transferencia'} onPress={() => navigation.navigate('TransferenciaNueva')} />
+          </View>
+          <View style={styles.buttonsContainer}>
+            <ButtonSquare iconName="lock-open-outline" title={'Token'} onPress={() => navigation.navigate('TokenConsulta')} />
+            <ButtonSquare iconName="form-select" title={'Informes'}  onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')}  />
+            <ButtonSquare iconName="calendar-arrow-right" title={'Turno'} onPress={() => navigation.navigate('TurnoNuevo')} />
+          </View>
+
+          <TitleMedium title={'Últimos movimientos'} />
+
+          <HorizontalLine />
+          <ScrollView>
+            {ultimosMovimientos.map((item) => (
+              <CardMovimiento
+                producto={item.descripcion}
+                fecha={<DateConverter date={item.fechaReal} />}
+                importe={<MoneyConverter money={item.codigoMoneda} value={item.importeAccesorio} />}
+                tipoFuncion={item.tipoFuncion}
+                onPress={() => navigation.navigate('MovimientoDetalle', {
+                  descripcion: item.descripcion,
+                  fecha: item.fechaReal,
+                  importe: item.importeAccesorio,
+                  numeroComprobante: item.numeroComprobante,
+                })}
+              />
+            ))}
+          </ScrollView>
+
         </View>
 
-        <CardCuenta
-          saldo={ojoAbierto ? <MoneyConverter money={codigoMoneda} value={saldo} /> : '*****'}
-          tipoCuenta={tipoCuenta}
-          tipoMoneda={tipoMoneda}
-          numeroCuenta={numeroCuenta}
-          onPressMovimientos={handleMovimientos}
-          onPressCBU={handleCBU}
-        />
-
-        <View style={styles.buttonsContainer}>
-          <ButtonSquare iconName="handshake" title={'Créditos'} onPress={() => navigation.navigate('CreditoProducto')} />
-          <ButtonSquare iconName="arrow-top-right" title={'Plazos fijos'} onPress={() => navigation.navigate('PlazoFijoProducto')} />
-          <ButtonSquare iconName="arrow-left-top" title={'Transferencia'} onPress={() => navigation.navigate('TransferenciaNueva')} />
-        </View>
-        <View style={styles.buttonsContainer}>
-          <ButtonSquare iconName="lock-open-outline" title={'Token'} onPress={() => navigation.navigate('TokenConsulta')} />
-          <ButtonSquare iconName="chart-line-variant" title={'Inversiones'} /* onPress={() => navigation.navigate('')} */ />
-          <ButtonSquare iconName="calendar-arrow-right" title={'Turno'} onPress={() => navigation.navigate('TurnoNuevo')} />
-        </View>
-
-        <TitleMedium title={'Últimos movimientos'} />
-
-        <ScrollView>
-          {ultimosMovimientos.map((item) => (
-            <CardMovimiento
-              producto={item.descripcion}
-              fecha={<DateConverter date={item.fechaReal} />}
-              importe={<MoneyConverter money={item.codigoMoneda} value={item.importeAccesorio} />}
-              tipoFuncion={item.tipoFuncion}
-              onPress={() => navigation.navigate('MovimientoDetalle', {
-                descripcion: item.descripcion,
-                fecha: item.fechaReal,
-                importe: item.importeAccesorio,
-                numeroComprobante: item.numeroComprobante,
-              })}
-            />
-          ))}
-        </ScrollView>
-
-      </View>
+      )}
 
     </View>
   );

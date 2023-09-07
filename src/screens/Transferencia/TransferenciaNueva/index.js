@@ -1,4 +1,4 @@
-import { Platform, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import api from '../../../services/api';
@@ -9,8 +9,14 @@ import { useSelector } from 'react-redux';
 import IconInputMoney from '../../../components/IconInputMoney';
 import TitleSmall from '../../../components/TitleSmall';
 import ModalError from '../../../components/ModalError';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import IconInputButton from '../../../components/IconInputButton';
+import colors from '../../../styles/colors';
+import size from '../../../styles/size';
+import TitleMediumBold from '../../../components/TitleMediumBold';
 
 const TransferenciaNueva = ({ navigation }) => {
+
     const cuentasRTK = useSelector(state => state.cuentaStore.cuentas);
     //console.log('cuentas RTK >>>', JSON.stringify(cuentasRTK.cuentas, null, 4)) //cuentasRTK.cuentas contiene todas las cuentas
 
@@ -34,8 +40,6 @@ const TransferenciaNueva = ({ navigation }) => {
     const [importe, setImporte] = useState(null)
     const [mostrarDestinatario, setMostrarDestinatario] = useState(false);
     const [mostrarError, setMostrarError] = useState(false);
-
-
 
     const handleImporte = (valor) => {
         setImporte(valor)
@@ -115,77 +119,116 @@ const TransferenciaNueva = ({ navigation }) => {
         setModalVisible(false);
     };
 
+    const [showQRScanner, setShowQRScanner] = useState(false);
+    const [codigoQR, setCodigoQR] = useState(false)
+
+    const [data, setData] = useState('')
+
+    useEffect(() => {
+        setCodigoQR(true)
+        console.log('dato escaneado: ', data)
+        handleBuscarDestinatario(data)
+    }, [data])
+
+    const handleQR = () => {
+        setShowQRScanner(true);
+    }
+
     return (
         <View style={styles.container}>
 
-            <View style={styles.body}>
-
-                <IconInput
-                    placeholder={'Ingrese el CVU/CBU'}
-                    iconName={'bank-plus'}
-                    keyboardType={Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'numeric'}
-                    maxLength={22}
-                    onChangeText={handleBuscarDestinatario}
+            {showQRScanner ? (
+                <QRCodeScanner
+                    onRead={({ data }) => {
+                        setData(data);
+                        setShowQRScanner(false); // Vuelve a ocultar el escáner QR después de leer el código
+                    }}
+                    //onRead={({ data }) => setData(data)} 
+                    //flashMode={RNCamera.Constants.FlashMode.torch}
+                    reactivate={true} //true para volver a reactivar escaneo una vez escaneado
+                    reactivateTimeout={1000} //tiempo de reactivado de escaneo una vez hecho el escaneo
+                    topContent={
+                        <View>
+                            <TitleMediumBold title={'Escaneá el código QR'}/>
+                        </View>
+                    } //texto en cabecera
+                    showMarker={true} //activa marcador en camara
                 />
+            ) : (
 
-                {mostrarDestinatario && (
+                <View style={styles.body}>
 
-                    <View style={{ marginBottom: '2%' }}>
-                        <TitleSmall title={`Destinatario: ${nombre}`} />
-                        <TitleSmall title={`CUIL: ${cuil}`} />
-                    </View>
+                    <IconInputButton
+                        placeholder={'Ingrese el CVU/CBU'}
+                        iconName={'bank-plus'}
+                        keyboardType={Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'numeric'}
+                        maxLength={22}
+                        onChangeText={handleBuscarDestinatario}
+                        iconNameButton={'qrcode-scan'}
+                        onPress={() => handleQR()}
+                        value={codigoQR ? data : ''}
+                    />
 
-                )}
+                    {mostrarDestinatario && (
 
-                {mostrarError && (
+                        <View style={{ marginBottom: '2%' }}>
+                            <TitleSmall title={`Destinatario: ${nombre}`} />
+                            <TitleSmall title={`CUIL: ${cuil}`} />
+                        </View>
 
-                    <View style={{ marginBottom: '2%' }}>
-                        <TitleSmall title={'El CVU/CBU ingresado es inválido'} />
-                    </View>
+                    )}
 
-                )}
+                    {mostrarError && (
 
-                <Dropdown
-                    items={cuentasDropDown}
-                    placeholder={'Seleccione la cuenta origen'}
-                    onSelectItem={item => handleCuentaSeleccionada(item.value)}
-                    zIndex={200}
-                />
+                        <View style={{ marginBottom: '2%' }}>
+                            <TitleSmall title={'El CVU/CBU ingresado es inválido'} />
+                        </View>
 
-                <IconInputMoney
-                    placeholder={'Ingrese el importe'}
-                    onChangeText={handleImporte}
-                    value={importe}
-                />
+                    )}
 
-                <Dropdown
-                    items={[
-                        { label: 'Alquiler', value: 1 },
-                        { label: 'Cuota', value: 1 },
-                        { label: 'Expensas', value: 1 },
-                        { label: 'Factura', value: 1 },
-                        { label: 'Prestamos', value: 1 },
-                        { label: 'Seguro', value: 1 },
-                        { label: 'Honorario', value: 1 },
-                        { label: 'Haberes', value: 1 },
-                        { label: 'Operaciones inmobiliarias', value: 1 },
-                        { label: 'Inmobiliarias habitualista', value: 1 },
-                        { label: 'Bienes registrables habitualistas', value: 1 },
-                        { label: 'Bienes registrables no habitualistas', value: 1 },
-                        { label: 'Suscripción obligaciones negociables', value: 1 },
-                        { label: 'Aportes de capital', value: 1 },
-                        { label: 'Reintegro de obras sociales y prepagas', value: 1 },
-                        { label: 'Siniestros de seguros', value: 1 },
-                        { label: 'Pagos del Estado por indemnizaciones originadas por expropiaciones', value: 1 },
-                        { label: 'Varios', value: 1 },
-                    ]}
-                    placeholder={'Seleccione la referencia'}
-                    onSelectItem={item => handleReferenciaSeleccionada(item.value)}
-                    zIndex={100}
-                />
+                    <Dropdown
+                        items={cuentasDropDown}
+                        placeholder={'Seleccione la cuenta origen'}
+                        onSelectItem={item => handleCuentaSeleccionada(item.value)}
+                        zIndex={200}
+                    />
 
-                <IconInput placeholder={'Ingrese el concepto'} iconName={'pencil-box-multiple-outline'} />
-            </View>
+                    <IconInputMoney
+                        placeholder={'Ingrese el importe'}
+                        onChangeText={handleImporte}
+                        value={importe}
+                    />
+
+                    <Dropdown
+                        items={[
+                            { label: 'Alquiler', value: 1 },
+                            { label: 'Cuota', value: 1 },
+                            { label: 'Expensas', value: 1 },
+                            { label: 'Factura', value: 1 },
+                            { label: 'Prestamos', value: 1 },
+                            { label: 'Seguro', value: 1 },
+                            { label: 'Honorario', value: 1 },
+                            { label: 'Haberes', value: 1 },
+                            { label: 'Operaciones inmobiliarias', value: 1 },
+                            { label: 'Inmobiliarias habitualista', value: 1 },
+                            { label: 'Bienes registrables habitualistas', value: 1 },
+                            { label: 'Bienes registrables no habitualistas', value: 1 },
+                            { label: 'Suscripción obligaciones negociables', value: 1 },
+                            { label: 'Aportes de capital', value: 1 },
+                            { label: 'Reintegro de obras sociales y prepagas', value: 1 },
+                            { label: 'Siniestros de seguros', value: 1 },
+                            { label: 'Pagos del Estado por indemnizaciones originadas por expropiaciones', value: 1 },
+                            { label: 'Varios', value: 1 },
+                        ]}
+                        placeholder={'Seleccione la referencia'}
+                        onSelectItem={item => handleReferenciaSeleccionada(item.value)}
+                        zIndex={100}
+                    />
+
+                    <IconInput placeholder={'Ingrese el concepto'} iconName={'pencil-box-multiple-outline'} />
+                </View>
+
+            )}
 
             <ButtonFooter title={'Siguiente'} onPress={() => handleSiguiente()} />
 

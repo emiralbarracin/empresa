@@ -69,9 +69,9 @@ const Mas = ({ navigation }) => {
 
 
                         <View style={styles.buttonTitle}>
-                            <TitleMedium title="Consultas" />
+                            <TitleMedium title="Informes" />
                         </View>
-                        <ButtonMenu iconName="format-list-text" title="Posición consolidada" onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')} />
+                        <ButtonMenu iconName="form-select" title="Posición consolidada" onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')} />
 
 
                         <View style={styles.buttonTitle}>

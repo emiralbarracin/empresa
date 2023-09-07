@@ -15,6 +15,8 @@ import IconInputMoneyDollar from '../../../components/IconInputMoneyDollar';
 
 const PlazoFijoSimulacion = ({ navigation }) => {
 
+    const [cargandoBoton, setCargandoBoton] = useState(false);
+
     const { codigoProducto, nombreProducto, idProdWebMobile, descripcionMoneda, codigoMoneda } = useRoute().params
 
     //console.log('codigoProducto >>>', codigoProducto)
@@ -46,6 +48,8 @@ const PlazoFijoSimulacion = ({ navigation }) => {
 
         } else {
 
+            setCargandoBoton(true)
+
             try {
 
                 const { data: res1 } = await api.get(`api/BECuentaOperacionPlazoFijoSimulacion/RecuperarBECuentaOperacionPlazoFijoSimulacion?CodigoSucursal=20&ImportePactado=${importe}&Plazo=${plazo}&CodigoPlantilla=71&CodigoMoneda=&CodigoCuenta=&FechaLiquidacion=&CodigoProducto=&CodigoRutinaLiquidacion=&CodigoFuncion=&CodigoDatos=&PlazoInteres=&Proceso=&CodigoRetencionImpuesto=&CodigoImpuestoGanancia=&CodigoPaisResidente=&CodigoSistemaCuentaDebito=0&CodigoSucursalCuentaDebito=0&CodigoCuentaDebito=0&CodigoMonedaCuentaDebito=0&IdProdWebMobile=${idProdWebMobile}&WebMobile=0&IdMensaje=sucursalvirtual`); //ver codigoProducto
@@ -54,7 +58,6 @@ const PlazoFijoSimulacion = ({ navigation }) => {
 
                     if (res1.status === 0) {
 
-                        setMostrarSimulacion(true)
                         //console.log('importe >>>', importe)
                         //console.log('cuota >>>', plazo)
 
@@ -64,6 +67,8 @@ const PlazoFijoSimulacion = ({ navigation }) => {
                         setTea(res1.output[0].tea.toString().slice(0, 5))
                         setVencimiento(res1.output[0].vencimiento)
                         setMonto(res1.output[0].monto)
+                        setMostrarSimulacion(true)
+                        setCargandoBoton(false)
 
                         //const cuotasData = res1.output.slice(1); //excluir el elemento en la posición 0
 
@@ -72,15 +77,18 @@ const PlazoFijoSimulacion = ({ navigation }) => {
                         setMostrarSimulacion(false)
                         setMensajeModal(res1.mensajeStatus)
                         setModalVisible(true)
+                        setCargandoBoton(false)
 
                     }
 
                 } else {
                     console.log('Error CuentaOperacionPlazoFijoSimulacion');
+                    setCargandoBoton(false)
                 }
 
             } catch (error) {
                 console.log('catch CuentaOperacionPlazoFijoSimulacion >>> ', error);
+                setCargandoBoton(false)
                 return;
             }
 
@@ -136,7 +144,7 @@ const PlazoFijoSimulacion = ({ navigation }) => {
                 />
 
                 <View style={{ marginHorizontal: '20%' }}>
-                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} />
+                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} loading={cargandoBoton} />
                 </View>
 
                 {mostrarSimulacion ? (

@@ -61,7 +61,7 @@ const UsuarioCambioContrasena = ({ navigation }) => {
                     if (res1.status === 0) {
 
                         //console.log('CambioPasswordUsuario >>>', JSON.stringify(res1, null, 4))
-                        setMensajeModalInicio('¡La contraseña fue modificada con éxito! Por favor inicie sesión nuevamente.')
+                        setMensajeModalInicio('¡La contraseña fue modificada con éxito! Inicie sesión nuevamente.')
                         setModalInicioVisible(true)
 
                     } else {
@@ -109,7 +109,6 @@ const UsuarioCambioContrasena = ({ navigation }) => {
         <View style={styles.container}>
 
             <View style={styles.body}>
-
 
                 <IconInputButton
                     iconName={'lock-outline'}

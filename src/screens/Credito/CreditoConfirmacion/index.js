@@ -12,8 +12,12 @@ import ModalConfirm from '../../../components/ModalConfirm';
 import Checkbox from '../../../components/Checkbox';
 import LinkMedium from '../../../components/LinkMedium';
 import ModalError from '../../../components/ModalError';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+
 
 const CreditoConfirmacion = ({ navigation }) => {
+
+    const [cargando, setCargando] = useState(false);
 
     const cuentasRTK = useSelector(state => state.cuentaStore.cuentas);
 
@@ -69,6 +73,7 @@ const CreditoConfirmacion = ({ navigation }) => {
     const handleAceptarConfirm = async () => {
 
         setModalConfirmVisible(false)
+        setCargando(true)
 
         try {
 
@@ -101,11 +106,13 @@ const CreditoConfirmacion = ({ navigation }) => {
                 setMensajeModal(res1.mensajeStatus)
                 setModalVisible(true)
                 console.log('Error CuentaOperacionCreditoSimulacion');
+                setCargando(false)
 
             }
 
         } catch (error) {
             console.log('catch >>> ', error);
+            setCargando(false)
             return;
         }
     }
@@ -125,22 +132,31 @@ const CreditoConfirmacion = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <View style={styles.body}>
+            {cargando ? (
+                <LoadingIndicator />
+            ) : (
 
-                <CardSimulacion title={nombreProducto} data={datosCredito} />
+                <View style={styles.body}>
 
-                <Checkbox title={'Acepto el'} link={'Contrato'} onPress={() => navigation.navigate('LegalContrato')} />
-                <Checkbox title={'Acepto los'} link={'Términos y Condiciones'} onPress={() => navigation.navigate('LegalTerminoYCondicion')} />
+                    <CardSimulacion title={nombreProducto} data={datosCredito} />
 
-                <Dropdown
-                    items={cuentasDropDown}
-                    placeholder={'Seleccionar cuenta'}
-                    onSelectItem={item => handleCuentaSeleccionada(item.value)}
-                    zIndex={100}
-                />
-            </View>
+                    <Checkbox title={'Acepto el'} link={'Contrato'} onPress={() => navigation.navigate('LegalContrato')} />
+                    <Checkbox title={'Acepto los'} link={'Términos y Condiciones'} onPress={() => navigation.navigate('LegalTerminoYCondicion')} />
 
-            <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmarCredito()} />
+                    <Dropdown
+                        items={cuentasDropDown}
+                        placeholder={'Seleccionar cuenta'}
+                        onSelectItem={item => handleCuentaSeleccionada(item.value)}
+                        zIndex={100}
+                    />
+                </View>
+
+            )}
+            {cargando ? (
+                null
+            ) : (
+                <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmarCredito()} />
+            )}
 
             <ModalConfirm
                 visible={modalConfirmVisible}

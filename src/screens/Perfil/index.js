@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { styles } from './styles';
 import CardPerfil from '../../components/CardPerfil';
 
@@ -9,7 +9,6 @@ const Perfil = ({ navigation }) => {
     return (
         <>
             <View style={styles.container}>
-
 
                 <View style={styles.body}>
 
@@ -28,12 +27,12 @@ const Perfil = ({ navigation }) => {
                     <CardPerfil
                         title="Configurar PIN"
                         subtitle="Modificar el PIN para el ingreso"
-                        iconName="key"
+                        iconName="dialpad"
                     />
                     <CardPerfil
                         title="Configurar huella"
                         subtitle="Modificar la huella para el ingreso"
-                        iconName="hand-back-left"
+                        iconName="fingerprint"
                     />
 
                 </View>

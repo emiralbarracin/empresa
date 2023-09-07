@@ -7,7 +7,7 @@ const HorizontalLine = () => {
         <View
             style={{
                 borderBottomColor: colors.gray,
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.5,
                 width: '100%',
                 marginTop: '1%'
             }}

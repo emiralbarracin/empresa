@@ -8,8 +8,11 @@ import ButtonFooter from '../../../components/ButtonFooter';
 import api from '../../../services/api';
 import ModalConfirm from '../../../components/ModalConfirm';
 import ModalError from '../../../components/ModalError';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const TransferenciaConfirmacion = ({ navigation }) => {
+
+    const [cargando, setCargando] = useState(false);
 
     const { cbuDestino, nombre, cuil, bancoDestino, importe, cbuOrigen, cuentaOrigen } = useRoute().params
 
@@ -35,6 +38,7 @@ const TransferenciaConfirmacion = ({ navigation }) => {
     const handleAceptarConfirm = () => {
 
         setModalConfirmVisible(false)
+        setCargando(true)
 
         const obtenerDatos = async () => {
 
@@ -63,15 +67,15 @@ const TransferenciaConfirmacion = ({ navigation }) => {
                     navigation.navigate('TransferenciaDetalle', { numeroOperacion, fechaOperacion, importe, nombre, cbuDestino, cuil, cuentaOrigen })
 
                 } else {
-
                     setMensajeModal(res.mensajeStatus)
                     setModalVisible(true)
                     console.log('ERROR ');
-
+                    setCargando(false)
                 }
 
             } catch (error) {
                 console.log('catch >>> ', error);
+                setCargando(false)
             }
         };
 
@@ -92,13 +96,23 @@ const TransferenciaConfirmacion = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <ScrollView style={styles.body}>
+            {cargando ? (
+                <LoadingIndicator />
+            ) : (
 
-                <CardSimulacion title={'Datos de la transferencia'} data={datosTransferencia} />
+                <ScrollView style={styles.body}>
 
-            </ScrollView>
+                    <CardSimulacion title={'Datos de la transferencia'} data={datosTransferencia} />
 
-            <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmar()} />
+                </ScrollView>
+
+            )}
+
+            {cargando ? (
+                null
+            ) : (
+                <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmar()} />
+            )}
 
             <ModalConfirm
                 visible={modalVisibleConfirm}

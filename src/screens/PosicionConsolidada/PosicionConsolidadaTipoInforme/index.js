@@ -49,7 +49,7 @@ const PosicionConsolidadaTipoInforme = ({ navigation }) => {
             try {
                 const { data: res1 } = await api.get('api/BETipoMoneda/RecuperarBETipoMoneda?CodigoSucursal=20&IdMensaje=Sucursal+virtual');
                 if (res1) {
-                    //console.log('BETipoMoneda >>> ', JSON.stringify(res.output, null, 4));
+                    //console.log('BETipoMoneda >>> ', JSON.stringify(res1.output, null, 4));
                     setTipoMonedas(res1.output)
                 } else {
                     console.log('ERROR BETipoMoneda');

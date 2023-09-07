@@ -1,4 +1,4 @@
-import { Platform, View } from 'react-native';
+import { Keyboard, Platform, TouchableWithoutFeedback, View } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import api from '../../../services/api';
@@ -8,8 +8,12 @@ import Dropdown from '../../../components/DropDown';
 import { useSelector } from 'react-redux';
 import IconInputMoney from '../../../components/IconInputMoney';
 import ModalError from '../../../components/ModalError';
+import ModalConfirm from '../../../components/ModalConfirm';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const RecargaNueva = ({ navigation }) => {
+
+    const [cargando, setCargando] = useState(false);
 
     const cuentasRTK = useSelector(state => state.cuentaStore.cuentas);
     //console.log('cuentas RTK >>>', JSON.stringify(cuentasRTK.cuentas, null, 4)) //cuentasRTK.cuentas contiene todas las cuentas
@@ -66,45 +70,10 @@ const RecargaNueva = ({ navigation }) => {
 
         } else {
 
-            try {
-
-                let parametros = {
-                    CodigoCuenta: cuentaSeleccionada,
-                    CodigoMoneda: 0,
-                    CodigoPlantilla: 64,
-                    CodigoSistema: codigoSistema,
-                    CodigoSucursal: 20,
-                    CodigoSucursalOrigen: 20,
-                    CompaniaCelular: empresaSeleccionada,
-                    Concepto: 17,
-                    IdMensaje: "Recarga de celular",
-                    IdOperador: 75,
-                    Importe: importe,
-                    NombreCliCel: "TORRES NANSY",
-                    NumeroCelular: celuar,
-                    Sistema: codigoSistema,
-                    SubConcepto: 1,
-                    Transaccion: "002000100",
-                }
-
-                const { data: res } = await api.post(`api/OrqRecargaCelular/RegistrarOrqRecargaCelular`, parametros);
-
-                if (res) {
-
-                    //console.log('OrqRecargaCelular >>>', res)
-                    navigation.navigate('RecargaExitosa', { celuar, empresaSeleccionada, importe, cuentaSeleccionada })
-
-                } else {
-                    console.log('Error OrqRecargaCelular');
-                }
-
-            } catch (error) {
-                console.log('catch >>> ', error);
-                return;
-            }
+            setMensajeModalConfirm('¿Está seguro/a que desea realizar la recarga?')
+            setModalConfirmVisible(true)
 
         }
-
     }
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -114,56 +83,127 @@ const RecargaNueva = ({ navigation }) => {
         setModalVisible(false);
     };
 
+    const [modalConfirmVisible, setModalConfirmVisible] = useState(false);
+    const [mensajeModalConfirm, setMensajeModalConfirm] = useState(null);
+
+    const handleCancelarConfirm = () => {
+        setModalConfirmVisible(false)
+    }
+
+    const handleAceptarConfirm = async () => {
+
+        setModalConfirmVisible(false)
+        setCargando(true)
+
+        try {
+
+            let parametros = {
+                CodigoCuenta: cuentaSeleccionada,
+                CodigoMoneda: 0,
+                CodigoPlantilla: 64,
+                CodigoSistema: codigoSistema,
+                CodigoSucursal: 20,
+                CodigoSucursalOrigen: 20,
+                CompaniaCelular: empresaSeleccionada,
+                Concepto: 17,
+                IdMensaje: "Recarga de celular",
+                IdOperador: 75,
+                Importe: importe,
+                NombreCliCel: "TORRES NANSY",
+                NumeroCelular: celuar,
+                Sistema: codigoSistema,
+                SubConcepto: 1,
+                Transaccion: "002000100",
+            }
+
+            const { data: res } = await api.post(`api/OrqRecargaCelular/RegistrarOrqRecargaCelular`, parametros);
+
+            if (res) {
+
+                //console.log('OrqRecargaCelular >>>', res)
+                navigation.navigate('RecargaExitosa', { celuar, empresaSeleccionada, importe, cuentaSeleccionada })
+
+            } else {
+                console.log('Error OrqRecargaCelular');
+                setCargando(false)
+            }
+
+        } catch (error) {
+            console.log('catch >>> ', error);
+            return;
+        }
+
+    };
+
 
     return (
         <View style={styles.container}>
 
-            <View style={styles.body}>
+            {cargando ? (
+                <LoadingIndicator />
+            ) : (
 
-                <IconInput
-                    placeholder={'Ingrese el nro. de celular'}
-                    iconName={'cellphone'}
-                    keyboardType={Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'numeric'}
-                    maxLength={10}
-                    onChangeText={handleCelularIngresado}
-                />
+                <View style={styles.body}>
 
-                <Dropdown
-                    items={[
-                        { label: 'Personal', value: 'Personal' },
-                        { label: 'Claro', value: 'Claro' },
-                        { label: 'Movistar', value: 'Movistar' },
-                        { label: 'Nextel', value: 'Nextel' },
-                        { label: 'Direct Tv', value: 'Direct Tv' },
-                        { label: 'Tuenti - Quam', value: 'Tuenti - Quam' },
-                    ]}
-                    placeholder={'Seleccione la empresa'}
-                    onSelectItem={item => handleEmpresaSeleccionada(item.value)}
-                    zIndex={200}
-                />
+                    <IconInput
+                        placeholder={'Ingrese el nro. de celular'}
+                        iconName={'cellphone'}
+                        keyboardType={Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'numeric'}
+                        maxLength={10}
+                        onChangeText={handleCelularIngresado}
+                    />
 
-                <IconInputMoney
-                    placeholder={'Ingrese el importe'}
-                    onChangeText={handleImporte}
-                    value={importe}
-                />
+                    <Dropdown
+                        items={[
+                            { label: 'Personal', value: 'Personal' },
+                            { label: 'Claro', value: 'Claro' },
+                            { label: 'Movistar', value: 'Movistar' },
+                            { label: 'Nextel', value: 'Nextel' },
+                            { label: 'Direct Tv', value: 'Direct Tv' },
+                            { label: 'Tuenti - Quam', value: 'Tuenti - Quam' },
+                        ]}
+                        placeholder={'Seleccione la empresa'}
+                        onSelectItem={item => handleEmpresaSeleccionada(item.value)}
+                        zIndex={200}
+                    />
 
-                <Dropdown
-                    items={cuentasDropDown}
-                    placeholder={'Seleccione la cuenta débito'}
-                    onSelectItem={item => handleCuentaSeleccionada(item.value)}
-                    zIndex={100}
-                />
+                    <IconInputMoney
+                        placeholder={'Ingrese el importe'}
+                        onChangeText={handleImporte}
+                        value={importe}
+                    />
 
-            </View>
+                    <Dropdown
+                        items={cuentasDropDown}
+                        placeholder={'Seleccione la cuenta débito'}
+                        onSelectItem={item => handleCuentaSeleccionada(item.value)}
+                        zIndex={100}
+                    />
 
-            <ButtonFooter title={'Realizar recarga'} onPress={() => handleRealizarRecarga()} />
+                </View>
+
+            )}
+
+            {cargando ? (
+                null
+            ) : (
+                <ButtonFooter title={'Realizar recarga'} onPress={() => handleRealizarRecarga()} />
+            )}
 
             <ModalError
                 visible={modalVisible}
                 title={mensajeModal}
                 titleButton="Aceptar"
                 onPressButton={handleAceptar}
+            />
+
+            <ModalConfirm
+                visible={modalConfirmVisible}
+                title={mensajeModalConfirm}
+                titleButtonLeft={'Cancelar'}
+                titleButtonRight={'Aceptar'}
+                onPressButtonLeft={handleCancelarConfirm}
+                onPressButtonRight={handleAceptarConfirm}
             />
 
         </View>

@@ -4,8 +4,11 @@ import styles from './styles';
 import api from '../../../services/api';
 import ButtonFooter from '../../../components/ButtonFooter';
 import CardInformacionPerfil from '../../../components/CardInformacionPerfil';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const UsuarioInformacionPerfil = ({ navigation }) => {
+
+    const [cargando, setCargando] = useState(true);
 
     const [nombreUsuario, setNombreUsuario] = useState(null)
     const [domicilio, setDomicilio] = useState(null)
@@ -27,6 +30,7 @@ const UsuarioInformacionPerfil = ({ navigation }) => {
                     setDomicilio(`${res1.output[0].nombreDomicilio} ${res1.output[0].numeroDomicilio}, ${res1.output[0].descripcionProvincia}`)
                     setCelular(`${res1.output[0].caracteristicaTelefono}-${res1.output[0].numeroTelefono}`)
                     setEmail(res1.output[0].mailUsuario)
+                    setCargando(false);
 
                 } else {
                     console.log('ERROR ClienteDatosGenerales');
@@ -57,30 +61,40 @@ const UsuarioInformacionPerfil = ({ navigation }) => {
 
             <View style={styles.body}>
 
-                <CardInformacionPerfil
-                    title={nombreUsuario}
-                    iconName="account"
-                />
+                {cargando ? (
+                    <LoadingIndicator />
+                ) : (
 
-                <CardInformacionPerfil
-                    title={domicilio}
-                    iconName="map-marker"
-                />
+                    <View>
 
-                <CardInformacionPerfil
-                    title={'381-6316145'}
-                    iconName="cellphone"
-                />
+                        <CardInformacionPerfil
+                            title={nombreUsuario}
+                            iconName="account"
+                        />
 
-                {/* <CardInformacionPerfil
-                    title={email}
-                    iconName="email"
-                /> */}
+                        <CardInformacionPerfil
+                            title={domicilio}
+                            iconName="map-marker"
+                        />
 
-                {/*  <CardInformacionPerfil
-                    title={usuario}
-                    iconName="account-check"
-                /> */}
+                        <CardInformacionPerfil
+                            title={'381-6316145'}
+                            iconName="cellphone"
+                        />
+
+                        {/* <CardInformacionPerfil
+                            title={email}
+                            iconName="email"
+                        /> */}
+
+                        {/*  <CardInformacionPerfil
+                            title={usuario}
+                            iconName="account-check"
+                          /> */}
+
+                    </View>
+
+                )}
 
             </View>
 

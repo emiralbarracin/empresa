@@ -21,6 +21,8 @@ import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
 
 const IngresoNuevo = ({ navigation }) => {
 
+  const [cargandoBoton, setCargandoBoton] = useState(false)
+
   const [logoScale] = useState(new Animated.Value(0)); //inicializa el valor de la animación en 0
 
   useEffect(() => {
@@ -34,10 +36,10 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  const [usuario, setUsuario] = useState(null);
-  const [contrasena, setContrasena] = useState(null);
-  //const [usuario, setUsuario] = useState('gabycisneros');
-  //const [contrasena, setContrasena] = useState('Censys2302*');
+  //const [usuario, setUsuario] = useState(null);
+  //const [contrasena, setContrasena] = useState(null);
+  const [usuario, setUsuario] = useState('lopezmia');
+  const [contrasena, setContrasena] = useState('Censys23*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -79,6 +81,8 @@ const IngresoNuevo = ({ navigation }) => {
 
     try {
 
+      setCargandoBoton(true)
+
       const { data: { access_token } } = await token.post('/Token', environment.payload);
       //console.log('token 1 >>> ', access_token);
       onSetStorageToken(access_token); //guarda el token en el almacenamiento local
@@ -95,6 +99,7 @@ const IngresoNuevo = ({ navigation }) => {
         //console.log('mensajeStatus >>> ', mensajeStatus);
         setModalVisible(!modalVisible);
         setMensajeModal(mensajeStatus);
+        setCargandoBoton(false)
       }
 
     } catch (error) {
@@ -118,8 +123,10 @@ const IngresoNuevo = ({ navigation }) => {
         dispatch(agregarUsuario(data.output[0])) //rtk
         navigation.navigate('IngresoMetodo');
         limpiarValores();
+        setCargandoBoton(false)
       } else {
         console.log('ERROR api BTClientePerfil>>> ', data);
+        setCargandoBoton(false)
       }
 
     } catch (error) {
@@ -157,7 +164,7 @@ const IngresoNuevo = ({ navigation }) => {
           />
         </View>
 
-        <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} />
+        <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
         <LinkSmall title={'¿Olvidaste tu contraseña?'} />
 
