@@ -49,7 +49,7 @@ const PosicionConsolidadaInforme = ({ navigation }) => {
                     const { data: res1 } = await api.get(`api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=&IdMensaje=Sucursal+virtual`);
                     if (res1) {
 
-                        console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
+                        //console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
                         setInformeCarteraCliente(res1.output);
                         setCargando(false);
 
@@ -81,13 +81,13 @@ const PosicionConsolidadaInforme = ({ navigation }) => {
                     const { data: res1 } = await api.get(`api/BEConsultaCuenta/RecuperarBEConsultaCuenta?CodigoSucursal=20&Concepto=TODO&IdMensaje=sucursalvirtual`);
                     if (res1) {
 
-                        console.log('numeroDocumento >>> ', JSON.stringify(res1.output[0].numeroDocumento, null, 4))
+                        //console.log('numeroDocumento >>> ', JSON.stringify(res1.output[0].numeroDocumento, null, 4))
                         numeroDocumento = res1.output[0].numeroDocumento
 
                         const { data: res2 } = await api.get(`api/BEPosicionGlobal/RecuperarBEPosicionGlobal?CodigoSucursal=20&CodigoPaisOrigen=&CodigoBancoOrigen=&CodigoSucursalOrigen=&TipoDocumento=5&NumeroDocumento=${numeroDocumento}&Moneda=&FechaSaldo=&FechaCalculo=&Concepto=&IdMensaje=Sucursal+virtual`);
                         if (res2) {
 
-                            console.log('BEPosicionGlobal >>> ', JSON.stringify(res2, null, 4));
+                            //console.log('BEPosicionGlobal >>> ', JSON.stringify(res2, null, 4));
 
                             const pasivaPesos = res2.output.filter(item => item.codigoMoneda == 0 && item.codigoSistema == 2);
                             setInformePasivaPesos(pasivaPesos);

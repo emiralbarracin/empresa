@@ -38,7 +38,7 @@ const CreditoListado = ({ navigation }) => {
                     const { data: res2 } = await api.get(`api/InformeDeuda/RecuperarInformeDeuda?CodigoSucursal=20&CodigoMoneda=0&CodigoCuenta=${codigoCuenta}&TipoDocumento=8&NumeroDocumento=${numeroDocumento}&FechaAjuste=&IdMensaje=SucursalVirtual`);
                     //const { data: res2 } = await api.get(`api/InformeDeuda/RecuperarInformeDeuda?CodigoSucursal=20&CodigoMoneda=0&CodigoCuenta=13851886&TipoDocumento=8&NumeroDocumento=27355185945&FechaAjuste=&IdMensaje=SucursalVirtual`);
                     if (res2) {
-                        console.log('HbCuentamis creditos >>> ', JSON.stringify(res2, null, 4))
+                        //console.log('HbCuentamis creditos >>> ', JSON.stringify(res2, null, 4))
                         setUltimosMovimientos(res2.output)
 
                     } else {
