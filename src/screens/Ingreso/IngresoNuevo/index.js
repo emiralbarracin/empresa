@@ -53,10 +53,6 @@ const IngresoNuevo = ({ navigation }) => {
     setContrasena(valor);
   };
 
-  const handleAceptar = () => {
-    setModalVisible(!modalVisible);
-  };
-
   useEffect(() => {
     onClearStorage(); //limpia el almacenamiento local
   }, []);
@@ -134,6 +130,15 @@ const IngresoNuevo = ({ navigation }) => {
     }
   };
 
+  const handleMantenimiento = () => {
+    setMensajeModal('Sección en mantenimiento.')
+    setModalVisible(true)
+  }
+
+  const handleAceptar = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <View style={styles.container}>
 
@@ -166,7 +171,7 @@ const IngresoNuevo = ({ navigation }) => {
 
         <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
-        <LinkSmall title={'¿Olvidaste tu contraseña?'} />
+        <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
 
       </View>
 
