@@ -149,7 +149,7 @@ const TransferenciaNueva = ({ navigation }) => {
                     reactivateTimeout={1000} //tiempo de reactivado de escaneo una vez hecho el escaneo
                     topContent={
                         <View>
-                            <TitleMediumBold title={'Escaneá el código QR'}/>
+                            <TitleMediumBold title={'Escaneá el código QR'} />
                         </View>
                     } //texto en cabecera
                     showMarker={true} //activa marcador en camara
@@ -159,14 +159,13 @@ const TransferenciaNueva = ({ navigation }) => {
                 <View style={styles.body}>
 
                     <IconInputButton
-                        placeholder={'Ingrese el CVU/CBU'}
+                        placeholder={data == '' ? 'Ingrese el CVU/CBU' : data}
                         iconName={'bank-plus'}
                         keyboardType={Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'numeric'}
                         maxLength={22}
                         onChangeText={handleBuscarDestinatario}
                         iconNameButton={'qrcode-scan'}
                         onPress={() => handleQR()}
-                        value={codigoQR ? data : ''}
                     />
 
                     {mostrarDestinatario && (

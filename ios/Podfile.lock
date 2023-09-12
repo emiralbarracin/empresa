@@ -75,7 +75,7 @@ PODS:
   - hermes-engine/Pre-built (0.72.4)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
-  - Permission-Camera (3.9.0):
+  - Permission-Camera (3.6.1):
     - RNPermissions
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -505,7 +505,7 @@ PODS:
     - React-Core
   - RNGestureHandler (2.12.1):
     - React-Core
-  - RNPermissions (3.9.0):
+  - RNPermissions (3.6.1):
     - React-Core
   - RNReanimated (3.4.2):
     - DoubleConversion
@@ -761,7 +761,7 @@ SPEC CHECKSUMS:
   hermes-engine: 81191603c4eaa01f5e4ae5737a9efcf64756c7b2
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  Permission-Camera: 5c332b27becccf9d5467210aa6cf25f4572dca4a
+  Permission-Camera: bf6791b17c7f614b6826019fcfdcc286d3a107f6
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: c0569ecc035894e4a68baecb30fe6a7ea6e399f9
   RCTTypeSafety: e90354072c21236e0bcf1699011e39acd25fea2f
@@ -800,7 +800,7 @@ SPEC CHECKSUMS:
   RNCClipboard: 3f0451a8100393908bea5c5c5b16f96d45f30bfc
   RNDeviceInfo: 5795b418ed3451ebcaf39384e6cf51f60cb931c9
   RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
-  RNPermissions: 2e68b2e82a93ad09327dee8822846fead91ca3ad
+  RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
   RNReanimated: 726395a2fa2f04cea340274ba57a4e659bc0d9c1
   RNScreens: b21dc57dfa2b710c30ec600786a3fc223b1b92e7
   RNSVG: ed492aaf3af9ca01bc945f7a149d76d62e73ec82
@@ -808,6 +808,6 @@ SPEC CHECKSUMS:
   Yoga: 3efc43e0d48686ce2e8c60f99d4e6bd349aff981
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b30a0345b71dc01947f005fe7b831c3fa387489d
+PODFILE CHECKSUM: e89441ac4c3a7eac7da33c8364b3644963fbad82
 
 COCOAPODS: 1.12.1
