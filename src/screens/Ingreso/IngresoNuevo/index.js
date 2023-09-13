@@ -36,10 +36,10 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  //const [usuario, setUsuario] = useState('');
-  //const [contrasena, setContrasena] = useState('');
-  const [usuario, setUsuario] = useState('lopezmia');
-  const [contrasena, setContrasena] = useState('Censys23*');
+  const [usuario, setUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  //const [usuario, setUsuario] = useState('lopezmia');
+  //const [contrasena, setContrasena] = useState('Censys23*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
