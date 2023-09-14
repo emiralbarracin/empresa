@@ -18,6 +18,8 @@ import { agregarContrasenaUsuario, agregarNombreUsuario, agregarUsuario } from '
 import { useDispatch } from 'react-redux';
 import IconInputButton from '../../../components/IconInputButton';
 import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
+import * as Keychain from 'react-native-keychain';
+import ReactNativeBiometrics from 'react-native-biometrics';
 
 const IngresoNuevo = ({ navigation }) => {
 
@@ -36,10 +38,10 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
-  //const [usuario, setUsuario] = useState('lopezmia');
-  //const [contrasena, setContrasena] = useState('Censys23*');
+  //const [usuario, setUsuario] = useState('');
+  //const [contrasena, setContrasena] = useState('');
+  const [usuario, setUsuario] = useState('lopezmia');
+  const [contrasena, setContrasena] = useState('Censys23*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -139,6 +141,77 @@ const IngresoNuevo = ({ navigation }) => {
     setModalVisible(!modalVisible);
   };
 
+  useEffect(() => {
+    isSensorAvailable();
+    createKeys();
+  }, []);
+
+  //
+  const isSensorAvailable = async () => {
+    const { biometryType } = await ReactNativeBiometrics.isSensorAvailable();
+    if (biometryType === ReactNativeBiometrics.Biometrics) {
+      //do something face id specific
+    }
+  };
+
+  //
+  const createKeys = () => {
+    ReactNativeBiometrics.createKeys('Confirm fingerprint').then(
+      resultObject => {
+        const { publicKey } = resultObject;
+        console.log(publicKey);
+        //sendPublicKeyToServer(publicKey)
+      },
+    );
+  };
+
+  const fingerprint = () => {
+    let epochTimeSeconds = Math.round(new Date().getTime() / 1000).toString();
+    let payload = epochTimeSeconds + 'some message';
+
+    ReactNativeBiometrics.createSignature({
+      promptMessage: 'Ingrese su huella',
+      payload: payload,
+    }).then(async resultObject => {
+      const { success, signature } = resultObject;
+
+      if (success) {
+        console.log(signature);
+        try {
+          // Retrieve the credentials
+          const credentials = await Keychain.getGenericPassword();
+          if (credentials) {
+            console.log(
+              'Credentials successfully loaded for user ' +
+              credentials.username,
+            );
+
+            setUsuario(credentials.username)
+            setContrasena(credentials.password)
+            loginEmailTelefono()
+
+          } else {
+            console.log('No credentials stored');
+            Alert.alert(null, 'Podés configurar la huella desde tu perfil.', [
+              {
+                title: 'Ok',
+                onPress: () => {
+                  // do nothing
+                },
+              },
+            ]);
+          }
+        } catch (error) {
+          console.log("Keychain couldn't be accessed!", error);
+        }
+      }
+    });
+  };
+
+
+
+
+
   return (
     <View style={styles.container}>
 
@@ -172,6 +245,8 @@ const IngresoNuevo = ({ navigation }) => {
         <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
         <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
+
+        <LinkSmall title={'Huella'} onPress={() => fingerprint()} />
 
       </View>
 
