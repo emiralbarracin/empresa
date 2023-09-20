@@ -19,9 +19,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', //ajusta imagen al contenedor
     height: 150,
   },
-  iconInputContrasena: {
-    marginVertical: '1%',
-  },
   huella: {
     color: colors.colorA,
     fontSize: 30,

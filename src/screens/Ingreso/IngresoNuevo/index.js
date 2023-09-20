@@ -258,7 +258,7 @@ const IngresoNuevo = ({ navigation }) => {
           value={usuario}
         />
 
-        <View style={styles.iconInputContrasena}>
+        <View>
           <IconInputButton
             iconName={'lock-outline'}
             placeholder={'Ingrese la contraseña'}

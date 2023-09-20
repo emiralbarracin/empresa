@@ -121,6 +121,7 @@ const StackNavigator = () => {
         options={{
           title: 'Información personal',
           headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
         }}

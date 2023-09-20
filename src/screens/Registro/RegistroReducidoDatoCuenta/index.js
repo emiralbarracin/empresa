@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import { ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import api from '../../../services/api';
@@ -9,8 +9,6 @@ import Checkbox from '../../../components/Checkbox';
 import LinkMedium from '../../../components/LinkMedium';
 import ModalError from '../../../components/ModalError';
 import { useRoute } from '@react-navigation/native';
-import size from '../../../styles/size';
-import colors from '../../../styles/colors';
 
 const RegistroReducidoDatoCuenta = ({ navigation }) => {
 
@@ -59,7 +57,7 @@ const RegistroReducidoDatoCuenta = ({ navigation }) => {
         } else {
 
             if (contrasena === contrasenaRepetida) {
-                navigation.navigate('RegistroReducidoConfirmacion', { cuil, nombreUsuario, email, celular, contrasena, contrasenaRepetida });
+                navigation.navigate('RegistroReducidoConfirmacion', { cuil, nombreUsuario, email, celular, contrasena });
             } else {
                 setMensajeModal('Las contraseñas deben coincidir.')
                 setModalVisible(true)
