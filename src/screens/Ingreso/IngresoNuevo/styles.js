@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
   iconInputContrasena: {
     marginVertical: '1%',
   },
+  huella: {
+    color: colors.colorA,
+    fontSize: 30,
+  }
 });
 
 export default styles;
