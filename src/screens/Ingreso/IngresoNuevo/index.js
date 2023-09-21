@@ -254,6 +254,7 @@ const IngresoNuevo = ({ navigation }) => {
       </View>
 
       <View style={styles.body}>
+
         <IconInput
           iconName={'account-outline'}
           placeholder={'Ingrese el usuario'}
@@ -261,17 +262,15 @@ const IngresoNuevo = ({ navigation }) => {
           value={usuario}
         />
 
-        <View>
-          <IconInputButton
-            iconName={'lock-outline'}
-            placeholder={'Ingrese la contraseña'}
-            secureTextEntry={!mostrarContrasena}
-            onChangeText={handleContrasena}
-            value={contrasena}
-            iconNameButton={mostrarContrasena ? 'eye-outline' : 'eye-off-outline'}
-            onPress={() => setMostrarContrasena(!mostrarContrasena)}
-          />
-        </View>
+        <IconInputButton
+          iconName={'lock-outline'}
+          placeholder={'Ingrese la contraseña'}
+          secureTextEntry={!mostrarContrasena}
+          onChangeText={handleContrasena}
+          value={contrasena}
+          iconNameButton={mostrarContrasena ? 'eye-outline' : 'eye-off-outline'}
+          onPress={() => setMostrarContrasena(!mostrarContrasena)}
+        />
 
         <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
