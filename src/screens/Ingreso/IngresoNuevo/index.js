@@ -107,7 +107,7 @@ const IngresoNuevo = ({ navigation }) => {
 
   };
 
-  const [ingresoHuella, setIngresoHuella] = useState(false)
+  let ingresoHuella = false
 
   const clientePerfil = async () => {
 
@@ -122,7 +122,7 @@ const IngresoNuevo = ({ navigation }) => {
         //console.log('BTClientePerfil >>> ', data);
         //console.log('output >>> ', data.output[0]);
         dispatch(agregarUsuario(data.output[0])) //rtk
-        { ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo') }
+        ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo')
         limpiarValores();
         setCargandoBoton(false)
       } else {
@@ -210,7 +210,7 @@ const IngresoNuevo = ({ navigation }) => {
             const { data: { userName, mensajeStatus } } = await api.get(`api/LoginEmailTelefono/RecuperarLoginEmailTelefono?InputLogin=${usuario}&HBClientePassword=${contrasena}&CodigoSucursal=20&IdMensaje=PostmanBack`);
             if (userName) {
               //console.log('userName >>> ', userName);
-              setIngresoHuella(true)
+              ingresoHuella = true
               onSetStorageUser(base64.encode(`${usuario}:${contrasena}`)); //codifica el nombre de usuario y la contraseña en formato Base64 y lo guarda en el almacenamiento local
               dispatch(agregarNombreUsuario(usuario)) //rtk
               dispatch(agregarContrasenaUsuario(contrasena)) //rtk
