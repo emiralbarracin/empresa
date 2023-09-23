@@ -276,7 +276,7 @@ const IngresoNuevo = ({ navigation }) => {
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
         <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
 
-        <View style={{ alignItems: 'center', marginTop: '4%' }}>
+        <View style={styles.containerHuella}>
           <TouchableOpacity onPress={() => fingerprint()}>
             <MaterialCommunityIcons
               name='fingerprint'
