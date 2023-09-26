@@ -83,7 +83,7 @@ const Cuenta = ({ navigation }) => {
                                 tipoCuenta = item.codigoSistemaDesc,
                                 tipoMoneda = item.codigoMonedaDesc,
                                 numeroCuenta = item.mascara,
-                                cbu = `0${item.cbuBloque1}0${item.cbuBloque1}`
+                                cbu = `0${item.cbuBloque1}0${item.cbuBloque2}`
                             )}
                         />
                     ))}
