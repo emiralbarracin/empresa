@@ -46,7 +46,7 @@ const Mas = ({ navigation }) => {
                             <TitleMedium title="Plazos fijos" />
                         </View>
                         <ButtonMenu iconName="arrow-top-right" title="Simular y constituir" onPress={() => navigation.navigate('PlazoFijoProducto')} />
-                        <ButtonMenu iconName="arrow-u-down-left" title="Precancelables" onPress={() => handleMantenimiento()} />
+                        <ButtonMenu iconName="arrow-u-down-left" title="Precancelables" onPress={() => navigation.navigate('PlazoFijoPrecancelableListado')} />
                         <ButtonMenu iconName="format-list-bulleted-triangle" title="Mis plazos fijos" onPress={() => handleMantenimiento()} />
 
 
