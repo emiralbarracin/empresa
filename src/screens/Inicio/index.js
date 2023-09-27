@@ -155,7 +155,7 @@ const Inicio = ({ navigation }) => {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '1%' }}>
 
             <View style={styles.usuario}>
-               <TitleSmall title={`${nombreEmpresaRTK} | ${nombreQueLlega}`} /> 
+              <TitleSmall title={`${nombreEmpresaRTK} | ${nombreQueLlega}`} />
             </View>
 
             <View style={{ marginRight: '4%', alignItems: 'flex-end' }}>
@@ -192,7 +192,7 @@ const Inicio = ({ navigation }) => {
           </View>
           <View style={styles.buttonsContainer}>
             <ButtonSquare iconName="lock-open-outline" title={'Token'} onPress={() => navigation.navigate('TokenConsulta')} />
-            <ButtonSquare iconName="form-select" title={'Informes'}  onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')}  />
+            <ButtonSquare iconName="form-select" title={'Informes'} onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')} />
             <ButtonSquare iconName="calendar-arrow-right" title={'Turno'} onPress={() => navigation.navigate('TurnoNuevo')} />
           </View>
 
@@ -202,6 +202,7 @@ const Inicio = ({ navigation }) => {
           <ScrollView>
             {ultimosMovimientos.map((item) => (
               <CardMovimiento
+                key={`${item.codigoMovimiento}${item.numeroComprobante}`}
                 producto={item.descripcion}
                 fecha={<DateConverter date={item.fechaReal} />}
                 importe={<MoneyConverter money={item.codigoMoneda} value={item.importeAccesorio} />}

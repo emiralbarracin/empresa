@@ -16,6 +16,7 @@ import PlazoFijoUvaSimulacion from '../screens/PlazoFijo/PlazoFijoUvaSimulacion'
 import PlazoFijoConfirmacion from '../screens/PlazoFijo/PlazoFijoConfirmacion';
 import PlazoFijoDetalle from '../screens/PlazoFijo/PlazoFijoDetalle';
 import PlazoFijoListado from '../screens/PlazoFijo/PlazoFijoListado';
+import PlazoFijoListadoDetalle from '../screens/PlazoFijo/PlazoFijoListadoDetalle';
 import PlazoFijoPrecancelableListado from '../screens/PlazoFijo/PlazoFijoPrecancelableListado';
 import PlazoFijoPrecancelableConfirmacion from '../screens/PlazoFijo/PlazoFijoPrecancelableConfirmacion';
 import PlazoFijoPrecancelableDetalle from '../screens/PlazoFijo/PlazoFijoPrecancelableDetalle';
@@ -24,6 +25,7 @@ import CreditoSimulacion from '../screens/Credito/CreditoSimulacion';
 import CreditoConfirmacion from '../screens/Credito/CreditoConfirmacion';
 import CreditoDetalle from '../screens/Credito/CreditoDetalle';
 import CreditoListado from '../screens/Credito/CreditoListado';
+import CreditoListadoDetalle from '../screens/Credito/CreditoListadoDetalle';
 import Perfil from '../screens/Perfil';
 import MovimientoCuenta from '../screens/Movimiento/MovimientoCuenta';
 import MovimientoDetalle from '../screens/Movimiento/MovimientoDetalle';
@@ -360,6 +362,17 @@ const StackNavigator = () => {
           headerLeft: () => <ButtonBack />,
         }}
       />
+      <Stack.Screen
+        name="CreditoListadoDetalle"
+        component={CreditoListadoDetalle}
+        options={{
+          title: 'Detalle del crédito',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
 
 
 
@@ -425,6 +438,17 @@ const StackNavigator = () => {
         component={PlazoFijoListado}
         options={{
           title: 'Mis plazos fijos',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="PlazoFijoListadoDetalle"
+        component={PlazoFijoListadoDetalle}
+        options={{
+          title: 'Detalle del plazo fijo',
           headerTintColor: colors.colorA,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },

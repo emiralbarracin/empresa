@@ -39,7 +39,7 @@ const Mas = ({ navigation }) => {
                             <TitleMedium title="Créditos" />
                         </View>
                         <ButtonMenu iconName="handshake" title="Solicitar crédito" onPress={() => navigation.navigate('CreditoProducto')} />
-                        <ButtonMenu iconName="format-list-bulleted" title="Mis créditos" onPress={() => handleMantenimiento()} />
+                        <ButtonMenu iconName="format-list-bulleted" title="Mis créditos" onPress={() => navigation.navigate('CreditoListado')} />
 
 
                         <View style={styles.buttonTitle}>
@@ -47,7 +47,7 @@ const Mas = ({ navigation }) => {
                         </View>
                         <ButtonMenu iconName="arrow-top-right" title="Simular y constituir" onPress={() => navigation.navigate('PlazoFijoProducto')} />
                         <ButtonMenu iconName="arrow-u-down-left" title="Precancelables" onPress={() => navigation.navigate('PlazoFijoPrecancelableListado')} />
-                        <ButtonMenu iconName="format-list-bulleted-triangle" title="Mis plazos fijos" onPress={() => handleMantenimiento()} />
+                        <ButtonMenu iconName="format-list-bulleted-triangle" title="Mis plazos fijos" onPress={() => navigation.navigate('PlazoFijoListado')} />
 
 
                         <View style={styles.buttonTitle}>

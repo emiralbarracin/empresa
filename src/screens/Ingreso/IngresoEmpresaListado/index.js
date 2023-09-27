@@ -54,6 +54,7 @@ const IngresoEmpresaListado = ({ navigation }) => {
                     {
                         empresas.map((item) => (
                             <ButtonFooter
+                                key={item.idEmpresaUsu}
                                 title={item.denominacionCliente}
                                 onPress={() => handleEmpresaSeleccionada(item)}
                             />

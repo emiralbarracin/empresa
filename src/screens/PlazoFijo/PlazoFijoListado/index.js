@@ -5,12 +5,13 @@ import CardMovimiento from '../../../components/CardMovimiento';
 import api from '../../../services/api';
 import MoneyConverter from '../../../utils/MoneyConverter';
 import { dateFormat } from '../../../utils/Format';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const PlazoFijoListado = ({ navigation }) => {
 
-    const [ultimosMovimientos, setUltimosMovimientos] = useState([]);
-
+    const [plazosFijos, setPlazosFijos] = useState([]);
     const [variableMovimientos, setVariableMovimientos] = useState(false);
+    const [cargando, setCargando] = useState(true);
 
     const actualizarMovimientos = () => {
         setVariableMovimientos(!variableMovimientos);
@@ -28,26 +29,27 @@ const PlazoFijoListado = ({ navigation }) => {
 
             try {
 
-                const { data: res1 } = await api.get(`api/HbConsultaCuenta/RecuperarHbConsultaCuenta?CodigoSucursal=20&Concepto=CR&IdMensaje=sucursalvirtual`);
+                const { data: res1 } = await api.get(`api/BEConsultaCuenta/RecuperarBEConsultaCuenta?CodigoSucursal=20&Concepto=PF&IdMensaje=sucursalvirtual`);
                 if (res1) {
 
+                    //console.log('BEConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
                     let codigoCuenta = res1.output[0].codigoCuenta
                     let codigoMoneda = res1.output[0].codigoMoneda
-                    let numeroDocumento = res1.output[0].numeroDocumento
-                    //console.log('HbConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
 
-                    const { data: res2 } = await api.get(`api/HbConsultaPlazoFijo/RecuperarHbConsultaPlazoFijo?CodigoSucursal=20&CodigoMoneda=${codigoMoneda}&CodigoCuenta=${codigoCuenta}&FechaAjuste=&IdMensaje=SucursalVirtual`);
-                    //const { data: res2 } = await api.get(`api/InformeDeuda/RecuperarInformeDeuda?CodigoSucursal=20&CodigoMoneda=0&CodigoCuenta=13851886&TipoDocumento=8&NumeroDocumento=27355185945&FechaAjuste=&IdMensaje=SucursalVirtual`);
+                    const { data: res2 } = await api.get(`api/BEConsultaPlazoFijo/RecuperarBEConsultaPlazoFijo?CodigoSucursal=20&CodigoMoneda=${codigoMoneda}&CodigoCuenta=${codigoCuenta}&FechaAjuste=&IdMensaje=SucursalVirtual`);
+
                     if (res2) {
-                        //console.log('HbCuentamis creditos >>> ', JSON.stringify(res2, null, 4))
-                        setUltimosMovimientos(res2.output)
+
+                        //console.log('BEConsultaPlazoFijo >>> ', JSON.stringify(res2, null, 4))
+                        setPlazosFijos(res2.output)
+                        setCargando(false);
 
                     } else {
-                        console.log('ERROR HbCuentaUltimosMovimientos');
+                        console.log('ERROR BEConsultaPlazoFijo');
                     }
 
                 } else {
-                    console.log('ERROR HbCuentaUltimosMovimientos');
+                    console.log('ERROR BEConsultaCuenta');
                 }
 
             } catch (error) {
@@ -58,34 +60,42 @@ const PlazoFijoListado = ({ navigation }) => {
         obtenerDatos();
     }, [variableMovimientos]);
 
-
     return (
         <View style={styles.container}>
 
             <View style={styles.body}>
 
-                <ScrollView>
-                    {ultimosMovimientos.map((item) => (
-                        <CardMovimiento
-                            sinSigno={true}
-                            producto={`N° operación: ${item.numeroOperacion}`}
-                            fecha={`Vto.: ${dateFormat(item.fechaVencimiento)}`}
-                            importe={<MoneyConverter money={item.codigoMoneda} value={item.importePactado} />}
-                        /* onPress={() => navigation.navigate('CreditoMovimientosDetalle', {
-                            descripcion: item.numeroOperacion,
-                            cuenta: item.codigoCuenta,
-                            operacion: item.numeroOperacion,
-                            fecha: item.fechaReal,
-                            importe: item.importeAccesorio,
+                {cargando ? (
+                    <LoadingIndicator />
+                ) : (
 
-                        })} */
-                        />
-                    ))}
-                </ScrollView>
+                    <ScrollView>
+                        {plazosFijos.map((item) => (
+                            <CardMovimiento
+                                key={item.numeroOperacion}
+                                sinSigno={true}
+                                producto={`N° operación: ${item.numeroOperacion}`}
+                                fecha={`Vto.: ${dateFormat(item.fechaVencimiento)}`}
+                                importe={<MoneyConverter money={item.codigoMoneda} value={item.importePactado} />}
+                                onPress={() => navigation.navigate('PlazoFijoListadoDetalle', {
+                                    operacion: item.numeroOperacion,
+                                    descripcion: item.descripcionProducto,
+                                    fechaOrigen: item.fechaOrigen,
+                                    fechaVencimiento: item.fechaVencimiento,
+                                    codigoCuenta: item.codigoCuenta,
+                                    importe: item.importePactado,
+                                    tasa: item.tasa,
+                                })}
+                            />
+                        ))}
+                    </ScrollView>
+
+                )}
 
             </View>
 
         </View>
     );
 };
+
 export default PlazoFijoListado;
