@@ -32,7 +32,7 @@ const CreditoListado = ({ navigation }) => {
                 const { data: res1 } = await api.get(`api/BEConsultaCuenta/RecuperarBEConsultaCuenta?CodigoSucursal=20&Concepto=CR&IdMensaje=sucursalvirtual`);
                 if (res1) {
 
-                    console.log('BEConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
+                    //console.log('BEConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
                     let codigoMoneda = res1.output[0].codigoMoneda
                     let codigoCuenta = res1.output[0].codigoCuenta
 
@@ -40,7 +40,7 @@ const CreditoListado = ({ navigation }) => {
 
                     if (res2) {
 
-                        console.log('BEInformeDeuda >>> ', JSON.stringify(res2, null, 4))
+                        //console.log('BEInformeDeuda >>> ', JSON.stringify(res2, null, 4))
                         setCreditos(res2.output)
                         setCargando(false);
 
