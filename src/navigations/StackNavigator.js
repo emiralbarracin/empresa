@@ -26,6 +26,9 @@ import CreditoConfirmacion from '../screens/Credito/CreditoConfirmacion';
 import CreditoDetalle from '../screens/Credito/CreditoDetalle';
 import CreditoListado from '../screens/Credito/CreditoListado';
 import CreditoListadoDetalle from '../screens/Credito/CreditoListadoDetalle';
+import CreditoListadoDetalleCuota from '../screens/Credito/CreditoListadoDetalleCuota';
+import CreditoListadoDetalleCuotaPago from '../screens/Credito/CreditoListadoDetalleCuotaPago';
+import CreditoListadoDetalleCuotaPagoExitoso from '../screens/Credito/CreditoListadoDetalleCuotaPagoExitoso';
 import Perfil from '../screens/Perfil';
 import MovimientoCuenta from '../screens/Movimiento/MovimientoCuenta';
 import MovimientoDetalle from '../screens/Movimiento/MovimientoDetalle';
@@ -371,6 +374,39 @@ const StackNavigator = () => {
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuota"
+        component={CreditoListadoDetalleCuota}
+        options={{
+          title: 'Cuotas',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuotaPago"
+        component={CreditoListadoDetalleCuotaPago}
+        options={{
+          title: 'Pago de cuota',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuotaPagoExitoso"
+        component={CreditoListadoDetalleCuotaPagoExitoso}
+        options={{
+          title: '¡Cuota pagada!',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
         }}
       />
 

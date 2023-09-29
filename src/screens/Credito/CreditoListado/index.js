@@ -86,6 +86,8 @@ const CreditoListado = ({ navigation }) => {
                                     importe: item.importePactado,
                                     totalCuotas: item.totalCuotas,
                                     tna: item.tna,
+                                    codigoMoneda: item.codigoMoneda,
+                                    codigoSucursal: item.codigoSucursal
                                 })}
                             />
                         ))}

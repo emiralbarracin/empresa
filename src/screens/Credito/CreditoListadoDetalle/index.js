@@ -5,6 +5,7 @@ import MoneyConverter from '../../../utils/MoneyConverter';
 import { useRoute } from '@react-navigation/native';
 import CardSimulacion from '../../../components/CardSimulacion';
 import DateConverter from '../../../utils/DateConverter';
+import LinkMedium from '../../../components/LinkMedium';
 
 const CreditoListadoDetalle = ({ navigation }) => {
 
@@ -16,6 +17,8 @@ const CreditoListadoDetalle = ({ navigation }) => {
         importe,
         totalCuotas,
         tna,
+        codigoMoneda,
+        codigoSucursal
     } = useRoute().params
 
     const datosPlazoFijo = [
@@ -28,12 +31,23 @@ const CreditoListadoDetalle = ({ navigation }) => {
         { title: 'TNA', value: `${tna} %` },
     ];
 
+    const handleCuotas = () => {
+        navigation.navigate('CreditoListadoDetalleCuota', {
+            numeroOperacionCredito: operacion,
+            codigoCuentaCredito: codigoCuenta,
+            codigoMonedaCredito: codigoMoneda,
+            codigoSucursalCredito: codigoSucursal
+        })
+    }
+
     return (
         <View style={styles.container}>
 
             <ScrollView style={styles.body}>
 
                 <CardSimulacion title={'Crédito'} data={datosPlazoFijo} />
+
+                <LinkMedium title={'Ver cuotas'} onPress={handleCuotas} />
 
             </ScrollView>
 
