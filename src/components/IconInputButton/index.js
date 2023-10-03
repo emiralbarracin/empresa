@@ -12,7 +12,8 @@ const IconInputButton = ({
     keyboardType,
     iconName,
     iconNameButton,
-    onPress
+    onPress,
+    maxLength
 }) => {
     return (
         <View style={styles.container}>
@@ -30,6 +31,7 @@ const IconInputButton = ({
                         color={colors.black}
                         keyboardType={keyboardType}
                         autoCapitalize="none"
+                        maxLength={maxLength}
                     />
                     <TouchableOpacity onPress={onPress}>
                         <MaterialCommunityIcons

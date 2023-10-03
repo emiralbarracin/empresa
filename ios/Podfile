@@ -45,6 +45,9 @@ target 'Empresa' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+
   target 'EmpresaTests' do
     inherit! :complete
     # Pods for testing

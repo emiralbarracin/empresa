@@ -8,7 +8,7 @@ const TableMedium = ({ headers, data }) => {
   if (data.length === 0) { //verifica si el arreglo de datos está vacío
     return ( //mientras este vacio muestra el indicador de carga
       <View style={[styles.container, styles.loadingContainer]}>
-        <ActivityIndicator size="large" color={colors.colorA} />
+        <ActivityIndicator size="small" color={colors.colorA} />
       </View>
     );
   }

@@ -216,6 +216,11 @@ const Perfil = ({ navigation }) => {
                         iconName="fingerprint"
                         onPress={() => handleEnableBiometrics()}
                     />
+                    {/* <CardPerfil
+                        title="Configurar PIN"
+                        subtitle="Método de ingreso"
+                        iconName="dialpad"
+                    /> */}
 
                 </View>
 

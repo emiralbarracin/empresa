@@ -16,11 +16,19 @@ import PlazoFijoUvaSimulacion from '../screens/PlazoFijo/PlazoFijoUvaSimulacion'
 import PlazoFijoConfirmacion from '../screens/PlazoFijo/PlazoFijoConfirmacion';
 import PlazoFijoDetalle from '../screens/PlazoFijo/PlazoFijoDetalle';
 import PlazoFijoListado from '../screens/PlazoFijo/PlazoFijoListado';
+import PlazoFijoListadoDetalle from '../screens/PlazoFijo/PlazoFijoListadoDetalle';
+import PlazoFijoPrecancelableListado from '../screens/PlazoFijo/PlazoFijoPrecancelableListado';
+import PlazoFijoPrecancelableConfirmacion from '../screens/PlazoFijo/PlazoFijoPrecancelableConfirmacion';
+import PlazoFijoPrecancelableDetalle from '../screens/PlazoFijo/PlazoFijoPrecancelableDetalle';
 import CreditoProducto from '../screens/Credito/CreditoProducto';
 import CreditoSimulacion from '../screens/Credito/CreditoSimulacion';
 import CreditoConfirmacion from '../screens/Credito/CreditoConfirmacion';
 import CreditoDetalle from '../screens/Credito/CreditoDetalle';
 import CreditoListado from '../screens/Credito/CreditoListado';
+import CreditoListadoDetalle from '../screens/Credito/CreditoListadoDetalle';
+import CreditoListadoDetalleCuota from '../screens/Credito/CreditoListadoDetalleCuota';
+import CreditoListadoDetalleCuotaPago from '../screens/Credito/CreditoListadoDetalleCuotaPago';
+import CreditoListadoDetalleCuotaPagoExitoso from '../screens/Credito/CreditoListadoDetalleCuotaPagoExitoso';
 import Perfil from '../screens/Perfil';
 import MovimientoCuenta from '../screens/Movimiento/MovimientoCuenta';
 import MovimientoDetalle from '../screens/Movimiento/MovimientoDetalle';
@@ -72,7 +80,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Ingreso */}
+      {/************************************************ Ingreso ************************************************/}
       <Stack.Screen
         name="IngresoNuevo" //nombre para reconocer a este componente stack
         component={IngresoNuevo} //componente que renderiza este componente stack
@@ -114,13 +122,14 @@ const StackNavigator = () => {
 
 
 
-      {/* Registro */}
+      {/************************************************ Registro ************************************************/}
       <Stack.Screen
         name="RegistroInformacionPersonal"
         component={RegistroInformacionPersonal}
         options={{
           title: 'Información personal',
           headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
         }}
@@ -216,7 +225,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Legal */}
+      {/************************************************ Legal ************************************************/}
       <Stack.Screen
         name="LegalContrato"
         component={LegalContrato}
@@ -242,7 +251,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Inicio */}
+      {/************************************************ Inicio ************************************************/}
       <Stack.Screen
         name="InicioTab"
         component={TabNavigator}
@@ -255,7 +264,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Cuentas */}
+      {/************************************************ Cuentas ************************************************/}
       <Stack.Screen
         name="Cuenta"
         component={Cuenta}
@@ -270,7 +279,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Perfil */}
+      {/************************************************ Perfil ************************************************/}
       <Stack.Screen
         name="Perfil"
         component={Perfil}
@@ -284,7 +293,7 @@ const StackNavigator = () => {
       />
 
 
-      {/* Mas */}
+      {/************************************************ Mas ************************************************/}
       <Stack.Screen
         name="Mas"
         component={Mas}
@@ -299,7 +308,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Credito */}
+      {/************************************************ Credito ************************************************/}
       <Stack.Screen
         name="CreditoProducto"
         component={CreditoProducto}
@@ -356,10 +365,54 @@ const StackNavigator = () => {
           headerLeft: () => <ButtonBack />,
         }}
       />
+      <Stack.Screen
+        name="CreditoListadoDetalle"
+        component={CreditoListadoDetalle}
+        options={{
+          title: 'Detalle del crédito',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuota"
+        component={CreditoListadoDetalleCuota}
+        options={{
+          title: 'Cuotas',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuotaPago"
+        component={CreditoListadoDetalleCuotaPago}
+        options={{
+          title: 'Pago de cuota',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="CreditoListadoDetalleCuotaPagoExitoso"
+        component={CreditoListadoDetalleCuotaPagoExitoso}
+        options={{
+          title: '¡Cuota pagada!',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+        }}
+      />
 
 
 
-      {/* Plazo Fijo */}
+      {/************************************************ Plazo Fijo ************************************************/}
       <Stack.Screen
         name="PlazoFijoProducto"
         component={PlazoFijoProducto}
@@ -427,10 +480,54 @@ const StackNavigator = () => {
           headerLeft: () => <ButtonBack />,
         }}
       />
+      <Stack.Screen
+        name="PlazoFijoListadoDetalle"
+        component={PlazoFijoListadoDetalle}
+        options={{
+          title: 'Detalle del plazo fijo',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="PlazoFijoPrecancelableListado"
+        component={PlazoFijoPrecancelableListado}
+        options={{
+          title: 'Plazos fijos para cancelar',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="PlazoFijoPrecancelableConfirmacion"
+        component={PlazoFijoPrecancelableConfirmacion}
+        options={{
+          title: 'Cancelación anticipada del plazo fijo',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="PlazoFijoPrecancelableDetalle"
+        component={PlazoFijoPrecancelableDetalle}
+        options={{
+          title: '¡Plazo fijo cancelado!',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+        }}
+      />
 
 
 
-      {/* Movimiento */}
+      {/************************************************ Movimiento ************************************************/}
       <Stack.Screen
         name="MovimientoCuenta"
         component={MovimientoCuenta}
@@ -467,7 +564,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Transferencia */}
+      {/************************************************ Transferencia ************************************************/}
       <Stack.Screen
         name="TransferenciaNueva"
         component={TransferenciaNueva}
@@ -504,7 +601,7 @@ const StackNavigator = () => {
 
 
 
-      {/* CompraVentadDolar */}
+      {/************************************************ CompraVentadDolar ************************************************/}
       <Stack.Screen
         name="CompraVentaDolarCotizacion"
         component={CompraVentaDolarCotizacion}
@@ -551,7 +648,7 @@ const StackNavigator = () => {
       />
 
 
-      {/* Recarga */}
+      {/************************************************ Recarga ************************************************/}
       <Stack.Screen
         name="RecargaNueva"
         component={RecargaNueva}
@@ -577,7 +674,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Token */}
+      {/************************************************ Token ************************************************/}
       <Stack.Screen
         name="TokenConsulta"
         component={TokenConsulta}
@@ -592,7 +689,7 @@ const StackNavigator = () => {
 
 
 
-      {/* Turno */}
+      {/************************************************ Turno ************************************************/}
       <Stack.Screen
         name="TurnoNuevo"
         component={TurnoNuevo}
@@ -639,7 +736,7 @@ const StackNavigator = () => {
       />
 
 
-      {/* Usuario */}
+      {/************************************************ Usuario ************************************************/}
       <Stack.Screen
         name="UsuarioInformacionPerfil"
         component={UsuarioInformacionPerfil}
@@ -664,7 +761,7 @@ const StackNavigator = () => {
       />
 
 
-      {/* Posicion consolidada */}
+      {/************************************************ Posicion consolidada ************************************************/}
       <Stack.Screen
         name="PosicionConsolidadaTipoInforme"
         component={PosicionConsolidadaTipoInforme}

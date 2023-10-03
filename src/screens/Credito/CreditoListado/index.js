@@ -5,12 +5,13 @@ import CardMovimiento from '../../../components/CardMovimiento';
 import api from '../../../services/api';
 import MoneyConverter from '../../../utils/MoneyConverter';
 import { dateFormat } from '../../../utils/Format';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const CreditoListado = ({ navigation }) => {
 
-    const [ultimosMovimientos, setUltimosMovimientos] = useState([]);
-
+    const [creditos, setCreditos] = useState([]);
     const [variableMovimientos, setVariableMovimientos] = useState(false);
+    const [cargando, setCargando] = useState(true);
 
     const actualizarMovimientos = () => {
         setVariableMovimientos(!variableMovimientos);
@@ -28,25 +29,27 @@ const CreditoListado = ({ navigation }) => {
 
             try {
 
-                const { data: res1 } = await api.get(`api/HbConsultaCuenta/RecuperarHbConsultaCuenta?CodigoSucursal=20&Concepto=CR&IdMensaje=sucursalvirtual`);
+                const { data: res1 } = await api.get(`api/BEConsultaCuenta/RecuperarBEConsultaCuenta?CodigoSucursal=20&Concepto=CR&IdMensaje=sucursalvirtual`);
                 if (res1) {
 
+                    //console.log('BEConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
+                    let codigoMoneda = res1.output[0].codigoMoneda
                     let codigoCuenta = res1.output[0].codigoCuenta
-                    let numeroDocumento = res1.output[0].numeroDocumento
-                    //console.log('HbConsultaCuenta >>> ', JSON.stringify(res1.output, null, 4))
 
-                    const { data: res2 } = await api.get(`api/InformeDeuda/RecuperarInformeDeuda?CodigoSucursal=20&CodigoMoneda=0&CodigoCuenta=${codigoCuenta}&TipoDocumento=8&NumeroDocumento=${numeroDocumento}&FechaAjuste=&IdMensaje=SucursalVirtual`);
-                    //const { data: res2 } = await api.get(`api/InformeDeuda/RecuperarInformeDeuda?CodigoSucursal=20&CodigoMoneda=0&CodigoCuenta=13851886&TipoDocumento=8&NumeroDocumento=27355185945&FechaAjuste=&IdMensaje=SucursalVirtual`);
+                    const { data: res2 } = await api.get(`api/BEInformeDeuda/RecuperarBEInformeDeuda?CodigoSucursal=20&CodigoMoneda=${codigoMoneda}&CodigoCuenta=${codigoCuenta}&FechaAjuste=&IdMensaje=SucursalVirtual`);
+
                     if (res2) {
-                        console.log('HbCuentamis creditos >>> ', JSON.stringify(res2, null, 4))
-                        setUltimosMovimientos(res2.output)
+
+                        //console.log('BEInformeDeuda >>> ', JSON.stringify(res2, null, 4))
+                        setCreditos(res2.output)
+                        setCargando(false);
 
                     } else {
-                        console.log('ERROR HbCuentaUltimosMovimientos');
+                        console.log('ERROR BEInformeDeuda');
                     }
 
                 } else {
-                    console.log('ERROR HbCuentaUltimosMovimientos');
+                    console.log('ERROR BEConsultaCuenta');
                 }
 
             } catch (error) {
@@ -63,24 +66,34 @@ const CreditoListado = ({ navigation }) => {
 
             <View style={styles.body}>
 
-                <ScrollView>
-                    {ultimosMovimientos.map((item) => (
-                        <CardMovimiento
-                            sinSigno={true}
-                            producto={`N° operación: ${item.numeroOperacion}`}
-                            fecha={`Vto.: ${dateFormat(item.fechaVencimiento)}`}
-                            importe={<MoneyConverter money={item.codigoMoneda} value={item.importePactado} />}
-                        /* onPress={() => navigation.navigate('CreditoMovimientosDetalle', {
-                            descripcion: item.numeroOperacion,
-                            cuenta: item.codigoCuenta,
-                            operacion: item.numeroOperacion,
-                            fecha: item.fechaReal,
-                            importe: item.importeAccesorio,
+                {cargando ? (
+                    <LoadingIndicator />
+                ) : (
 
-                        })} */
-                        />
-                    ))}
-                </ScrollView>
+                    <ScrollView>
+                        {creditos.map((item) => (
+                            <CardMovimiento
+                                key={item.numeroOperacion}
+                                sinSigno={true}
+                                producto={`N° operación: ${item.numeroOperacion}`}
+                                fecha={`Vto.: ${dateFormat(item.fechaVencimiento)}`}
+                                importe={<MoneyConverter money={item.codigoMoneda} value={item.importePactado} />}
+                                onPress={() => navigation.navigate('CreditoListadoDetalle', {
+                                    operacion: item.numeroOperacion,
+                                    fechaLiquidacion: item.fechaLiquidacion,
+                                    fechaVencimiento: item.fechaVencimiento,
+                                    codigoCuenta: item.codigoCuenta,
+                                    importe: item.importePactado,
+                                    totalCuotas: item.totalCuotas,
+                                    tna: item.tna,
+                                    codigoMoneda: item.codigoMoneda,
+                                    codigoSucursal: item.codigoSucursal
+                                })}
+                            />
+                        ))}
+                    </ScrollView>
+
+                )}
 
             </View>
 

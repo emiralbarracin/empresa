@@ -8,6 +8,8 @@ const initialState = {
   contrasenaUsuario: null,
   nombreEmpresa: null,
   idEmpresa: null,
+  usuario: null,
+  contrasena: null
 }
 
 export const usuarioSlice = createSlice({ //creacion de un slice (el objeto usuarioSlice se crea a partir de la funcion createSlice)

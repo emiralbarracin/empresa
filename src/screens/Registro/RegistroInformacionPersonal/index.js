@@ -36,15 +36,27 @@ const RegistroInformacionPersonal = ({ navigation }) => {
                     let altaClienteOrganoDirectivo = res.altaClienteOrganoDirectivo
 
                     if (altaClienteIBS === 'SI') {
+
                         if (altaClienteHB === 'SI') {
+
                             setMensajeModal('El CUIL ingresado ya pertenece a un cliente activo de Home Banking.')
                             setModalVisible(true)
+
                         } else {
-                            navigation.navigate('RegistroReducidoValidacionDato', { cuil })
+
+                            if (altaClienteOrganoDirectivo === 'SI') {
+                                navigation.navigate('RegistroReducidoValidacionDato', { cuil })
+                            } else {
+                                setMensajeModal('El CUIL ingresado no pertenece a un Órgano Directivo.')
+                                setModalVisible(true)
+                            }
+
                         }
                     } else {
+
                         setMensajeModal('El CUIL ingresado no pertenece a un cliente activo de IBS.')
                         setModalVisible(true)
+
                     }
 
                 } else {

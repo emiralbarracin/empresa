@@ -16,6 +16,8 @@ import ModalError from '../../../components/ModalError';
 
 const CreditoSimulacion = ({ navigation }) => {
 
+    const [cargandoBoton, setCargandoBoton] = useState(false);
+
     const { codigoProducto, nombreProducto, idProdWebMobile } = useRoute().params
 
     //console.log('codigoProducto >>>', codigoProducto)
@@ -58,6 +60,8 @@ const CreditoSimulacion = ({ navigation }) => {
 
         } else {
 
+            setCargandoBoton(true)
+
             let tasa
 
             const { data: res1 } = await api.get(`api/HbConsultaTasaCredito/RecuperarHbConsultaTasaCredito?CodigoSucursal=20&CodigoMoneda=&CodigoProducto=&FechaLiquidacion=&CodigoCuenta=&CantidadCuotasPactadas=${cantidadCuotas}&ImportePactado=${importe}&Plazo=&CodigoRutinaLiquidacion=&CodigoPlantilla=14&WebMobile=0&IdProdWebMobile=${idProdWebMobile}&IdMensaje=sucursalvirtual`);
@@ -77,7 +81,6 @@ const CreditoSimulacion = ({ navigation }) => {
 
                 if (res2) {
 
-                    setMostrarSimulacion(true)
                     //console.log('imp >>>', importe)
                     //console.log('cuota >>>', cantidadCuotas)
 
@@ -89,6 +92,8 @@ const CreditoSimulacion = ({ navigation }) => {
                     setPrimerVencimiento(res2.output[1].vencimientoActual)
                     setImportePrimeraCuota(res2.output[1].impCuota)
                     setImporteGastos(res2.output[1].importeGastos)
+                    setCargandoBoton(false);
+                    setMostrarSimulacion(true)
 
                     const cuotasData = res2.output.slice(1); //excluir el elemento en la posición 0
 
@@ -96,10 +101,12 @@ const CreditoSimulacion = ({ navigation }) => {
 
                 } else {
                     console.log('Error CuentaOperacionCreditoSimulacion');
+                    setCargandoBoton(false);
                 }
 
             } catch (error) {
                 console.log('catch >>> ', error);
+                setCargandoBoton(false);
                 return;
             }
 
@@ -213,7 +220,7 @@ const CreditoSimulacion = ({ navigation }) => {
                 />
 
                 <View style={{ marginHorizontal: '20%' }}>
-                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} />
+                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} loading={cargandoBoton} />
                 </View>
 
                 {mostrarSimulacion ? (

@@ -67,6 +67,7 @@ const Cuenta = ({ navigation }) => {
                     .filter((item) => item.codigoSistema === 3 || item.codigoSistema === 5)
                     .map((item) => (
                         <CardCuenta
+                            key={item.codigoCuenta}
                             saldo={ojoRTK ? <MoneyConverter money={item.codigoMoneda} value={item.saldo} /> : '*****'}
                             tipoCuenta={item.codigoSistemaDesc}
                             tipoMoneda={item.codigoMonedaDesc}
@@ -83,7 +84,7 @@ const Cuenta = ({ navigation }) => {
                                 tipoCuenta = item.codigoSistemaDesc,
                                 tipoMoneda = item.codigoMonedaDesc,
                                 numeroCuenta = item.mascara,
-                                cbu = `0${item.cbuBloque1}0${item.cbuBloque1}`
+                                cbu = `0${item.cbuBloque1}0${item.cbuBloque2}`
                             )}
                         />
                     ))}

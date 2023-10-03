@@ -13,9 +13,11 @@ import DateConverter from '../../../utils/DateConverter';
 import ModalError from '../../../components/ModalError';
 import Checkbox from '../../../components/Checkbox';
 import LinkMedium from '../../../components/LinkMedium';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const PlazoFijoConfirmacion = ({ navigation }) => {
 
+    const [cargando, setCargando] = useState(false);
 
     const cuentasRTK = useSelector(state => state.cuentaStore.cuentas);
 
@@ -103,6 +105,7 @@ const PlazoFijoConfirmacion = ({ navigation }) => {
     const handleAceptarConfirm = async () => {
 
         setModalVisibleConfirm(false)
+        setCargando(true)
 
         try {
 
@@ -132,19 +135,20 @@ const PlazoFijoConfirmacion = ({ navigation }) => {
                     navigation.navigate('PlazoFijoDetalle', { importe, monto, plazo, tea, tna, codigoCuentaDebito, vencimiento, nombreProducto, descripcionMoneda })
 
                 } else {
-
+                    setCargando(false)
                     setModalVisibleConfirm(false)
                     setMensajeModal(res1.mensajeStatus) //mensaje de error
                     setModalVisible(true)
-
                 }
 
             } else {
                 console.log('Error CuentaOperacionPlazoFijoLiquidacion');
+                setCargando(false)
             }
 
         } catch (error) {
             console.log('catch >>> ', error);
+            setCargando(false)
             return;
         }
     }
@@ -163,33 +167,42 @@ const PlazoFijoConfirmacion = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <View style={styles.body}>
+            {cargando ? (
+                <LoadingIndicator />
+            ) : (
 
-                <CardSimulacion title={nombreProducto} data={datosPlazoFijo} />
+                <View style={styles.body}>
 
-                <Checkbox title={'Acepto el'} link={'Contrato'} onPress={() => navigation.navigate('LegalContrato')} />
-                <Checkbox title={'Acepto los'} link={'Términos y Condiciones'} onPress={() => navigation.navigate('LegalTerminoYCondicion')} />
+                    <CardSimulacion title={nombreProducto} data={datosPlazoFijo} />
 
-                {descripcionMoneda === 'DOLARES EEUU' ? (
-                    <Dropdown
-                        items={cuentasDropDownDolares}
-                        placeholder={'Seleccionar cuenta'}
-                        onSelectItem={item => handleCuentaSeleccionada(item.value)}
-                        zIndex={100}
-                    />
-                ) : (
-                    <Dropdown
-                        items={cuentasDropDown}
-                        placeholder={'Seleccionar cuenta'}
-                        onSelectItem={item => handleCuentaSeleccionada(item.value)}
-                        zIndex={100}
-                    />
-                )}
+                    <Checkbox title={'Acepto el'} link={'Contrato'} onPress={() => navigation.navigate('LegalContrato')} />
+                    <Checkbox title={'Acepto los'} link={'Términos y Condiciones'} onPress={() => navigation.navigate('LegalTerminoYCondicion')} />
 
+                    {descripcionMoneda === 'DOLARES EEUU' ? (
+                        <Dropdown
+                            items={cuentasDropDownDolares}
+                            placeholder={'Seleccionar cuenta'}
+                            onSelectItem={item => handleCuentaSeleccionada(item.value)}
+                            zIndex={100}
+                        />
+                    ) : (
+                        <Dropdown
+                            items={cuentasDropDown}
+                            placeholder={'Seleccionar cuenta'}
+                            onSelectItem={item => handleCuentaSeleccionada(item.value)}
+                            zIndex={100}
+                        />
+                    )}
 
-            </View>
+                </View>
 
-            <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmarPlazoFijo()} />
+            )}
+
+            {cargando ? (
+                null
+            ) : (
+                <ButtonFooter title={'Confirmar'} onPress={() => handleConfirmarPlazoFijo()} />
+            )}
 
             <ModalConfirm
                 visible={modalVisibleConfirm}

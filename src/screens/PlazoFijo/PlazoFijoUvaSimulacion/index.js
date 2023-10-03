@@ -14,6 +14,8 @@ import ModalError from '../../../components/ModalError';
 
 const PlazoFijoUvaSimulacion = ({ navigation }) => {
 
+    const [cargandoBoton, setCargandoBoton] = useState(false);
+
     const { codigoProducto, nombreProducto, idProdWebMobile, descripcionMoneda } = useRoute().params
 
     //console.log('codigoProducto >>>', codigoProducto)
@@ -48,6 +50,8 @@ const PlazoFijoUvaSimulacion = ({ navigation }) => {
 
         } else {
 
+            setCargandoBoton(true)
+
             try {
 
                 const { data: res1 } = await api.get(`api/CotizacionTasaPFUva/RecuperarCotizacionTasaPFUva?CodigoSucursal=20&CodigoMoneda=0&CodigoSistema=4&CodigoSubSistema=0&CodigoProducto=0&CodigoFuncion=0&CodigoDatos=0&CodigoPlantilla=69&IdMensaje=CotizacionTasa+PFUVA`); //ver codigoProducto
@@ -75,7 +79,6 @@ const PlazoFijoUvaSimulacion = ({ navigation }) => {
 
                                     if (res3.status === 0) {
 
-                                        setMostrarSimulacion(true)
                                         //console.log('importe >>>', importe)
                                         //console.log('cuota >>>', plazo)
 
@@ -85,45 +88,50 @@ const PlazoFijoUvaSimulacion = ({ navigation }) => {
                                         setTea(res3.output[0].tea.toString().slice(0, 5))
                                         setVencimiento(res3.output[0].vencimiento)
                                         setMonto(res3.output[0].monto)
+                                        setMostrarSimulacion(true)
+                                        setCargandoBoton(false)
 
                                         //const cuotasData = res3.output.slice(1); //excluir el elemento en la posición 0
 
                                     } else {
-
                                         setMensajeModal(res3.mensajeStatus)
                                         setModalVisible(true)
-
+                                        setCargandoBoton(false)
                                     }
 
                                 } else {
                                     console.log('Error CuentaOperacionPlazoFijoSimulacion');
+                                    setCargandoBoton(false)
                                 }
 
 
                             } else {
-
                                 setMensajeModal(res2.mensajeStatus)
                                 setModalVisible(true)
-
+                                setCargandoBoton(false)
                             }
 
                         } else {
                             console.log('Error ConvertirPesoUva');
+                            setCargandoBoton(false)
                         }
 
                     } else {
 
                         setMensajeModal(res1.mensajeStatus)
                         setModalVisible(true)
+                        setCargandoBoton(false)
 
                     }
 
                 } else {
                     console.log('Error CotizacionTasaPFUva');
+                    setCargandoBoton(false)
                 }
 
             } catch (error) {
                 console.log('catch CuentaOperacionPlazoFijoSimulacion >>> ', error);
+                setCargandoBoton(false)
                 return;
             }
 
@@ -176,7 +184,7 @@ const PlazoFijoUvaSimulacion = ({ navigation }) => {
                 />
 
                 <View style={{ marginHorizontal: '20%' }}>
-                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} />
+                    <ButtonFooter title={'Simular'} onPress={() => handleSimular()} loading={cargandoBoton} />
                 </View>
 
                 {mostrarSimulacion ? (

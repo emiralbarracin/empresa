@@ -39,15 +39,15 @@ const Mas = ({ navigation }) => {
                             <TitleMedium title="Créditos" />
                         </View>
                         <ButtonMenu iconName="handshake" title="Solicitar crédito" onPress={() => navigation.navigate('CreditoProducto')} />
-                        <ButtonMenu iconName="format-list-bulleted" title="Mis créditos" onPress={() => handleMantenimiento()} />
+                        <ButtonMenu iconName="format-list-bulleted" title="Mis créditos" onPress={() => navigation.navigate('CreditoListado')} />
 
 
                         <View style={styles.buttonTitle}>
                             <TitleMedium title="Plazos fijos" />
                         </View>
                         <ButtonMenu iconName="arrow-top-right" title="Simular y constituir" onPress={() => navigation.navigate('PlazoFijoProducto')} />
-                        <ButtonMenu iconName="arrow-u-down-left" title="Precancelables" onPress={() => handleMantenimiento()} />
-                        <ButtonMenu iconName="format-list-bulleted-triangle" title="Mis plazos fijos" onPress={() => handleMantenimiento()} />
+                        <ButtonMenu iconName="arrow-u-down-left" title="Precancelables" onPress={() => navigation.navigate('PlazoFijoPrecancelableListado')} />
+                        <ButtonMenu iconName="format-list-bulleted-triangle" title="Mis plazos fijos" onPress={() => navigation.navigate('PlazoFijoListado')} />
 
 
                         <View style={styles.buttonTitle}>
@@ -69,9 +69,9 @@ const Mas = ({ navigation }) => {
 
 
                         <View style={styles.buttonTitle}>
-                            <TitleMedium title="Consultas" />
+                            <TitleMedium title="Informes" />
                         </View>
-                        <ButtonMenu iconName="format-list-text" title="Posición consolidada" onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')} />
+                        <ButtonMenu iconName="form-select" title="Posición consolidada" onPress={() => navigation.navigate('PosicionConsolidadaTipoInforme')} />
 
 
                         <View style={styles.buttonTitle}>

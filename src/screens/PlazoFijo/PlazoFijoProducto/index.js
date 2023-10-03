@@ -21,7 +21,7 @@ const PlazoFijoProducto = ({ navigation }) => {
                 const { data: res1 } = await api.get(`api/BEProductosHB/RecuperarBEProductosHB?CodigoSucursalProducto=0&CodigoSistema=4&CodigoMoneda=-1&WebMobile=2&CodigoSucursal=20&IdMensaje=Sucursal+Virtual`);
                 if (res1) {
 
-                    //console.log('HBProductosHB >>>', res1.output)
+                    console.log('HBProductosHB >>>', res1.output)
                     setProductos(res1.output)
 
                 } else {
@@ -77,9 +77,8 @@ const PlazoFijoProducto = ({ navigation }) => {
                             key={index}
                             data={[
                                 { title: 'Producto', value: item.nombreProducto },
-                                { title: 'Moneda', value: item.descripcionMoneda },
+                                { title: 'Moneda', value: item.sinteticoMoneda },
                                 { title: 'TNA', value: `${item.rendimientoMaximo} %` },
-                                { title: 'Plazo máximo', value: `${item.plazoMaximoOperacion} días` },
                                 { title: 'Monto máximo', value: <MoneyConverter money={item.codigoMoneda} value={item.montoMaximoOperacion} /> },
                             ]}
                             button={'Simular'}

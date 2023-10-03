@@ -19,9 +19,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', //ajusta imagen al contenedor
     height: 150,
   },
-  iconInputContrasena: {
-    marginVertical: '1%',
+  containerHuella: {
+    alignItems: 'center',
+    marginTop: '4%'
   },
+  huella: {
+    color: colors.colorA,
+    fontSize: 30,
+  }
 });
 
 export default styles;
