@@ -245,7 +245,6 @@ const IngresoNuevo = ({ navigation }) => {
   };
 
 
-
   return (
     <View style={styles.container}>
 
