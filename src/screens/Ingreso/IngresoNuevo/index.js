@@ -1,4 +1,4 @@
-import { Alert, Animated, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import ButtonFooter from '../../../components/ButtonFooter';
@@ -297,6 +297,8 @@ const IngresoNuevo = ({ navigation }) => {
         titleButton="Aceptar"
         onPressButton={handleAceptar}
       />
+
+      <Text style={{ alignSelf: 'center', fontSize: 5, color: 'black' }}>TEST</Text>
 
     </View>
   );
