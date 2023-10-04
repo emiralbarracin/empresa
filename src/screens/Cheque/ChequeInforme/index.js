@@ -65,11 +65,6 @@ const ChequeInforme = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{ backgroundColor: colors.white }}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Cheques" />
-      </Appbar.Header>
 
       <View style={styles.body}>
         <View style={styles.first}>

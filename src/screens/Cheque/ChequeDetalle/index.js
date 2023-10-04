@@ -39,7 +39,7 @@ const ChequeDetalle = ({ navigation }) => {
   //console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
-    navigation.navigate('Home');
+    navigation.navigate('inicioTab');
   };
 
   useEffect(() => {
@@ -97,11 +97,6 @@ const ChequeDetalle = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{ backgroundColor: Colorapp.PRIMARYCOLOR }}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Detalle del Cheque" />
-      </Appbar.Header>
 
       <View style={styles.body}>
         <View style={styles.first}>

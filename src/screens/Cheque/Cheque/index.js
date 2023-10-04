@@ -105,11 +105,6 @@ const Cheque = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{ backgroundColor: colors.white }}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Cheques" />
-      </Appbar.Header>
 
       <View style={styles.body}>
         <View>
@@ -177,7 +172,6 @@ const Cheque = ({ navigation }) => {
 
       <View style={styles.footer}>
         <ButtonFooter title="Generar informe" onPress={generarInforme} />
-        <ButtonFooterOut title="Inicio" onPress={handleInicio} />
       </View>
     </View>
   );
