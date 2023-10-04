@@ -27,12 +27,14 @@ const CardCheckbox = ({ title, iconName, onPress }) => {
 
 const styles = {
     container: {
-        backgroundColor: colors.colorA,
+        backgroundColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
         borderRadius: 10,
         padding: '4%',
         marginHorizontal: '4%',
         marginBottom: '4%',
         elevation: 4,
+        borderColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
+        borderWidth: 0.5,
     },
     datosContainer: {
         flexDirection: 'row',
@@ -42,7 +44,7 @@ const styles = {
         alignItems: 'flex-start',
     },
     title: {
-        color: colors.white,
+        color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
         fontWeight: 'bold',
         fontSize: size.medium,
     },
@@ -51,12 +53,12 @@ const styles = {
         alignItems: 'flex-end',
     },
     icono: {
-        color: colors.white,
+        color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
         fontWeight: 'bold',
         fontSize: size.medium,
     },
     icon: {
-        color: colors.white,
+        color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
         fontSize: 20,
     },
 };

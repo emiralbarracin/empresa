@@ -9,21 +9,19 @@ const base = {
 
 const entidades = {
   BMR: {
-    colorA: '#b5121b', //color logo bmr
+    colorA: '#b5121b',
     colorB: '#a5121b',
   },
   BMV: {
-    colorA: '#155a9e', //color logo bmv
+    colorA: '#155a9e',
     colorB: '',
   },
   BSR: {
-    //colorA: '#ffe91a', //color logo bsr
-    colorA: '#e41e2f', //color logo bsr
-    //colorA: '#eeb501', //color logo bsr
+    colorA: '#e41e2f',
     colorB: '#ffe91a',
   },
 };
 
 //https://desarrollador-android.com/material-design/diseno-material-design/estilo/color/
 
-export default colors = { ...base, ...entidades[entidadSeleccionada] };
+export default colors = { ...base, ...entidades[entidadSeleccionada], entidadSeleccionada };

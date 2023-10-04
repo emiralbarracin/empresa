@@ -11,16 +11,18 @@ export const styles = StyleSheet.create({
   },
   button: {
     flex: 1, //ocupar todo el espacio disponible en su contenedor
-    color: colors.white,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     justifyContent: 'center',
-    backgroundColor: colors.colorA,
+    backgroundColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
     elevation: 4, //sombreado
     borderRadius: 10,
+    borderColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
+    borderWidth: 0.5,
   },
   icon: {
     alignSelf: 'center', //centrar horizontalmente el icono
     fontSize: 26,
-    color: colors.white,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
   },
   titleContainer: {
     justifyContent: 'center',
@@ -28,7 +30,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: size.small,
-    color: colors.white,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     fontWeight: 'bold'
   }
 });

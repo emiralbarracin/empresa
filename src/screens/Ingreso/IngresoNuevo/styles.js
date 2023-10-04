@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginTop: '4%'
   },
   huella: {
-    color: colors.colorA,
+    color: colors.black,
     fontSize: 30,
   }
 });

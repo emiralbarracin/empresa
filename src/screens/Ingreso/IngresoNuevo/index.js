@@ -111,6 +111,8 @@ const IngresoNuevo = ({ navigation }) => {
 
   const clientePerfil = async () => {
 
+    let telefono
+
     try {
 
       const { data: { access_token } } = await token.post('/Token', environment.payload);
@@ -119,10 +121,11 @@ const IngresoNuevo = ({ navigation }) => {
 
       const { data } = await api.get(`api/BancaDigitalClientePerfil/RecuperarBancaDigitalClientePerfil?CodigoSucursal=20&IdMensaje=sucursalvirtual`);
       if (data) {
+        telefono = data.output[0].telefono
         //console.log('BTClientePerfil >>> ', data);
         //console.log('output >>> ', data.output[0]);
         dispatch(agregarUsuario(data.output[0])) //rtk
-        ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo')
+        ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo', { telefono })
         limpiarValores();
         setCargandoBoton(false)
       } else {

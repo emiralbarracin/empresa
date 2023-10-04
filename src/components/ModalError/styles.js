@@ -29,9 +29,11 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
     padding: 10,
-    backgroundColor: colors.colorA,
+    backgroundColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
     marginHorizontal: 3,
     elevation: 0,
+    borderColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
+    borderWidth: 0.5,
   },
   title: {
     marginBottom: 20,
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: size.medium,
   },
   text: {
-    color: colors.white,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: size.medium,
