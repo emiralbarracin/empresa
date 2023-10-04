@@ -65,6 +65,9 @@ import IngresoEmpresaListado from '../screens/Ingreso/IngresoEmpresaListado';
 import PosicionConsolidadaTipoInforme from '../screens/PosicionConsolidada/PosicionConsolidadaTipoInforme';
 import PosicionConsolidadaTipoOperacion from '../screens/PosicionConsolidada/PosicionConsolidadaTipoOperacion';
 import PosicionConsolidadaInforme from '../screens/PosicionConsolidada/PosicionConsolidadaInforme';
+import Cheque from '../screens/Cheque/Cheque';
+import ChequeInforme from '../screens/Cheque/ChequeInforme';
+import ChequeDetalle from '../screens/Cheque/ChequeDetalle';
 
 
 const Stack = createStackNavigator();
@@ -796,6 +799,40 @@ const StackNavigator = () => {
         }}
       />
 
+      {/************************************************ Cheque ************************************************/}
+      <Stack.Screen
+        name="Cheque"
+        component={Cheque}
+        options={{
+          title: 'Cheque',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="ChequeInforme"
+        component={ChequeInforme}
+        options={{
+          title: 'Informe',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="ChequeDetalle"
+        component={ChequeDetalle}
+        options={{
+          title: 'Detalle del cheque',
+          headerTintColor: colors.colorA,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: () => <ButtonBack />,
+        }}
+      />
 
 
     </Stack.Navigator>
