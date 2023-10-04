@@ -1,4 +1,4 @@
-const entidadSeleccionada = 'EntidadB';
+const entidadSeleccionada = 'BSR';
 
 const base = {
   white: '#fff',
@@ -8,13 +8,19 @@ const base = {
 };
 
 const entidades = {
-  EntidadA: {
+  BMR: {
     colorA: '#b5121b', //color logo bmr
     colorB: '#a5121b',
   },
-  EntidadB: {
+  BMV: {
     colorA: '#155a9e', //color logo bmv
     colorB: '',
+  },
+  BSR: {
+    //colorA: '#ffe91a', //color logo bsr
+    colorA: '#e41e2f', //color logo bsr
+    //colorA: '#eeb501', //color logo bsr
+    colorB: '#ffe91a',
   },
 };
 

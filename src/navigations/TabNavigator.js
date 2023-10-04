@@ -52,7 +52,8 @@ const TabNavigator = () => {
                 component={Inicio} //componente (pantalla) que va a renderizar
                 options={{
                     //headerTitle: 'Emir Albarracin',
-                    headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    //headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    headerTitle: () => <Image source={require('../assets/images/logoSucredito.png')} style={{ resizeMode: 'contain', height: 25, alignSelf: 'center' }} />, //bsr
                     title: 'Inicio', //titulo del boton tab
                     tabBarActiveTintColor: colors.colorA,
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },

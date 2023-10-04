@@ -248,7 +248,8 @@ const IngresoNuevo = ({ navigation }) => {
 
       <View style={styles.header}>
         <Animated.Image //Animated.Image para aplicar la animación
-          source={require('../../../assets/images/logoBMV.png')}
+          //source={require('../../../assets/images/logoBMV.png')}
+          source={require('../../../assets/images/logoSucredito.png')}
           style={[styles.image, { transform: [{ scale: logoScale }] }]} //aplica la escala según el valor de la animación
         />
       </View>

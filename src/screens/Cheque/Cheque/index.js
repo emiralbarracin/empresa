@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {  View,  Platform,  StyleSheet,  ScrollView,  StatusBar,  Button,} from 'react-native';
-import {Title, Card, Appbar} from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { View, Platform, StyleSheet, ScrollView, StatusBar, Button, } from 'react-native';
+import { Title, Card, Appbar } from 'react-native-paper';
 import api from '../../../services/api';
 import styles from './styles';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {dateFormat, dateFormatApi3} from '../../../utils/Format';
+import { dateFormat, dateFormatApi3 } from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
 import ButtonFooterOut from '../../../components/ButtonFooterOut';
 import colors from '../../../styles/colors';
 
-const Cheque = ({navigation}) => {
+const Cheque = ({ navigation }) => {
   const [comprobantes, setComprobantes] = useState();
 
   const [variable, setVariable] = useState(false);
@@ -49,16 +49,16 @@ const Cheque = ({navigation}) => {
   const [tipoComprobanteSeleccionado, setTipoComprobanteSeleccionado] = useState('');
 
   const handleComprobantes = item => {
-    console.log('comprobante >>>', item.value);
+    //console.log('comprobante >>>', item.value);
     setTipoComprobanteSeleccionado(item.value);
   };
 
   const items = [
-    {label: 'Todos', value: '-1'},
-   /*  {label: 'Cheques de Viajeros', value: '1'}, */
-    {label: 'Cheques Fisicos', value: '2'},
-    {label: 'Titulos', value: '3'},
-    {label: 'Cheques Electrónicos', value: '4'},
+    { label: 'Todos', value: '-1' },
+    /*  {label: 'Cheques de Viajeros', value: '1'}, */
+    { label: 'Cheques Fisicos', value: '2' },
+    { label: 'Titulos', value: '3' },
+    { label: 'Cheques Electrónicos', value: '4' },
   ];
 
   /* const items= (comprobantes) */
@@ -106,8 +106,8 @@ const Cheque = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{backgroundColor: colors.white}}>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
+      <Appbar.Header style={{ backgroundColor: colors.white }}>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Cheques" />
       </Appbar.Header>
 
@@ -118,10 +118,10 @@ const Cheque = ({navigation}) => {
           </Title>
           <Card style={styles.card}>
             <Card.Content>
-              <View style={{alignItems: 'center'}}>
+              <View style={{ alignItems: 'center' }}>
                 <Title style={styles.text_body}>Tipo de comprobante</Title>
 
-                <View style={{marginTop: 7}}>
+                <View style={{ marginTop: 7 }}>
                   <DropDownPicker
                     placeholder="Seleccione un tipo de comprobante"
                     open={openComprobante}
@@ -141,13 +141,13 @@ const Cheque = ({navigation}) => {
                     itemStyle={{
                       justifyContent: 'flex-end',
                     }}
-                    dropDownStyle={{backgroundColor: '#fafafa'}}
-                    containerStyle={{marginBottom: 0}}
+                    dropDownStyle={{ backgroundColor: '#fafafa' }}
+                    containerStyle={{ marginBottom: 0 }}
                     maxHeight={200}
                   />
                 </View>
 
-                <View style={{marginTop: 10}}>
+                <View style={{ marginTop: 10 }}>
                   <Title style={styles.text_body}>Fecha de acreditación</Title>
 
                   <Button
@@ -163,7 +163,7 @@ const Cheque = ({navigation}) => {
                   />
                 </View>
 
-                <View style={{marginTop: 10}}>
+                <View style={{ marginTop: 10 }}>
                   <Title style={styles.text_body}>Fecha seleccionada</Title>
                   <Title style={styles.text_body}>
                     {fechaSeleccionadaAMostrar}

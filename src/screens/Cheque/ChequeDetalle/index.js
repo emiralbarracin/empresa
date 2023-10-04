@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {View, Platform, StyleSheet, StatusBar} from 'react-native';
-import {Paragraph} from 'react-native-paper';
-import {Title, Card, Appbar, Colors} from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { View, Platform, StyleSheet, StatusBar } from 'react-native';
+import { Paragraph } from 'react-native-paper';
+import { Title, Card, Appbar, Colors } from 'react-native-paper';
 import styles from './styles';
 import api from '../../../services/api';
-import {useRoute} from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 ///import {dateFormat, numberFormat} from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
 
-const ChequeDetalle = ({navigation}) => {
+const ChequeDetalle = ({ navigation }) => {
   const [variable, setVariable] = useState(false);
 
   const actualizarPantalla = () => {
@@ -32,14 +32,11 @@ const ChequeDetalle = ({navigation}) => {
   const [banco, setBanco] = useState('');
   const [estado, setEstado] = useState('');
 
-  const {datosChequeInforme} = useRoute().params;
+  const { datosChequeInforme } = useRoute().params;
 
-  console.log(
-    'tipoComprobanteChequeInforme >>>',
-    datosChequeInforme.tipoComprobanteChequeInforme,
-  );
+  //console.log('tipoComprobanteChequeInforme >>>', datosChequeInforme.tipoComprobanteChequeInforme,);
 
-  console.log('index >>>', datosChequeInforme.indexChequeInforme);
+  //console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
     navigation.navigate('Home');
@@ -101,8 +98,8 @@ const ChequeDetalle = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{backgroundColor: Colorapp.PRIMARYCOLOR}}>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
+      <Appbar.Header style={{ backgroundColor: Colorapp.PRIMARYCOLOR }}>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Detalle del Cheque" />
       </Appbar.Header>
 

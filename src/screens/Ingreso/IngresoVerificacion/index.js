@@ -176,7 +176,8 @@ const IngresoVerificacion = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('../../../assets/images/logoBMV.png')}
+          //source={require('../../../assets/images/logoBMV.png')}
+          source={require('../../../assets/images/logoSucredito.png')}
           style={styles.image}
         />
       </View>
