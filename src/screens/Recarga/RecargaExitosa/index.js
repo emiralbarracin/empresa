@@ -18,7 +18,7 @@ const RecargaExitosa = ({ navigation }) => {
     const fechaFormateada = `${dia}/${mesFormateado}/${anio}`;
 
     const datosCredito = [
-        { title: 'Numero de operación', value: '58512' },
+        { title: 'N° de operación', value: '58512' },
         { title: 'Fecha', value: fechaFormateada },
         { title: 'N° de celular', value: celuar },
         { title: 'Empresa', value: empresaSeleccionada },
