@@ -88,6 +88,7 @@ const Cheque = ({ navigation }) => {
   };
 
   const generarInforme = () => {
+    console.log(fechaSeleccionada)
     navigation.navigate('ChequeInforme', {
       datosCheque: {
         tipoComprobanteCheque: tipoComprobanteSeleccionado,
@@ -116,7 +117,7 @@ const Cheque = ({ navigation }) => {
               <View style={{ alignItems: 'center' }}>
                 <Title style={styles.text_body}>Tipo de comprobante</Title>
 
-                <View style={{ marginTop: 7 }}>
+                <View style={{ marginTop: 7 }} zIndex={100}>
                   <DropDownPicker
                     placeholder="Seleccione un tipo de comprobante"
                     open={openComprobante}
@@ -139,6 +140,7 @@ const Cheque = ({ navigation }) => {
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     containerStyle={{ marginBottom: 0 }}
                     maxHeight={200}
+                    zIndex={100}
                   />
                 </View>
 
@@ -149,12 +151,14 @@ const Cheque = ({ navigation }) => {
                     title="Seleccionar fecha"
                     onPress={showDatePicker}
                     color={colors.black}
+                    zIndex={200}
                   />
                   <DateTimePickerModal
                     isVisible={isDatePickerVisible}
                     mode="date"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}
+                    zIndex={300}
                   />
                 </View>
 
@@ -178,5 +182,3 @@ const Cheque = ({ navigation }) => {
 };
 
 export default Cheque;
-
-
