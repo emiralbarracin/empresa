@@ -8,6 +8,7 @@ import MoneyConverter from '../../../utils/MoneyConverter';
 import api from '../../../services/api';
 import LinkMedium from '../../../components/LinkMedium';
 import { dateFormat } from '../../../utils/Format';
+import colors from '../../../styles/colors';
 
 const CreditoDetalle = ({ navigation }) => {
 
@@ -31,12 +32,14 @@ const CreditoDetalle = ({ navigation }) => {
         { title: 'Cantidad de cuotas', value: cantidadCuotas },
     ];
 
+    let nombreBanco = colors.entidadSeleccionada === 'BMV' ? ('bmv') : (colors.entidadSeleccionada === 'BSR' ? ('sucredito') : '')
+
     const handleComprobante = async () => {
 
         try {
 
             //const { data: res } = await api.get(`api/PDFComprobanteCredito/RecuperarPDFComprobanteCredito?NombreBanco=bmv&Cod_Comprobante=250336&Importe_Prestamo=100,000.00&Gastos_Otorgados=371.91&Cuenta_Destino=107932&Cantidad_Cuotas=3&Destino_fondos=107932&Sistema_Amortizaci%C3%B3n=Sistema+Franc%C3%A9s&Importe_Primera_Cuota=$+43,743.87&Importe_Cuota_Promedio=$+42,432.16&Fecha_Primer_Vto=07%2F08%2F2023&Tasa_TNA=105.00&Tasa_TEA=173.78&CFT=407.28&Fecha=24%2F07%2F2023&Hora=13:39&Operacion=Credito&CodigoDeOperacion=310064`);
-            const { data: res } = await api.get(`api/PDFComprobanteCredito/RecuperarPDFComprobanteCredito?NombreBanco=bmv&Cod_Comprobante=${codigoSolicitud}&Importe_Prestamo=${importe}&Gastos_Otorgados=${importeGastos}&Cuenta_Destino=${codigoCuentaAcreditacion}&Cantidad_Cuotas=${cantidadCuotas}&Destino_fondos=${codigoCuentaAcreditacion}&Sistema_Amortizaci%C3%B3n=Sistema+Franc%C3%A9s&Importe_Primera_Cuota=${importePrimeraCuota}&Importe_Cuota_Promedio=${importePrimeraCuota}&Fecha_Primer_Vto=${dateFormat(primerVencimiento)}&Tasa_TNA=${tna}&Tasa_TEA=${tea}&CFT=${cft}&Fecha=${fechaFormateada}&Hora=${horaFormateada}&Operacion=Credito&CodigoDeOperacion=${numeroOperacion}`);
+            const { data: res } = await api.get(`api/PDFComprobanteCredito/RecuperarPDFComprobanteCredito?NombreBanco=${nombreBanco}&Cod_Comprobante=${codigoSolicitud}&Importe_Prestamo=${importe}&Gastos_Otorgados=${importeGastos}&Cuenta_Destino=${codigoCuentaAcreditacion}&Cantidad_Cuotas=${cantidadCuotas}&Destino_fondos=${codigoCuentaAcreditacion}&Sistema_Amortizaci%C3%B3n=Sistema+Franc%C3%A9s&Importe_Primera_Cuota=${importePrimeraCuota}&Importe_Cuota_Promedio=${importePrimeraCuota}&Fecha_Primer_Vto=${dateFormat(primerVencimiento)}&Tasa_TNA=${tna}&Tasa_TEA=${tea}&CFT=${cft}&Fecha=${fechaFormateada}&Hora=${horaFormateada}&Operacion=Credito&CodigoDeOperacion=${numeroOperacion}`);
 
             if (res) {
 
