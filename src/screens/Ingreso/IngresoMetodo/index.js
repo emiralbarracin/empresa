@@ -2,11 +2,14 @@ import { View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 import CardPerfil from '../../../components/CardPerfil';
+import { useRoute } from '@react-navigation/native';
 
 const IngresoMetodo = ({ navigation }) => {
 
+    const { telefono } = useRoute().params
+
     const handleSMS = () => {
-        navigation.navigate('IngresoVerificacion')
+        navigation.navigate('IngresoVerificacion', { telefono })
     }
 
     return (

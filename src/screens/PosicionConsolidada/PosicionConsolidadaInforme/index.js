@@ -49,7 +49,7 @@ const PosicionConsolidadaInforme = ({ navigation }) => {
                     const { data: res1 } = await api.get(`api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=&IdMensaje=Sucursal+virtual`);
                     if (res1) {
 
-                        //console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
+                        console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
                         setInformeCarteraCliente(res1.output);
                         setCargando(false);
 
@@ -144,10 +144,10 @@ const PosicionConsolidadaInforme = ({ navigation }) => {
                                             key={index}
                                             title={'Cheque'}
                                             data={[
-                                                { title: 'Producto', value: item.nombreProducto },
-                                                { title: 'N° de cuenta', value: item.codigoCuenta },
-                                                { title: 'N° de operación', value: item.numeroOperacion },
-                                                { title: 'Saldo', value: <MoneyConverter value={item.saldo} /> },
+                                                { title: 'Producto', value: item.descripcion },
+                                                { title: 'N° de cheque', value: item.comprobante },
+                                                { title: 'N° de operación', value: item.numeroComprobante },
+                                                { title: 'Importe', value: <MoneyConverter value={item.importe} /> },
                                             ]}
                                         />
                                     ))

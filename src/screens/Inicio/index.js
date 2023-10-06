@@ -108,7 +108,7 @@ const Inicio = ({ navigation }) => {
           const { data: res2 } = await api.get(`api/BECuentaUltimosMovimientos/RecuperarBECuentaUltimosMovimientos?CodigoSucursal=20&CodigoSistema=${codigoSistema}&CodigoMoneda=${codigoMoneda}&CodigoCuenta=${codigoCuenta}&Pagina=1&IdMensaje=sucursalvirtual`);
           if (res2) {
 
-            //console.log('HbCuentaUltimosMovimientos >>> ', JSON.stringify(res2, null, 4))
+            console.log('HbCuentaUltimosMovimientos >>> ', JSON.stringify(res2, null, 4))
             setUltimosMovimientos(res2.output)
             setCargando(false)
 

@@ -40,8 +40,9 @@ const LoadingIndicator = () => {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             {/*Animated.Image para aplicar la animación de opacidad a la imagen */}
             <Animated.Image
-                source={require('../../assets/images/logoBMV.png')} // imagen
-                style={{ width: 100, height: 100, opacity }} //estilo con la propiedad de opacidad
+                //source={require('../../assets/images/logoBMV.png')} // bmv
+                source={require('../../assets/images/logoSucredito.png')} // bsr
+                style={{ width: 100, height: 100, resizeMode: 'contain', opacity }} //estilo con la propiedad de opacidad
             />
         </View>
     );

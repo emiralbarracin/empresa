@@ -17,14 +17,15 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain', //ajusta imagen al contenedor
-    height: 150,
+    //height: 150, //bmv
+    height: 50, //bsr
   },
   containerHuella: {
     alignItems: 'center',
     marginTop: '4%'
   },
   huella: {
-    color: colors.colorA,
+    color: colors.black,
     fontSize: 30,
   }
 });
