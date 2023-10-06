@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   button: {
   },
   icon: {
-    color: colors.colorA,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     fontSize: 24,
   },
 });

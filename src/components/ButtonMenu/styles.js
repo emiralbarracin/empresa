@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../styles/colors';
 import size from '../../styles/size';
 
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    color: colors.colorA,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     fontSize: 20
   },
   titleContainer: {
@@ -24,12 +24,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center', //alinea centrado en eje y
     alignItems: 'flex-start', //alinear centrado en eje x
     borderBottomWidth: 0.3, //linea por debajo del titulo
-    borderBottomColor: colors.colorA 
-    
+    borderBottomColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
   },
   title: {
     fontSize: size.medium,
-    color: colors.colorA,
+    color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
     fontWeight: 'bold'
   },
 });

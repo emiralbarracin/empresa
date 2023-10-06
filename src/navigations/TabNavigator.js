@@ -11,6 +11,9 @@ import { Image } from 'react-native';
 const Tab = createBottomTabNavigator(); //funcion que permite la navegacion
 
 const TabNavigator = () => {
+
+    let headerTintColor = colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null)
+
     return (
 
         <Tab.Navigator
@@ -22,19 +25,23 @@ const TabNavigator = () => {
                     switch (route.name) {
                         case 'inicioTab':
                             nombreIcono = 'home';
-                            colorIcono = focused ? colors.colorA : colors.gray;
+                            colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
                             break;
                         case 'cuentaTab':
                             nombreIcono = 'card-text';
-                            colorIcono = focused ? colors.colorA : colors.gray;
+                            colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
                             break;
                         case 'perfilTab':
                             nombreIcono = 'account';
-                            colorIcono = focused ? colors.colorA : colors.gray;
+                            colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
                             break;
                         case 'masTab':
                             nombreIcono = 'menu';
-                            colorIcono = focused ? colors.colorA : colors.gray;
+                            colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
                             break;
                     }
                     return (
@@ -52,9 +59,10 @@ const TabNavigator = () => {
                 component={Inicio} //componente (pantalla) que va a renderizar
                 options={{
                     //headerTitle: 'Emir Albarracin',
-                    headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    //headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    headerTitle: () => <Image source={require('../assets/images/logoSucredito.png')} style={{ resizeMode: 'contain', height: 20, alignSelf: 'center' }} />,
                     title: 'Inicio', //titulo del boton tab
-                    tabBarActiveTintColor: colors.colorA,
+                    tabBarActiveTintColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },
                 }} //la propiedad title del objeto options indica el titulo del boton tab y de la cabecera tab
             />
@@ -63,11 +71,11 @@ const TabNavigator = () => {
                 component={Cuenta}
                 options={{
                     headerTitle: 'Cuentas',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Cuentas',
-                    tabBarActiveTintColor: colors.colorA,
+                    tabBarActiveTintColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },
                 }}
             />
@@ -76,11 +84,11 @@ const TabNavigator = () => {
                 component={Perfil}
                 options={{
                     headerTitle: 'Perfil',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Perfil',
-                    tabBarActiveTintColor: colors.colorA,
+                    tabBarActiveTintColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },
                 }}
             />
@@ -89,11 +97,11 @@ const TabNavigator = () => {
                 component={Mas}
                 options={{
                     headerTitle: 'Más',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Más',
-                    tabBarActiveTintColor: colors.colorA,
+                    tabBarActiveTintColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },
                 }}
             />

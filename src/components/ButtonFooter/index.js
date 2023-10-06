@@ -8,7 +8,7 @@ const ButtonFooter = ({ title, onPress, loading }) => {
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
         {loading ? (
-          <ActivityIndicator size="small" color={colors.white} />
+          <ActivityIndicator size="small" color={colors.entidadSeleccionada === 'BMV' ? colors.white : (colors.entidadSeleccionada === 'BSR' ? colors.black : null)} />
         ) : (
           <Text style={styles.title}>{title}</Text>
         )}

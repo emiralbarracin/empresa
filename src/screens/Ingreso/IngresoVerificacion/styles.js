@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain', //ajusta imagen al contenedor
-    height: 150,
+    //height: 150, //bmv
+    height: 50, //bsr
   },
   link: {
     alignItems: 'center',

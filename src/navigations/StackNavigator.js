@@ -76,6 +76,8 @@ const Stack = createStackNavigator();
 
 const nombreUsuarioEncontrado = usuarioEncontradoQueLlega.nombre */
 
+let headerTintColor = colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null)
+
 const StackNavigator = () => {
 
   return (
@@ -94,7 +96,7 @@ const StackNavigator = () => {
         component={IngresoMetodo}
         options={{
           title: 'Elegí el método de verificación',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -105,7 +107,7 @@ const StackNavigator = () => {
         component={IngresoVerificacion}
         options={{
           title: 'Verificación de identidad',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -116,7 +118,7 @@ const StackNavigator = () => {
         component={IngresoEmpresaListado}
         options={{
           title: 'Seleccione la empresa',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -131,7 +133,7 @@ const StackNavigator = () => {
         component={RegistroInformacionPersonal}
         options={{
           title: 'Información personal',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -142,7 +144,7 @@ const StackNavigator = () => {
         component={RegistroVerificacion}
         options={{
           title: 'Verificación',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -153,7 +155,7 @@ const StackNavigator = () => {
         component={RegistroInformacionAdicional}
         options={{
           title: 'Información adicional',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -164,7 +166,7 @@ const StackNavigator = () => {
         component={RegistroDatoCuenta}
         options={{
           title: 'Datos de la cuenta',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -175,7 +177,7 @@ const StackNavigator = () => {
         component={RegistroConfirmacion}
         options={{
           title: 'Confirmación',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -186,7 +188,7 @@ const StackNavigator = () => {
         component={RegistroReducidoValidacionDato}
         options={{
           title: 'Validación de datos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -197,7 +199,7 @@ const StackNavigator = () => {
         component={RegistroReducidoDatoCuenta}
         options={{
           title: 'Datos de la cuenta',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -208,7 +210,7 @@ const StackNavigator = () => {
         component={RegistroReducidoConfirmacion}
         options={{
           title: 'Confirmación',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -219,10 +221,12 @@ const StackNavigator = () => {
         component={RegistroExitoso}
         options={{
           title: '¡Registro exitoso!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -234,7 +238,7 @@ const StackNavigator = () => {
         component={LegalContrato}
         options={{
           title: 'Contrato',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -245,7 +249,7 @@ const StackNavigator = () => {
         component={LegalTerminoYCondicion}
         options={{
           title: 'Términos y Condiciones',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -273,7 +277,7 @@ const StackNavigator = () => {
         component={Cuenta}
         options={{
           title: 'Cuentas',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: null,
@@ -288,7 +292,7 @@ const StackNavigator = () => {
         component={Perfil}
         options={{
           title: 'Emir Albarracin',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: null,
@@ -302,7 +306,7 @@ const StackNavigator = () => {
         component={Mas}
         options={{
           title: 'Más',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: null,
@@ -317,7 +321,7 @@ const StackNavigator = () => {
         component={CreditoProducto}
         options={{
           title: 'Créditos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -328,7 +332,7 @@ const StackNavigator = () => {
         component={CreditoSimulacion}
         options={{
           title: 'Simulación del crédito',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -339,7 +343,7 @@ const StackNavigator = () => {
         component={CreditoConfirmacion}
         options={{
           title: 'Confirmación del crédito',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -350,11 +354,13 @@ const StackNavigator = () => {
         component={CreditoDetalle}
         options={{
           title: '¡Acreditación exitosa!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           //headerLeft: () => <ButtonBack screenName={'InicioTab'} />,
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen
@@ -362,7 +368,7 @@ const StackNavigator = () => {
         component={CreditoListado}
         options={{
           title: 'Mis créditos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -373,7 +379,7 @@ const StackNavigator = () => {
         component={CreditoListadoDetalle}
         options={{
           title: 'Detalle del crédito',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -384,7 +390,7 @@ const StackNavigator = () => {
         component={CreditoListadoDetalleCuota}
         options={{
           title: 'Cuotas',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -395,7 +401,7 @@ const StackNavigator = () => {
         component={CreditoListadoDetalleCuotaPago}
         options={{
           title: 'Pago de cuota',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -406,10 +412,12 @@ const StackNavigator = () => {
         component={CreditoListadoDetalleCuotaPagoExitoso}
         options={{
           title: '¡Cuota pagada!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -421,7 +429,7 @@ const StackNavigator = () => {
         component={PlazoFijoProducto}
         options={{
           title: 'Plazos fijos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -432,7 +440,7 @@ const StackNavigator = () => {
         component={PlazoFijoSimulacion}
         options={{
           title: 'Simulación del plazo fijo',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -443,7 +451,7 @@ const StackNavigator = () => {
         component={PlazoFijoUvaSimulacion}
         options={{
           title: 'Simulación del plazo fijo',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -454,7 +462,7 @@ const StackNavigator = () => {
         component={PlazoFijoConfirmacion}
         options={{
           title: 'Confirmación del plazo fijo',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -465,11 +473,13 @@ const StackNavigator = () => {
         component={PlazoFijoDetalle}
         options={{
           title: '¡Plazo fijo constituido!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           //headerLeft: () => <ButtonBack screenName={'InicioTab'} />,
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen
@@ -477,7 +487,7 @@ const StackNavigator = () => {
         component={PlazoFijoListado}
         options={{
           title: 'Mis plazos fijos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -488,7 +498,7 @@ const StackNavigator = () => {
         component={PlazoFijoListadoDetalle}
         options={{
           title: 'Detalle del plazo fijo',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -499,7 +509,7 @@ const StackNavigator = () => {
         component={PlazoFijoPrecancelableListado}
         options={{
           title: 'Plazos fijos para cancelar',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -510,7 +520,7 @@ const StackNavigator = () => {
         component={PlazoFijoPrecancelableConfirmacion}
         options={{
           title: 'Cancelación anticipada del plazo fijo',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -521,10 +531,12 @@ const StackNavigator = () => {
         component={PlazoFijoPrecancelableDetalle}
         options={{
           title: '¡Plazo fijo cancelado!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -536,7 +548,7 @@ const StackNavigator = () => {
         component={MovimientoCuenta}
         options={{
           title: 'Movimientos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -547,7 +559,7 @@ const StackNavigator = () => {
         component={MovimientoDetalle}
         options={{
           title: 'Detalle del movimiento',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -558,7 +570,7 @@ const StackNavigator = () => {
         component={MovimientoCbu}
         options={{
           title: 'Detalles de la cuenta',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -573,7 +585,7 @@ const StackNavigator = () => {
         component={TransferenciaNueva}
         options={{
           title: 'Nueva transferencia',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -584,7 +596,7 @@ const StackNavigator = () => {
         component={TransferenciaConfirmacion}
         options={{
           title: 'Confirmación de la transferencia',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -595,10 +607,12 @@ const StackNavigator = () => {
         component={TransferenciaDetalle}
         options={{
           title: '¡Transferencia realizada!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -610,7 +624,7 @@ const StackNavigator = () => {
         component={CompraVentaDolarCotizacion}
         options={{
           title: 'Cotización',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -621,7 +635,7 @@ const StackNavigator = () => {
         component={CompraVentaDolarConfirmacionCompra}
         options={{
           title: 'Confirmación de la compra',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -632,7 +646,7 @@ const StackNavigator = () => {
         component={CompraVentaDolarConfirmacionVenta}
         options={{
           title: 'Confirmación de la venta',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -643,10 +657,12 @@ const StackNavigator = () => {
         component={CompraVentaDolarAcreditacion}
         options={{
           title: '¡Acredtación exitosa!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -657,7 +673,7 @@ const StackNavigator = () => {
         component={RecargaNueva}
         options={{
           title: 'Recarga de celular',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -668,10 +684,12 @@ const StackNavigator = () => {
         component={RecargaExitosa}
         options={{
           title: '¡Recarga exitosa!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -683,7 +701,7 @@ const StackNavigator = () => {
         component={TokenConsulta}
         options={{
           title: 'Token de seguridad',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -698,7 +716,7 @@ const StackNavigator = () => {
         component={TurnoNuevo}
         options={{
           title: 'Nuevo turno',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -709,7 +727,7 @@ const StackNavigator = () => {
         component={TurnoConfirmacion}
         options={{
           title: 'Confirmación del turno',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -720,10 +738,12 @@ const StackNavigator = () => {
         component={TurnoConfirmado}
         options={{
           title: '¡Turno confirmado!',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen
@@ -731,7 +751,7 @@ const StackNavigator = () => {
         component={TurnoListado}
         options={{
           title: 'Mis turnos',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -745,7 +765,7 @@ const StackNavigator = () => {
         component={UsuarioInformacionPerfil}
         options={{
           title: 'Información del perfil',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -756,7 +776,7 @@ const StackNavigator = () => {
         component={UsuarioCambioContrasena}
         options={{
           title: 'Cambio de contraseña',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -770,7 +790,7 @@ const StackNavigator = () => {
         component={PosicionConsolidadaTipoInforme}
         options={{
           title: 'Posición consolidada',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -781,7 +801,7 @@ const StackNavigator = () => {
         component={PosicionConsolidadaTipoOperacion}
         options={{
           title: 'Posición consolidada',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -792,7 +812,7 @@ const StackNavigator = () => {
         component={PosicionConsolidadaInforme}
         options={{
           title: 'Posición consolidada',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -805,7 +825,7 @@ const StackNavigator = () => {
         component={Cheque}
         options={{
           title: 'Cheque',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -816,7 +836,7 @@ const StackNavigator = () => {
         component={ChequeInforme}
         options={{
           title: 'Informe',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
@@ -827,7 +847,7 @@ const StackNavigator = () => {
         component={ChequeDetalle}
         options={{
           title: 'Detalle del cheque',
-          headerTintColor: colors.colorA,
+          headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           headerLeft: () => <ButtonBack />,
