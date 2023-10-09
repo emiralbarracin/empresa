@@ -6,4 +6,4 @@ const MoneyFormatterComprobante = (value) => {
     return formatter.format(value);
 };
 
-export default MoneyFormatterComprobante;
+export default MoneyFormatterComprobante; //sin signo pesos
