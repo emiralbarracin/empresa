@@ -55,7 +55,7 @@ const Cheque = ({navigation}) => {
 
   const items = [
     {label: 'Todos', value: '-1'},
-   /*  {label: 'Cheques de Viajeros', value: '1'}, */
+    {label: 'Cheques de Viajeros', value: '1'}, 
     {label: 'Cheques Fisicos', value: '2'},
     {label: 'Titulos', value: '3'},
     {label: 'Cheques Electrónicos', value: '4'},
@@ -88,6 +88,11 @@ const Cheque = ({navigation}) => {
   };
 
   const generarInforme = () => {
+
+    /* console.log('tipoComprobanteCheque >>> ', tipoComprobanteSeleccionado);
+    console.log('fechaCheque >>> ', fechaSeleccionada);
+    console.log('eligeFecha >>> ', eligeFecha); */
+
     navigation.navigate('ChequeInforme', {
       datosCheque: {
         tipoComprobanteCheque: tipoComprobanteSeleccionado,
