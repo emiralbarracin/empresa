@@ -34,9 +34,12 @@ const ChequeDetalle = ({ navigation }) => {
 
   const { datosChequeInforme } = useRoute().params;
 
-  //console.log('tipoComprobanteChequeInforme >>>', datosChequeInforme.tipoComprobanteChequeInforme,);
+  console.log(
+    'tipoComprobanteChequeInforme >>>',
+    datosChequeInforme.tipoComprobanteChequeInforme,
+  );
 
-  //console.log('index >>>', datosChequeInforme.indexChequeInforme);
+  console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
     navigation.navigate('inicioTab');
@@ -216,4 +219,3 @@ const ChequeDetalle = ({ navigation }) => {
 };
 
 export default ChequeDetalle;
-

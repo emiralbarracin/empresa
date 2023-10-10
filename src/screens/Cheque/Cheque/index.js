@@ -33,7 +33,7 @@ const Cheque = ({ navigation }) => {
       )
       .then(response => {
         if (response) {
-          //console.log('res >>>', response.data);
+          console.log('res >>>', response.data);
           const itemsComprobantes = response.data.output.map(x => ({
             label: x.descripcion,
             value: x.codigoFormTerceros,
@@ -49,13 +49,13 @@ const Cheque = ({ navigation }) => {
   const [tipoComprobanteSeleccionado, setTipoComprobanteSeleccionado] = useState('');
 
   const handleComprobantes = item => {
-    //console.log('comprobante >>>', item.value);
+    console.log('comprobante >>>', item.value);
     setTipoComprobanteSeleccionado(item.value);
   };
 
   const items = [
     { label: 'Todos', value: '-1' },
-    /*  {label: 'Cheques de Viajeros', value: '1'}, */
+    { label: 'Cheques de Viajeros', value: '1' },
     { label: 'Cheques Fisicos', value: '2' },
     { label: 'Titulos', value: '3' },
     { label: 'Cheques Electrónicos', value: '4' },
@@ -88,7 +88,11 @@ const Cheque = ({ navigation }) => {
   };
 
   const generarInforme = () => {
-    console.log(fechaSeleccionada)
+
+    /* console.log('tipoComprobanteCheque >>> ', tipoComprobanteSeleccionado);
+    console.log('fechaCheque >>> ', fechaSeleccionada);
+    console.log('eligeFecha >>> ', eligeFecha); */
+
     navigation.navigate('ChequeInforme', {
       datosCheque: {
         tipoComprobanteCheque: tipoComprobanteSeleccionado,
@@ -117,7 +121,7 @@ const Cheque = ({ navigation }) => {
               <View style={{ alignItems: 'center' }}>
                 <Title style={styles.text_body}>Tipo de comprobante</Title>
 
-                <View style={{ marginTop: 7 }} zIndex={100}>
+                <View style={{ marginTop: 7 }}>
                   <DropDownPicker
                     placeholder="Seleccione un tipo de comprobante"
                     open={openComprobante}
@@ -140,7 +144,6 @@ const Cheque = ({ navigation }) => {
                     dropDownStyle={{ backgroundColor: '#fafafa' }}
                     containerStyle={{ marginBottom: 0 }}
                     maxHeight={200}
-                    zIndex={100}
                   />
                 </View>
 
@@ -151,14 +154,12 @@ const Cheque = ({ navigation }) => {
                     title="Seleccionar fecha"
                     onPress={showDatePicker}
                     color={colors.black}
-                    zIndex={200}
                   />
                   <DateTimePickerModal
                     isVisible={isDatePickerVisible}
                     mode="date"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}
-                    zIndex={300}
                   />
                 </View>
 
