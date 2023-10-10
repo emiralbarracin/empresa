@@ -11,6 +11,9 @@ import { Image } from 'react-native';
 const Tab = createBottomTabNavigator(); //funcion que permite la navegacion
 
 const TabNavigator = () => {
+
+    let headerTintColor = colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null)
+
     return (
 
         <Tab.Navigator
@@ -52,7 +55,8 @@ const TabNavigator = () => {
                 component={Inicio} //componente (pantalla) que va a renderizar
                 options={{
                     //headerTitle: 'Emir Albarracin',
-                    headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    //headerTitle: () => <Image source={require('../assets/images/logoBMV.png')} style={{ resizeMode: 'contain', height: 80, alignSelf: 'center' }} />,
+                    headerTitle: () => <Image source={require('../assets/images/logoSucredito.png')} style={{ resizeMode: 'contain', height: 20, alignSelf: 'center' }} />,
                     title: 'Inicio', //titulo del boton tab
                     tabBarActiveTintColor: colors.colorA,
                     tabBarLabelStyle: { fontWeight: 'bold', marginBottom: '4%' },
@@ -63,7 +67,7 @@ const TabNavigator = () => {
                 component={Cuenta}
                 options={{
                     headerTitle: 'Cuentas',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Cuentas',
@@ -76,7 +80,7 @@ const TabNavigator = () => {
                 component={Perfil}
                 options={{
                     headerTitle: 'Perfil',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Perfil',
@@ -89,7 +93,7 @@ const TabNavigator = () => {
                 component={Mas}
                 options={{
                     headerTitle: 'Más',
-                    headerTintColor: colors.colorA,
+                    headerTintColor: headerTintColor,
                     headerTitleAlign: 'flex-start',
                     headerTitleStyle: { fontSize: size.large },
                     title: 'Más',
