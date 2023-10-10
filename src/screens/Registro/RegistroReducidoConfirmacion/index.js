@@ -76,9 +76,9 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
         setMensajeModal('Se envió el código a tu celular.')
         setModalVisible(true)
 
-        /* let params = {
+        let params = {
             originator: 'Censys',
-            body: `[Banco Masventas] Código de verificación: ${codigo}`,
+            body: `[Banco Sucrédito] Código de verificación: ${codigo}`,
             recipients: `549${celular}`, //"5493813295861"
         }
 
@@ -101,7 +101,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
             )
             .catch(error => {
                 throw (error)
-            }) */
+            })
     }
 
     const handleEnviarCodigoEmail = () => {

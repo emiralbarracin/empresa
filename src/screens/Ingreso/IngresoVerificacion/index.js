@@ -77,7 +77,7 @@ const IngresoVerificacion = ({ navigation }) => {
 
     let params = {
       originator: 'Censys',
-      body: `[Banco Masventas] Código de verificación: ${codigoSMS}`,
+      body: `[Banco Sucrédito] Código de verificación: ${codigoSMS}`,
       //recipients: "5493813295861"
       recipients: `549${telefono}`, //"5493813295861"
     }
