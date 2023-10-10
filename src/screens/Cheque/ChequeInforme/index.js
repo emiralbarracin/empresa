@@ -26,12 +26,11 @@ const ChequeInforme = ({navigation}) => {
 
   const {datosCheque} = useRoute().params;
 
-  console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
+  /* console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
   console.log('fechaCheque >>>', datosCheque.fechaCheque);
   console.log('eligeFecha >>>', datosCheque.eligeFecha);
-
+ */
   useEffect(() => {
-    //api.get(`api/BEConsultaCuenta/RecuperarBEConsultaCuenta?CodigoSucursal=20&Concepto=CC&IdMensaje=sucursalvirtual`)
     api.get(
         datosCheque.eligeFecha == 0
           ? `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=&IdMensaje=Sucursal+virtual`
@@ -41,7 +40,7 @@ const ChequeInforme = ({navigation}) => {
       )
       .then(res => {
         if (res) {
-          //console.log('dataApi1 >>>',res.data.output);
+          console.log('dataApi1 >>>',res.data.output);
           setInformeCarteraCliente(res.data.output);
         }
       })
@@ -103,7 +102,7 @@ const ChequeInforme = ({navigation}) => {
                           </View>
                           <View>
                             <Title style={styles.listTitle}>
-                              $ (item.importe)
+                              $ {item.importe}
                             </Title>
                           </View>
                         </View>
