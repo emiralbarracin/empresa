@@ -652,42 +652,6 @@ const StackNavigator = () => {
         }}
       />
 
-
-        {/* Cheque */}
-      <Stack.Screen
-        name="Cheque"
-        component={Cheque}
-        options={{
-          title: 'Cheque',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
-        }}
-      />
-      <Stack.Screen
-        name="ChequeDetalle"
-        component={ChequeDetalle}
-        options={{
-          title: 'ChequeDetalle',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
-        }}
-      />
-      <Stack.Screen
-        name="ChequeInforme"
-        component={ChequeInforme}
-        options={{
-          title: 'ChequeInforme',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
-        }}
-      />
-
       {/* Recarga */}
       <Stack.Screen
         name="RecargaNueva"
