@@ -123,10 +123,12 @@ const Cheque = ({navigation}) => {
           </Title>
           <Card style={styles.card}>
             <Card.Content>
-              <View style={{alignItems: 'center'}}>
+              <View style={{
+                alignItems: 'center',
+                zIndex:1}}>
                 <Title style={styles.text_body}>Tipo de comprobante</Title>
 
-                <View style={{marginTop: 7}}>
+                <View style={{marginTop: 7, zIndex:2}}>
                   <DropDownPicker
                     placeholder="Seleccione un tipo de comprobante"
                     open={openComprobante}
