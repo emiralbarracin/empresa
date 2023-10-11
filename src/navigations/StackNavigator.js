@@ -68,6 +68,7 @@ import PosicionConsolidadaInforme from '../screens/PosicionConsolidada/PosicionC
 import Cheque from '../screens/Cheque/Cheque';
 import ChequeInforme from '../screens/Cheque/ChequeInforme';
 import ChequeDetalle from '../screens/Cheque/ChequeDetalle';
+import FondoComunInversion from '../screens/FondoComun/FondoComunInversion';
 
 
 const Stack = createStackNavigator();
@@ -311,6 +312,18 @@ const StackNavigator = () => {
         }}
       />
 
+        {/************************************************ Fondo Comun ************************************************/}
+      <Stack.Screen
+        name="Fondo Comun de Inversion"
+        component={FondoComunInversion}
+        options={{
+          title: 'FondoComunInversion',
+          headerTintColor: headerTintColor,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft: null,
+        }}
+      />
 
 
       {/************************************************ Credito ************************************************/}

@@ -5,8 +5,9 @@ import {Title, Card, Appbar, Colors} from 'react-native-paper';
 import styles from './styles';
 import api from '../../../services/api';
 import {useRoute} from '@react-navigation/native';
-///import {dateFormat, numberFormat} from '../../../utils/Format';
+import {dateFormat, numberFormat} from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
+import colors from '../../../styles/colors';
 
 const ChequeDetalle = ({navigation}) => {
   const [variable, setVariable] = useState(false);
@@ -42,7 +43,7 @@ const ChequeDetalle = ({navigation}) => {
   console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
-    navigation.navigate('Home');
+    navigation.navigate('InicioTab');
   };
 
   useEffect(() => {
@@ -101,7 +102,7 @@ const ChequeDetalle = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{backgroundColor: Colorapp.PRIMARYCOLOR}}>
+      <Appbar.Header style={{backgroundColor: colors.white}}>
       <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Detalle del Cheque" />
       </Appbar.Header>
@@ -139,7 +140,7 @@ const ChequeDetalle = ({navigation}) => {
                   </View>
                   <View>
                     <Title style={styles.listTitle}>
-                      $ {numberFormat(importe)}
+                      $ {(importe)}
                     </Title>
                   </View>
                 </View>
