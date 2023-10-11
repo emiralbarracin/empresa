@@ -49,7 +49,7 @@ const PosicionConsolidadaInforme = ({ navigation }) => {
                     const { data: res1 } = await api.get(`api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=&IdMensaje=Sucursal+virtual`);
                     if (res1) {
 
-                        console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
+                        //console.log('BEInformeCarteraCli >>> ', JSON.stringify(res1, null, 4));
                         setInformeCarteraCliente(res1.output);
                         setCargando(false);
 

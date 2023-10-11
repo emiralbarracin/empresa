@@ -43,6 +43,8 @@ const IngresoNuevo = ({ navigation }) => {
   const [contrasena, setContrasena] = useState('');
   //const [usuario, setUsuario] = useState('lopezmia');
   //const [contrasena, setContrasena] = useState('Censys23*');
+  //const [usuario, setUsuario] = useState('fatimat');
+  //const [contrasena, setContrasena] = useState('Censys2300*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
