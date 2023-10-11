@@ -33,10 +33,8 @@ const ChequeInforme = ({ navigation }) => {
   useEffect(() => {
     api.get(
       datosCheque.eligeFecha == 0
-        ? `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=&IdMensaje=Sucursal+virtual`
-        : `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=-1&FechaVencimiento=${datosCheque.fechaCheque}&IdMensaje=Sucursal+virtual`,
-
-      //`api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${tipoComprobante}&FechaVencimiento=&IdMensaje=Sucursal+virtual`,
+        ? `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=&IdMensaje=Sucursal+virtual`
+        : `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=${datosCheque.fechaCheque}&IdMensaje=Sucursal+virtual`,
     )
       .then(res => {
         if (res) {
@@ -460,6 +458,7 @@ const ChequeInforme = ({ navigation }) => {
         </View>
       </View>
 
+      {/* <ButtonFooter title="Inicio" onPress={handleInicio}/> */}
     </View>
   );
 };

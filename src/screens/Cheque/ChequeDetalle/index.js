@@ -42,7 +42,7 @@ const ChequeDetalle = ({ navigation }) => {
   console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
-    navigation.navigate('inicioTab');
+    navigation.navigate('Home');
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const ChequeDetalle = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-
+      
       <View style={styles.body}>
         <View style={styles.first}>
           {/* <Searchbar placeholder='Buscar...' style={{marginBottom: 20}}/> */}

@@ -177,6 +177,7 @@ const Cheque = ({ navigation }) => {
 
       <View style={styles.footer}>
         <ButtonFooter title="Generar informe" onPress={generarInforme} />
+        <ButtonFooterOut title="Inicio" onPress={handleInicio} />
       </View>
     </View>
   );
