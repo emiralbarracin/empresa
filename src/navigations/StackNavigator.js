@@ -314,7 +314,7 @@ const StackNavigator = () => {
 
         {/************************************************ Fondo Comun ************************************************/}
       <Stack.Screen
-        name="Fondo Comun de Inversion"
+        name="FondoComunInversion"
         component={FondoComunInversion}
         options={{
           title: 'FondoComunInversion',
