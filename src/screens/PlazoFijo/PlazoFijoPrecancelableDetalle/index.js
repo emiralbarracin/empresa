@@ -58,14 +58,17 @@ const PlazoFijoPrecancelableDetalle = ({ navigation }) => {
 
     const handleComprobante = async () => {
 
-        try {
+        setMensajeModal('En mantenimiento.')
+        setModalVisible(true)
+
+       /*  try {
 
             //const { data: res } = await api.get(`api/PDFComprobanteCancelacionPFUVA/RecuperarPDFComprobanteCancelacionPFUVA?NombreBanco=bmv&Fecha=23%2F09%2F2023&Hora=10:52&Titulares=JULIO+ZAPATA&Cuil=CUIL+23438790039%0D%0ATitulares:+1&TipoPlazoFijo=Plazo+fijo+UVA&Cuenta=13857101&NroCertificado=112649&Plazo_Ant=55&FechaVen_Ant=30%2F08%2F2023&Tasas_Ant=0&Capital_Ant=200000&Interes_Ant=11291.74&Imp_Ganancia_Ant=0&Netoliquido_Ant=211291.74&CAcreditar_Ant=13857012&Plazo_Ori=60&FechaVen_Ori=04%2F09%2F2023&Tasas_Ori=37.56260299682617&Capital_Ori=200000`);
             const { data: res } = await api.get(`api/PDFComprobanteCancelacionPFUVA/RecuperarPDFComprobanteCancelacionPFUVA?NombreBanco=${nombreBanco}&Fecha=${fechaFormateada}&Hora=${horaFormateada}&Titulares=${nombre}&Cuil=${cuil}&TipoPlazoFijo=${nombreProducto}&Cuenta=${cuenta}&NroCertificado=${operacion}&Plazo_Ant=${plazoAnticipado}&FechaVen_Ant=${dateFormat(vencimientoAnticipado)}&Tasas_Ant=${tnaAnticipado}&Capital_Ant=${MoneyFormatter(capitalAnticipado)}&Interes_Ant=${MoneyFormatter(interes)}&Imp_Ganancia_Ant=0&Netoliquido_Ant=${MoneyFormatter(neto)}&CAcreditar_Ant=${cuentaAnticipado}&Plazo_Ori=${plazoOriginal}&FechaVen_Ori=${dateFormat(vencimientoOriginal)}&Tasas_Ori=${tnaOriginal}&Capital_Ori=${MoneyFormatter(capitalOriginal)}`);
 
             if (res.status === 0) {
 
-                console.log('PDFComprobantePlazoFijo >>>', res)
+                //console.log('PDFComprobantePlazoFijo >>>', res)
                 await Linking.openURL(res.url); //la función openURL() del módulo Linking se usa para abrir enlaces externos en el navegador
 
             } else {
@@ -77,7 +80,8 @@ const PlazoFijoPrecancelableDetalle = ({ navigation }) => {
         } catch (error) {
             console.log('catch >>> ', error);
             return;
-        }
+        } */
+
     }
 
     const [modalVisible, setModalVisible] = useState(false);
