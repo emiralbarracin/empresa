@@ -1,4 +1,4 @@
-import { Alert, Animated, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import ButtonFooter from '../../../components/ButtonFooter';
@@ -21,6 +21,7 @@ import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
 import * as Keychain from 'react-native-keychain';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ButtonFooterOut from '../../../components/ButtonFooterOut';
 
 const IngresoNuevo = ({ navigation }) => {
 
@@ -277,7 +278,7 @@ const IngresoNuevo = ({ navigation }) => {
           onPress={() => setMostrarContrasena(!mostrarContrasena)}
         />
 
-        <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
+        <ButtonFooterOut title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
         <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
 
@@ -290,6 +291,13 @@ const IngresoNuevo = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
+        <View style={{ alignItems: 'center', marginTop: '4%' }}>
+          <Image
+            source={require('../../../assets/images/footerSucredito3.png')}
+            style={{ resizeMode: 'contain', height: 280, }} //aplica la escala según el valor de la animación
+          />
+        </View>
+
       </View>
 
       <ModalError
@@ -298,8 +306,6 @@ const IngresoNuevo = ({ navigation }) => {
         titleButton="Aceptar"
         onPressButton={handleAceptar}
       />
-
-      <Text style={{ alignSelf: 'center', fontSize: 5, color: 'black' }}>TEST</Text>
 
     </View>
   );

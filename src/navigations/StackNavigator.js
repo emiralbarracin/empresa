@@ -68,6 +68,7 @@ import PosicionConsolidadaInforme from '../screens/PosicionConsolidada/PosicionC
 import Cheque from '../screens/Cheque/Cheque';
 import ChequeInforme from '../screens/Cheque/ChequeInforme';
 import ChequeDetalle from '../screens/Cheque/ChequeDetalle';
+import IngresoPrincipal from '../screens/Ingreso/IngresoPrincipal';
 
 
 const Stack = createStackNavigator();
@@ -86,6 +87,11 @@ const StackNavigator = () => {
 
 
       {/************************************************ Ingreso ************************************************/}
+      <Stack.Screen
+        name="IngresoPrincipal" //nombre para reconocer a este componente stack
+        component={IngresoPrincipal} //componente que renderiza este componente stack
+        options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
+      />
       <Stack.Screen
         name="IngresoNuevo" //nombre para reconocer a este componente stack
         component={IngresoNuevo} //componente que renderiza este componente stack
