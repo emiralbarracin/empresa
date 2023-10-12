@@ -156,7 +156,6 @@ const IngresoNuevo = ({ navigation }) => {
     createKeys();
   }, []);
 
-  //
   const isSensorAvailable = async () => {
     const { biometryType } = await ReactNativeBiometrics.isSensorAvailable();
     if (biometryType === ReactNativeBiometrics.Biometrics) {
@@ -164,7 +163,6 @@ const IngresoNuevo = ({ navigation }) => {
     }
   };
 
-  //
   const createKeys = () => {
     ReactNativeBiometrics.createKeys('Confirm fingerprint').then(
       resultObject => {
