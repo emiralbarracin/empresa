@@ -20,7 +20,7 @@ const TransferenciaDetalle = ({ navigation }) => {
     const mesFormateado = mes.toString().padStart(2, '0'); // agrega un 0 adelante en los meses de 1 a 9 // 2 (indico que quiero que la cadena tenga una longitud de 2 caracteres) 0 (indico que quiero llenar los espacios restantes con el caracter 0)
     const fechaFormateada = `${dia}/${mesFormateado}/${anio}`;
 
-    const hora = hoy.getHours().toString().padStart(2, '0') - 3; //-3 hora arg
+    const hora = hoy.getHours().toString().padStart(2, '0');
     const minutos = hoy.getMinutes().toString().padStart(2, '0');
     const horaFormateada = `${hora}:${minutos}`;
 

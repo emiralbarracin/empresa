@@ -24,7 +24,7 @@ const PlazoFijoDetalle = ({ navigation }) => {
     const mesFormateado = mes.toString().padStart(2, '0');
     const fechaFormateada = `${dia}/${mesFormateado}/${anio}`;
 
-    const hora = hoy.getHours().toString().padStart(2, '0') - 3; //-3 hora arg
+    const hora = hoy.getHours().toString().padStart(2, '0');
     const minutos = hoy.getMinutes().toString().padStart(2, '0');
     const horaFormateada = `${hora}:${minutos}`;
 
