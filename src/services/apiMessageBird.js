@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { environment } from './environment';
 import { Alert } from 'react-native';
+import Config from '../env';
 
 const apiMessageBird = axios.create({
     baseURL: `${environment.baseUrlMessageBird}`,
@@ -47,7 +48,7 @@ apiMessageBird.interceptors.response.use(
 
 apiMessageBird.interceptors.request.use(
     config => {
-        config.headers.Authorization = `AccessKey ${environment.access_key_messagebird}`
+        config.headers.Authorization = `AccessKey ${Config.MESSAGEBIRD_ACCESS_KEY}`
         return Promise.resolve(config)
 
     },
