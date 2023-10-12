@@ -1,7 +1,6 @@
 import { Alert, Animated, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
-import ButtonFooter from '../../../components/ButtonFooter';
 import IconInput from '../../../components/IconInput';
 import LinkSmall from '../../../components/LinkSmall';
 import { environment } from '../../../services/environment';
