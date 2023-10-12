@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import MoneyConverter from '../../../utils/MoneyConverter';
 import { useRoute } from '@react-navigation/native';
-import ButtonFooter from '../../../components/ButtonFooter';
 import DateConverter from '../../../utils/DateConverter';
 import TitleMedium from '../../../components/TitleMedium';
 import CardMovimiento from '../../../components/CardMovimiento';
