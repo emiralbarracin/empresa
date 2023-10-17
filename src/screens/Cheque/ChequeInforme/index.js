@@ -9,6 +9,7 @@ import {dateFormat, numberFormat} from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
 import colors from '../../../styles/colors';
 
+
 const ChequeInforme = ({navigation}) => {
   const [variable, setVariable] = useState(false);
 
@@ -121,11 +122,10 @@ const ChequeInforme = ({navigation}) => {
 
                       <Card.Content style={styles.buttonCard}>
                         <Card.Actions>
-                          <Button
-                            color={colors.white}
-                            onPress={() => handleDetalle(index)}>
-                            Ver detalle
-                          </Button>
+                          <ButtonFooter
+                            title="Ver Detalles"
+                            onPress={() => handleDetalle(index)}/>
+                                                 
                         </Card.Actions>
                       </Card.Content>
                     </Card>
@@ -202,11 +202,11 @@ const ChequeInforme = ({navigation}) => {
                       </Card.Content>
                       <Card.Content style={styles.buttonCard}>
                         <Card.Actions>
-                          <Button
+                          <ButtonFooter
                             color={colors.colorB}
                             onPress={() => handleDetalle()}>
                             Ver detalle
-                          </Button>
+                          </ButtonFooter>
                         </Card.Actions>
                       </Card.Content>
                     </Card>
@@ -281,11 +281,9 @@ const ChequeInforme = ({navigation}) => {
                       </Card.Content>
                       <Card.Content style={styles.buttonCard}>
                         <Card.Actions>
-                          <Button
-                            color={colors.colorB}
-                            onPress={() => handleDetalle()}>
-                            Ver detalle
-                          </Button>
+                        <ButtonFooter
+                            title="Ver Detalles"
+                            onPress={() => handleDetalle()}/>
                         </Card.Actions>
                       </Card.Content>
                     </Card>
@@ -360,11 +358,9 @@ const ChequeInforme = ({navigation}) => {
                       </Card.Content>
                       <Card.Content style={styles.buttonCard}>
                         <Card.Actions>
-                          <Button
-                            color={colors.colorB}
-                            onPress={() => handleDetalle()}>
-                            Ver detalle
-                          </Button>
+                        <ButtonFooter
+                            title="Ver Detalles"
+                            onPress={() => handleDetalle()}/>
                         </Card.Actions>
                       </Card.Content>
                     </Card>
@@ -439,11 +435,9 @@ const ChequeInforme = ({navigation}) => {
                       </Card.Content>
                       <Card.Content style={styles.buttonCard}>
                         <Card.Actions>
-                          <Button
-                            color={colors.colorB}
-                            onPress={() => handleDetalle()}>
-                            Ver detalle
-                          </Button>
+                        <ButtonFooter
+                            title="Ver Detalles"
+                            onPress={() => handleDetalle()}/>
                         </Card.Actions>
                       </Card.Content>
                     </Card>

@@ -831,6 +831,7 @@ const StackNavigator = () => {
         component={ChequeInforme}
         options={{
           title: 'Informe',
+          headerShown:false,
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
@@ -842,6 +843,7 @@ const StackNavigator = () => {
         component={ChequeDetalle}
         options={{
           title: 'Detalle del cheque',
+          headerShown:false,
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
