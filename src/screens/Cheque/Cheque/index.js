@@ -141,6 +141,8 @@ const Cheque = ({navigation}) => {
                     style={{
                       backgroundColor: '#fafafa',
                       flexDirection: 'row-reverse',
+                      marginBottom:20,
+                      gap:15
                     }}
                     labelStyle={{
                       textAlign: 'right',
@@ -155,12 +157,12 @@ const Cheque = ({navigation}) => {
                 </View>
 
                 <View style={{marginTop: 10}}>
-                  <Title style={styles.text_body}>Fecha de acreditación</Title>
+                  {/* <Title style={styles.text_body}>Fecha de acreditación</Title> */}
 
-                  <Button
-                    title="Seleccionar fecha"
+                  <ButtonFooter
+                    title="Fecha de acreditación"
                     onPress={showDatePicker}
-                    color={colors.black}
+                    
                   />
                   <DateTimePickerModal
                     isVisible={isDatePickerVisible}
@@ -171,7 +173,7 @@ const Cheque = ({navigation}) => {
                 </View>
 
                 <View style={{marginTop: 10}}>
-                  <Title style={styles.text_body}>Fecha seleccionada</Title>
+                  {/* <Title style={styles.text_body}>Fecha seleccionada</Title> */}
                   <Title style={styles.text_body}>
                     {fechaSeleccionadaAMostrar}
                   </Title>
@@ -184,7 +186,7 @@ const Cheque = ({navigation}) => {
 
       <View style={styles.footer}>
         <ButtonFooter title="Generar informe" onPress={generarInforme} />
-        <ButtonFooterOut title="Inicio" onPress={handleInicio} />
+        {/* <ButtonFooterOut title="Inicio" onPress={handleInicio} /> */}
       </View>
     </View>
   );

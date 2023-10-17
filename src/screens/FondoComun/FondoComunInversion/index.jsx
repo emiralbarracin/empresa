@@ -1,18 +1,14 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import TitleLargeBold from '../../../components/TitleLargeBold';
+import TitleMediumBold from '../../../components/TitleMediumBold';
+import TitleMedium from '../../../components/TitleMedium';
 
 const FondoComunInversion = ({navigation}) =>{
   return (
     <View>
-      <Text>Test del Inversor
-Conozca su perfil como inversor
-¿Por qué hacer el test?
-
-El test permitirá conocer su Perfil del Inversor en base a un conjunto de características derivadas de la personalidad, conocimiento, expectativas, experiencias anteriores y necesidades que condicionan su comportamiento y actitud, ayudándolo a determinar cuáles productos se ajustan sus objetivos de inversión
-
-¿Cómo realizo el test?
-
-El Test del Inversor consiste en responder 9 preguntas que evaluaremos para poder determinar su perfil de Inversor.</Text>
+      <TitleLargeBold title={'Fondos Comunes De Inversion'} />
+      <TitleMediumBold title={'hola1'} />
+      <TitleMedium title={'hola'}/>
     </View>
   )
 }

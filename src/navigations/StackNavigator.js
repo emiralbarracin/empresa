@@ -314,14 +314,14 @@ const StackNavigator = () => {
 
         {/************************************************ Fondo Comun ************************************************/}
       <Stack.Screen
-        name="Fondo Comun de Inversion"
+        name="FondoComun"
         component={FondoComunInversion}
         options={{
-          title: 'FondoComunInversion',
+          title: 'Fondo Comun',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: null,
+          headerLeft:() => <ButtonBack />,
         }}
       />
 
@@ -819,6 +819,7 @@ const StackNavigator = () => {
         component={Cheque}
         options={{
           title: 'Cheque',
+          headerShown:false,
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },

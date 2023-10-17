@@ -52,7 +52,7 @@ const Mas = ({ navigation }) => {
                         <View style={styles.buttonTitle}>
                             <TitleMedium title="Inversiones" />
                         </View>
-                        <ButtonMenu iconName="arrow-top-right" title="Fondos Comunes De inversion" onPress={() => navigation.navigate('FCI')} />
+                        <ButtonMenu iconName="arrow-top-right" title="Fondos Comunes De inversion" onPress={() => navigation.navigate('FondoComun')} />
                         
 
                         <View style={styles.buttonTitle}>
