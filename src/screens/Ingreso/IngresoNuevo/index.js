@@ -39,12 +39,12 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  //const [usuario, setUsuario] = useState('');
-  //const [contrasena, setContrasena] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
   //const [usuario, setUsuario] = useState('lopezmia');
   //const [contrasena, setContrasena] = useState('Censys23*');
-  const [usuario, setUsuario] = useState('fatimat');
-  const [contrasena, setContrasena] = useState('Censys2300*');
+  //const [usuario, setUsuario] = useState('fatimat');
+  //const [contrasena, setContrasena] = useState('Censys2300*');
   //const [usuario, setUsuario] = useState('albertom');
   //const [contrasena, setContrasena] = useState('Censys2300*');
 
