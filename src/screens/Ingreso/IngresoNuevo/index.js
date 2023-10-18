@@ -39,11 +39,13 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  //const [usuario, setUsuario] = useState('');
+  //const [contrasena, setContrasena] = useState('');
   //const [usuario, setUsuario] = useState('lopezmia');
   //const [contrasena, setContrasena] = useState('Censys23*');
-  //const [usuario, setUsuario] = useState('fatimat');
+  const [usuario, setUsuario] = useState('fatimat');
+  const [contrasena, setContrasena] = useState('Censys2300*');
+  //const [usuario, setUsuario] = useState('albertom');
   //const [contrasena, setContrasena] = useState('Censys2300*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
@@ -291,7 +293,7 @@ const IngresoNuevo = ({ navigation }) => {
         <View style={{ alignItems: 'center', marginTop: '4%' }}>
           <Image
             source={require('../../../assets/images/footerSucredito3.png')}
-            style={{ resizeMode: 'contain', height: 280, }} //aplica la escala según el valor de la animación
+            style={{ resizeMode: 'contain', height: '70%', }} //aplica la escala según el valor de la animación
           />
         </View>
 

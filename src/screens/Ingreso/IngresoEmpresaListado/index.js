@@ -39,10 +39,8 @@ const IngresoEmpresaListado = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const handleEmpresaSeleccionada = (item) => {
-
         dispatch(agregarEmpresa(item));
         navigation.navigate('InicioTab')
-
     }
 
     return (
@@ -51,7 +49,11 @@ const IngresoEmpresaListado = ({ navigation }) => {
 
                 <View style={styles.body}>
 
-                    {
+                    {empresas.length === 1 ? (
+                        // Si hay un solo elemento, ejecutar directamente handleEmpresaSeleccionada pasandole los valores de esa unica posicion
+                        handleEmpresaSeleccionada(empresas[0])
+                    ) : (
+                        // Si hay más de un elemento, mostrar los botones
                         empresas.map((item) => (
                             <ButtonFooter
                                 key={item.idEmpresaUsu}
@@ -59,7 +61,7 @@ const IngresoEmpresaListado = ({ navigation }) => {
                                 onPress={() => handleEmpresaSeleccionada(item)}
                             />
                         ))
-                    }
+                    )}
 
                 </View>
 
