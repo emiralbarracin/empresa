@@ -67,7 +67,7 @@ const IngresoVerificacion = ({ navigation }) => {
     console.log('codigoSMS >>>', codigoSMS)
 
     setTiempoRestante(60)
-    setMensajeModal('Se envió el código a tu celular.')
+    setMensajeModal('Se envió el código a su celular.')
     setModalVisible(true)
 
     setShowEnviarCodigo(false);

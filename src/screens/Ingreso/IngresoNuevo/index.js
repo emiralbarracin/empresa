@@ -230,7 +230,7 @@ const IngresoNuevo = ({ navigation }) => {
 
           } else {
             console.log('No hay credenciales almacenadas');
-            Alert.alert(null, 'Podés configurar la huella desde tu perfil.', [
+            Alert.alert(null, 'Puede configurar la huella desde su perfil.', [
               {
                 title: 'Ok',
                 onPress: () => {
@@ -279,7 +279,7 @@ const IngresoNuevo = ({ navigation }) => {
 
         <ButtonFooterOut title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
-        <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
+        <LinkSmall title={'¿Olvidó su contraseña?'} onPress={() => handleMantenimiento()} />
 
         <View style={styles.containerHuella}>
           <TouchableOpacity onPress={() => fingerprint()}>

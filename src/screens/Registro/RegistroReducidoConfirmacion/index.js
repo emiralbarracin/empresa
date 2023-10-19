@@ -73,7 +73,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
         setCodigoEmailEnviado(false)
         setCodigoSMSEnviado(true)
         setTiempoRestante(60); //reinicia el contador de 1 minuto al presionar el boton
-        setMensajeModal('Se envió el código a tu celular.')
+        setMensajeModal('Se envió el código a su celular.')
         setModalVisible(true)
 
         let params = {
@@ -110,7 +110,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
         setCodigoEmailEnviado(true);
         setTiempoRestante(60); //reinicia el contador de 1 minuto al presionar el boton
 
-        setMensajeModal('Se envió el código a tu email.')
+        setMensajeModal('Se envió el código a su email.')
         setModalVisible(true)
 
     }

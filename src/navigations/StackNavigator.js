@@ -101,7 +101,7 @@ const StackNavigator = () => {
         name="IngresoMetodo"
         component={IngresoMetodo}
         options={{
-          title: 'Elegí el método de verificación',
+          title: 'Elija el método de verificación',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },

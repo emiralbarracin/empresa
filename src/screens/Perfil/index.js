@@ -34,7 +34,7 @@ const Perfil = ({ navigation }) => {
             resultObject => {
                 const { publicKey } = resultObject;
                 console.log(publicKey);
-                Alert.alert(null, '¡Tu huella fue configurada con éxito!', [
+                Alert.alert(null, '¡Su huella fue configurada con éxito!', [
                     {
                         title: 'Ok',
                         onPress: () => {

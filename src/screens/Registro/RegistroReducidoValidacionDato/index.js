@@ -154,7 +154,7 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
         if (pasaValidacionDomicilio === 1 && pasaValidacionFecha === 1) {
             navigation.navigate('RegistroReducidoDatoCuenta', { cuil })
         } else {
-            setMensajeModal('Los datos seleccionados de validación son incorrectos. Tenés que dirigirte a una sucursal del banco.')
+            setMensajeModal('Los datos seleccionados de validación son incorrectos. Tiene que dirigirse a una sucursal del banco.')
             setModalVisible(true)
         }
     }
@@ -179,7 +179,7 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
 
                     <>
 
-                        <ParagraphMedium title={'Validá tu domicilio y fecha de nacimiento seleccionando la opción correcta o "Ninguna de las anteriores". Si seleccionás incorrectamente, tu cuenta se bloqueará y deberás contactar a un representante del banco para resolverlo.'} />
+                        <ParagraphMedium title={'Valide su domicilio y fecha de nacimiento seleccionando la opción correcta o "Ninguna de las anteriores". Si selecciona incorrectamente, su cuenta se bloqueará y deberá contactar a un representante del banco para resolverlo.'} />
 
                         <View style={{ alignSelf: 'flex-start', marginLeft: '4%' }}>
                             <TitleMediumBold title={'Domicilio'} />
