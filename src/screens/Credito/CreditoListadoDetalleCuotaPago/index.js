@@ -15,6 +15,7 @@ const CreditoListadoDetalleCuotaPago = ({ navigation }) => {
 
     const {
         numeroCuota,
+        totalCuotas,
         fechaVencimiento,
         importe,
         codigoCuenta,
@@ -35,7 +36,7 @@ const CreditoListadoDetalleCuotaPago = ({ navigation }) => {
     const fechaFormateada = `${dia}/${mesFormateado}/${anio}`;
 
     const datosCredito = [
-        { title: 'N° de cuota', value: numeroCuota },
+        { title: 'N° de cuota', value: `${numeroCuota}/${totalCuotas}` },
         { title: 'Fecha de vencimiento', value: <DateConverter date={fechaVencimiento} /> },
         /* { title: 'Saldo capital', value: <MoneyConverter value={58512} /> }, */
         { title: 'Importe cuota', value: <MoneyConverter value={importe} /> },
@@ -117,7 +118,7 @@ const CreditoListadoDetalleCuotaPago = ({ navigation }) => {
                 if (res1.status === 0) {
 
                     //console.log('CuentaOperacionCreditoPagoNormalCuota', res1)
-                    navigation.navigate('CreditoListadoDetalleCuotaPagoExitoso', { numeroCuota, importe })
+                    navigation.navigate('CreditoListadoDetalleCuotaPagoExitoso', { numeroCuota, totalCuotas, importe })
                     setCargando(false)
 
                 } else {

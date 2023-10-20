@@ -155,7 +155,7 @@ const Inicio = ({ navigation }) => {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '1%' }}>
 
             <View style={styles.usuario}>
-              <TitleSmall title={`${nombreEmpresaRTK} | ${nombreQueLlega}`} />
+              <TitleSmall title={`${nombreEmpresaRTK}`} />
             </View>
 
             <View style={{ marginRight: '4%', alignItems: 'flex-end' }}>

@@ -80,6 +80,7 @@ const CreditoListadoDetalleCuota = ({ navigation }) => {
     });
 
     let numeroCuota
+    let totalCuotas
     let fechaVencimiento
     let importe
 
@@ -88,11 +89,13 @@ const CreditoListadoDetalleCuota = ({ navigation }) => {
         //console.log('item ', item)
 
         numeroCuota = item.numeroCuota
+        totalCuotas = item.totalCuotas
         fechaVencimiento = item.fechaVencimiento
         importe = item.importe
 
         navigation.navigate('CreditoListadoDetalleCuotaPago', {
             numeroCuota,
+            totalCuotas,
             fechaVencimiento,
             importe,
             codigoCuenta,

@@ -59,7 +59,7 @@ const CreditoProducto = ({ navigation }) => {
                                 { title: 'Producto', value: item.nombreProducto },
                                 { title: 'Moneda', value: item.descripcionMoneda },
                                 { title: 'TNA', value: `${item.rendimientoMaximo} %` },
-                                { title: 'Plazo máximo', value: `${item.plazoMaximoOperacion} días` },
+                                { title: 'Plazo máximo', value: `${item.plazoMaximoOperacion} cuotas` },
                                 { title: 'Monto máximo', value: <MoneyConverter value={item.montoMaximoOperacion} /> },
                             ]}
                             button={'Simular'}
