@@ -1,4 +1,4 @@
-const entidadSeleccionada = 'EntidadB';
+const entidadSeleccionada = 'BSR';
 
 const base = {
   white: '#fff',
@@ -8,16 +8,20 @@ const base = {
 };
 
 const entidades = {
-  EntidadA: {
-    colorA: '#b5121b', //color logo bmr
+  BMR: {
+    colorA: '#b5121b',
     colorB: '#a5121b',
   },
-  EntidadB: {
-    colorA: '#155a9e', //color logo bmv
+  BMV: {
+    colorA: '#155a9e',
     colorB: '',
+  },
+  BSR: {
+    colorA: '#e41e2f',
+    colorB: '#ffe91a',
   },
 };
 
 //https://desarrollador-android.com/material-design/diseno-material-design/estilo/color/
 
-export default colors = { ...base, ...entidades[entidadSeleccionada] };
+export default colors = { ...base, ...entidades[entidadSeleccionada], entidadSeleccionada };

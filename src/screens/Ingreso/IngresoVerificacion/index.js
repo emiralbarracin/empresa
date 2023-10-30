@@ -10,8 +10,11 @@ import TitleMediumBold from '../../../components/TitleMediumBold';
 import DeviceInfo from 'react-native-device-info';
 import api from '../../../services/api';
 import LinkMedium from '../../../components/LinkMedium';
+import { useRoute } from '@react-navigation/native';
 
 const IngresoVerificacion = ({ navigation }) => {
+
+  const {telefono} = useRoute().params
 
   const [showEnviarCodigo, setShowEnviarCodigo] = useState(true);
   const [showReenviarCodigo, setShowReenviarCodigo] = useState(false);
@@ -72,11 +75,11 @@ const IngresoVerificacion = ({ navigation }) => {
     setModalVisible(true)
     setContador(true)
 
-    /* let params = {
+    let params = {
       originator: 'Censys',
       body: `[Banco Masventas] Código de verificación: ${codigoSMS}`,
-      recipients: "5493813295861"
-      //recipients: `549${celular}`, //"5493813295861"
+      //recipients: "5493813295861"
+      recipients: `549${telefono}`, //"5493813295861"
     }
 
     apiMessageBird.post('/messages', params)
@@ -96,7 +99,7 @@ const IngresoVerificacion = ({ navigation }) => {
       )
       .catch(error => {
         throw (error)
-      }) */
+      })
 
   }
 
@@ -176,7 +179,8 @@ const IngresoVerificacion = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('../../../assets/images/logoBMV.png')}
+          //source={require('../../../assets/images/logoBMV.png')}
+          source={require('../../../assets/images/logoSucredito.png')}
           style={styles.image}
         />
       </View>

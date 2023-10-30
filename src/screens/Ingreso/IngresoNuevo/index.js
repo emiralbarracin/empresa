@@ -1,4 +1,4 @@
-import { Alert, Animated, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import ButtonFooter from '../../../components/ButtonFooter';
@@ -111,6 +111,8 @@ const IngresoNuevo = ({ navigation }) => {
 
   const clientePerfil = async () => {
 
+    let telefono
+
     try {
 
       const { data: { access_token } } = await token.post('/Token', environment.payload);
@@ -119,10 +121,11 @@ const IngresoNuevo = ({ navigation }) => {
 
       const { data } = await api.get(`api/BancaDigitalClientePerfil/RecuperarBancaDigitalClientePerfil?CodigoSucursal=20&IdMensaje=sucursalvirtual`);
       if (data) {
+        telefono = data.output[0].telefono
         //console.log('BTClientePerfil >>> ', data);
         //console.log('output >>> ', data.output[0]);
         dispatch(agregarUsuario(data.output[0])) //rtk
-        ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo')
+        ingresoHuella ? navigation.navigate('IngresoEmpresaListado') : navigation.navigate('IngresoMetodo', { telefono })
         limpiarValores();
         setCargandoBoton(false)
       } else {
@@ -242,13 +245,13 @@ const IngresoNuevo = ({ navigation }) => {
   };
 
 
-
   return (
     <View style={styles.container}>
 
       <View style={styles.header}>
         <Animated.Image //Animated.Image para aplicar la animación
-          source={require('../../../assets/images/logoBMV.png')}
+          //source={require('../../../assets/images/logoBMV.png')}
+          source={require('../../../assets/images/logoSucredito.png')}
           style={[styles.image, { transform: [{ scale: logoScale }] }]} //aplica la escala según el valor de la animación
         />
       </View>
@@ -293,6 +296,8 @@ const IngresoNuevo = ({ navigation }) => {
         titleButton="Aceptar"
         onPressButton={handleAceptar}
       />
+
+      <Text style={{ alignSelf: 'center', fontSize: 5, color: 'black' }}>TEST</Text>
 
     </View>
   );

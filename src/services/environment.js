@@ -6,8 +6,8 @@ export const environment = {
   access_key_messagebird: 'L5uAnEiojxtY37lTyYjsVZbcv',
   //principio del endpoint (dirección a la que se envían las solicitudes para realizar una acción específica en el servidor)
   //baseRuta: 'IBAPI_BMR_MH',
-  baseRuta: 'IBAPI_BANCA_EMPRESA', //desa
-  //baseRuta: 'IBAPI_BANCA_EMPRESA_TEST', //test
+  //baseRuta: 'IBAPI_BANCA_EMPRESA', //desa
+  baseRuta: 'IBAPI_BANCA_EMPRESA_TEST', //test
   //propiedad que contiene la carga útil (payload) que se enviará junto con la solicitud HTTP para obtener el token de acceso. Aqui se especifica el tipo de conexion (grant_type), el identificador de cliente (client_id) y el secreto de cliente (client_secret) que se usarán para autenticar la solicitud.
   payload:
     'grant_type=' +
