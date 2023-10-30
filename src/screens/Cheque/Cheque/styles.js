@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import colors from '../../../styles/colors';
 
 const styles = StyleSheet.create({
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       color: '#FF0000',
       fontSize: 14,
     },
-  
+
     card: {
       //borderWidth: 1,
       borderColor: colors.gray,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
       marginTop: 10,
       height: 340, //250 (con fecha)
     },
-  
+
     avatar: {
       justifyContent: 'center',
       alignItems: 'center',

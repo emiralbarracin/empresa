@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {View, Platform, StyleSheet, StatusBar} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import {Paragraph} from 'react-native-paper';
-import {Title, Card, Appbar, Colors} from 'react-native-paper';
+import {Title, Card, Appbar} from 'react-native-paper';
 import styles from './styles';
 import api from '../../../services/api';
 import {useRoute} from '@react-navigation/native';
@@ -58,8 +58,7 @@ const ChequeDetalle = ({navigation}) => {
             res.data.output[datosChequeInforme.indexChequeInforme].comprobante,
           );
           setNumeroComprobante(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .numeroComprobante,
+            res.data.output[datosChequeInforme.indexChequeInforme].numeroComprobante,
           );
           setImporte(
             res.data.output[datosChequeInforme.indexChequeInforme].importe,
@@ -71,24 +70,19 @@ const ChequeDetalle = ({navigation}) => {
             res.data.output[datosChequeInforme.indexChequeInforme].fechaIngreso,
           );
           setFechaAcreditacion(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .fechaVencimiento,
+            res.data.output[datosChequeInforme.indexChequeInforme].fechaVencimiento,
           );
           setNumeroCuentaOrigen(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .codigoCuentaOrigen,
+            res.data.output[datosChequeInforme.indexChequeInforme].codigoCuentaOrigen,
           );
           setNumeroCuentaDestino(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .codigoCuentaCredito,
+            res.data.output[datosChequeInforme.indexChequeInforme].codigoCuentaCredito,
           );
           setBanco(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .descripcionBanco,
+            res.data.output[datosChequeInforme.indexChequeInforme].descripcionBanco,
           );
           setEstado(
-            res.data.output[datosChequeInforme.indexChequeInforme]
-              .descripcionEstado,
+            res.data.output[datosChequeInforme.indexChequeInforme].descripcionEstado,
           );
 
           /* setInformeCarteraCliente(res.data.output); */

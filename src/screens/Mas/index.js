@@ -10,21 +10,21 @@ import { onClearStorage } from '../../store/storage/storageToken';
 const Mas = ({ navigation }) => {
 
     const handleSalir = () => {
-        onClearStorage() //elimina datos almacenados en el almacenamiento local
-        navigation.navigate('IngresoNuevo')
-    }
+        onClearStorage(); //elimina datos almacenados en el almacenamiento local
+        navigation.navigate('IngresoNuevo');
+    };
 
     const [modalVisible, setModalVisible] = useState(false);
     const [mensajeModal, setMensajeModal] = useState(null);
 
     const handleMantenimiento = () => {
-        setMensajeModal('Sección en mantenimiento.')
-        setModalVisible(true)
-    }
+        setMensajeModal('Sección en mantenimiento.');
+        setModalVisible(true);
+    };
 
     const handleAceptar = () => {
-        setModalVisible(false)
-    }
+        setModalVisible(false);
+    };
 
     return (
         <>
@@ -53,7 +53,6 @@ const Mas = ({ navigation }) => {
                             <TitleMedium title="Inversiones" />
                         </View>
                         <ButtonMenu iconName="arrow-top-right" title="Fondos Comunes De inversion" onPress={() => navigation.navigate('FondoComun')} />
-                        
 
                         <View style={styles.buttonTitle}>
                             <TitleMedium title="Transacciones" />

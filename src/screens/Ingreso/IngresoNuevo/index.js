@@ -39,10 +39,10 @@ const IngresoNuevo = ({ navigation }) => {
 
   }, []);
 
-  const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
-  //const [usuario, setUsuario] = useState('lopezmia');
-  //const [contrasena, setContrasena] = useState('Censys23*');
+  //const [usuario, setUsuario] = useState('');
+  //const [contrasena, setContrasena] = useState('');
+  const [usuario, setUsuario] = useState('gonzalezeliana');
+  const [contrasena, setContrasena] = useState('Censys23*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -195,16 +195,16 @@ const IngresoNuevo = ({ navigation }) => {
           const credentials = await Keychain.getGenericPassword();
           if (credentials) {
             //console.log('Credenciales cargadas con éxito para: ' + credentials.username,);
-            usuario = credentials.username
-            contrasena = credentials.password
+            usuario = credentials.username;
+            contrasena = credentials.password;
 
             //RTK
             const usuarioContrasena = {
               usuario: usuario,
-              contrasena: contrasena
-            }
+              contrasena: contrasena,
+            };
 
-            setCargandoBoton(true)
+            setCargandoBoton(true);
 
             const { data: { access_token } } = await token.post('/Token', environment.payload);
             //console.log('token 1 >>> ', access_token);
@@ -213,17 +213,17 @@ const IngresoNuevo = ({ navigation }) => {
             const { data: { userName, mensajeStatus } } = await api.get(`api/LoginEmailTelefono/RecuperarLoginEmailTelefono?InputLogin=${usuario}&HBClientePassword=${contrasena}&CodigoSucursal=20&IdMensaje=PostmanBack`);
             if (userName) {
               //console.log('userName >>> ', userName);
-              ingresoHuella = true
+              ingresoHuella = true;
               onSetStorageUser(base64.encode(`${usuario}:${contrasena}`)); //codifica el nombre de usuario y la contraseña en formato Base64 y lo guarda en el almacenamiento local
-              dispatch(agregarNombreUsuario(usuario)) //rtk
-              dispatch(agregarContrasenaUsuario(contrasena)) //rtk
+              dispatch(agregarNombreUsuario(usuario)); //rtk
+              dispatch(agregarContrasenaUsuario(contrasena)); //rtk
               clientePerfil();
               // navigation.navigate('IngresoVerificacion');
             } else {
               //console.log('mensajeStatus >>> ', mensajeStatus);
               setModalVisible(!modalVisible);
               setMensajeModal(mensajeStatus);
-              setCargandoBoton(false)
+              setCargandoBoton(false);
             }
 
           } else {
@@ -238,7 +238,7 @@ const IngresoNuevo = ({ navigation }) => {
             ]);
           }
         } catch (error) {
-          console.log("No se pudo acceder al llavero", error);
+          console.log('No se pudo acceder al llavero', error);
         }
       }
     });
@@ -282,7 +282,7 @@ const IngresoNuevo = ({ navigation }) => {
         <View style={styles.containerHuella}>
           <TouchableOpacity onPress={() => fingerprint()}>
             <MaterialCommunityIcons
-              name='fingerprint'
+              name="fingerprint"
               style={styles.huella}
             />
           </TouchableOpacity>
