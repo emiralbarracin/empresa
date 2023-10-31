@@ -84,7 +84,7 @@ const TestInversor = ({ navigation }) => {
                       opciones: opcionesFil,
                     };
                   });
-                console.log('Array Filtrado y Unido ', JSON.stringify(opcionesCPreg, null, 4));
+                //console.log('Array Filtrado y Unido ', JSON.stringify(opcionesCPreg, null, 4));
                 setQuestionsWithOptions(opcionesCPreg);
               }
             })
@@ -93,7 +93,7 @@ const TestInversor = ({ navigation }) => {
       })
       .catch(err => console.error('ErrorEnPreguntas>>>>>> ', err));
   }, []);
-  //console.log('Array Filtrado y Unido ', JSON.stringify(questionsWithOptions, null, 4));
+  //console.log('Array Filtrado y Unido ', JSON.stringify(questionsWithOptions.pregunta, null, 4));
 
 
 
@@ -102,8 +102,19 @@ const TestInversor = ({ navigation }) => {
       <View style={styles.header} >
         <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
       </View>
+      <View>
+        <Text>Hola</Text>
+          {/* {questionsWithOptions.map((pregunta) => {
+            return (
+            );
+          })} */}
+        </View>
+       
+      {/* <View style={styles.header} >
+        <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
+      </View>
       <View style={{ marginTop: 30 }}>
-        {/* <FlatList
+        <FlatList
           ref={listRef}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
@@ -112,7 +123,6 @@ const TestInversor = ({ navigation }) => {
             const x = e.nativeEvent.contentOffset.x / width + 1;
             setCurrentQuestion(x.toFixed(0));
           }}
-          keyExtractor={ item => item.idPregunta} 
           data={questionsWithOptions}
           renderItem={({ item, index }) => {
             return (
@@ -124,8 +134,8 @@ const TestInversor = ({ navigation }) => {
               />
             );
           }}
-        /> */}
-      </View>
+        />
+      </View> */}
     </View>
   );
 };

@@ -9,8 +9,13 @@ const QuestionItem = ({ data, selectedOption }) => {
                 {'Pregunta: ' + data.preguntaDescripcion}
             </Text>
             <View style={{ marginTop: 20 }}>
-                {<FlatList
-                    data={data.opciones}
+                {data.opciones.map((opcion)=>{
+                    return (
+                      <View> <Text> {opcion.respuestaDescripcion}</Text></View>  
+                    )
+                })}
+                {/* {<FlatList
+                    data={data}
                     renderItem={({ item, index }) => {
                         return (
                             <TouchableOpacity
@@ -54,7 +59,7 @@ const QuestionItem = ({ data, selectedOption }) => {
                             </TouchableOpacity>
                         );
                     }}
-                />}
+                />} */}
             </View>
         </View>
     );
