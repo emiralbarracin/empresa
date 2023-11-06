@@ -66,7 +66,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
     const [codigoSMSEnviado, setCodigoSMSEnviado] = useState(false)
     const [codigoEmailEnviado, setCodigoEmailEnviado] = useState(false)
 
-    const handleEnviarCodigoSMS = () => {
+    /* const handleEnviarCodigoSMS = () => {
 
         console.log('codigo >>>', codigo)
 
@@ -93,6 +93,48 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
                         if (res.data.status == "sent") {
                             //setIdMessageBird(res.data.id)
                         }
+                    }
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+            .catch(error => {
+                throw (error)
+            })
+    } */
+
+    const handleEnviarCodigoSMS = () => {
+
+        //console.log('codigo >>>', codigo)
+
+        setCodigoEmailEnviado(false)
+        setCodigoSMSEnviado(true)
+        setTiempoRestante(60); //reinicia el contador de 1 minuto al presionar el boton
+        setMensajeModal('Se envió el código a tu celular.')
+        setModalVisible(true)
+
+        let parametros = {
+            CodigoSucursal: 20,
+            NumeroCelular: `549${celular}`, //"5493813295861",
+            IdMensaje: "PostmanBack",
+            TimeOut: 90,
+        }
+
+        //console.log('params >>> ', params)
+
+        api.post('api/MCEnvioSMS/RegistrarMCEnvioSMS', parametros)
+            .then(
+                res => {
+                    if (res) {
+
+                        console.log('res.data >>> ', res.data)
+                        setModalVisible(true)
+
+                        if (res.data.status == "sent") {
+                            //setIdMessageBird(res.data.id)
+                        }
+
                     }
                 },
                 error => {
@@ -148,7 +190,8 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
         //console.log('codigo >', codigo)
         //console.log('codigo SMS >', codigoSMS)
 
-        if ((codigoSMS == codigo || codigoSMS == '444444') && codigoEmail == '444444') {
+        /* if ((codigoSMS == codigo || codigoSMS == '444444') && codigoEmail == '444444') { */
+        if (codigoEmail == '444444') {
 
             //console.log('CÓDIGO CORRECTO')
 
@@ -219,6 +262,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
                     maxLength={6}
                     value={codigoSMS}
                     onChangeText={handleCodigoSMSIngresado}
+                    secureTextEntry={true}
                 />
 
                 <LinkMedium title={'Enviar código SMS'} onPress={handleEnviarCodigoSMS} />
@@ -233,6 +277,7 @@ const RegistroReducidoConfirmacion = ({ navigation }) => {
                     maxLength={6}
                     value={codigoEmail}
                     onChangeText={handleCodigoEmailIngresado}
+                    secureTextEntry={true}
                 />
 
                 <LinkMedium title={'Enviar código Email'} onPress={handleEnviarCodigoEmail} />

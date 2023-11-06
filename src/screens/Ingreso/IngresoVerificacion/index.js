@@ -14,7 +14,7 @@ import { useRoute } from '@react-navigation/native';
 
 const IngresoVerificacion = ({ navigation }) => {
 
-  const {telefono} = useRoute().params
+  const { telefono } = useRoute().params
 
   const [showEnviarCodigo, setShowEnviarCodigo] = useState(true);
   const [showReenviarCodigo, setShowReenviarCodigo] = useState(false);
@@ -62,7 +62,7 @@ const IngresoVerificacion = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [mensajeModal, setMensajeModal] = useState(false);
 
-  const handleEnviarCodigoSMS = () => {
+  /* const handleEnviarCodigoSMS = () => {
 
     console.log('codigoSMS >>>', codigoSMS)
 
@@ -91,6 +91,50 @@ const IngresoVerificacion = ({ navigation }) => {
             if (res.data.status == "sent") {
               //setIdMessageBird(res.data.id)
             }
+          }
+        },
+        error => {
+          console.log(error)
+        }
+      )
+      .catch(error => {
+        throw (error)
+      })
+
+  } */
+
+  const handleEnviarCodigoSMS = () => {
+
+    console.log('codigoSMS >>>', codigoSMS)
+
+    setTiempoRestante(60)
+    setMensajeModal('Se envió el código a su celular.')
+    setModalVisible(true)
+
+    setShowEnviarCodigo(false);
+    setShowReenviarCodigo(true);
+    setModalVisible(true)
+    setContador(true)
+
+    let parametros = {
+      CodigoSucursal: 20,
+      NumeroCelular: `549${telefono}`, //"5493813295861",
+      IdMensaje: "PostmanBack",
+      TimeOut: 90,
+    }
+
+    api.post('api/MCEnvioSMS/RegistrarMCEnvioSMS', parametros)
+      .then(
+        res => {
+          if (res) {
+
+            console.log('res.data >>> ', res.data)
+            setModalVisible(true)
+
+            if (res.data.status == "sent") {
+              //setIdMessageBird(res.data.id)
+            }
+
           }
         },
         error => {
