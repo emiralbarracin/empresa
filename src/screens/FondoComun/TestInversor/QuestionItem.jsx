@@ -9,46 +9,28 @@ const QuestionItem = ({ data, selectedOption }) => {
                 {'Pregunta: ' + data.preguntaDescripcion}
             </Text>
             <View style={{ marginTop: 20 }}>
-                {data.opciones.map((opcion)=>{
+                {data.opciones.map((opcion) => {
                     return (
-                      <View> <Text> {opcion.respuestaDescripcion}</Text></View>  
+                        <View> <Text> {opcion.respuestaDescripcion}</Text></View>
                     )
                 })}
-                {/* {<FlatList
+                {<FlatList
                     data={data}
                     renderItem={({ item, index }) => {
                         return (
                             <TouchableOpacity
-                                style={{
-                                    width: '90%',
-                                    height: 60,
-                                    elevation: 3,
-                                    backgroundColor: data.marked == index + 1 ? 'purple' : '#fff',
-                                    marginTop: 10,
-                                    marginBottom: 10,
-                                    alignSelf: 'center',
-                                    alignItems: 'center',
-                                    paddingLeft: 15,
-                                    flexDirection: 'row',
-                                }}
+                                style={styles.touchable}
                                 onPress={() => {
                                     selectedOption(index + 1);
                                 }}>
                                 <View
-                                    style={{
-                                        width: 30,
-                                        height: 30,
-                                        borderRadius: 15,
-                                        backgroundColor: data.marked == index + 1 ? '#fff' : 'cyan',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}>
+                                    style={styles.viewTouch}>
                                     <Text style={{ fontWeight: '600', color: '#000' }}>
-                                        {index == 0
+                                        {index === 0
                                             ? 'A'
-                                            : index == 1
+                                            : index === 1
                                                 ? 'B'
-                                                : index == 2
+                                                : index === 2
                                                     ? 'C'
                                                     : 'D'}
                                     </Text>
@@ -59,7 +41,7 @@ const QuestionItem = ({ data, selectedOption }) => {
                             </TouchableOpacity>
                         );
                     }}
-                />} */}
+                />}
             </View>
         </View>
     );
@@ -74,5 +56,25 @@ const styles = StyleSheet.create({
         color: 'black',
         marginLeft: 20,
         marginRight: 20,
+    },
+    touchable: {
+        width: '90%',
+        height: 60,
+        elevation: 3,
+        backgroundColor: '#fff',
+        marginTop: 10,
+        marginBottom: 10,
+        alignSelf: 'center',
+        alignItems: 'center',
+        paddingLeft: 15,
+        flexDirection: 'row',
+    },
+    viewTouch: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: 'cyan',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })

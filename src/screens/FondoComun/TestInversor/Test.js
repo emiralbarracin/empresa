@@ -1,7 +1,7 @@
-import { View,Text, FlatList, TouchableOpacity, Dimensions, Modal, StyleSheet} from 'react-native';
+/* import { View,Text, FlatList, TouchableOpacity, Dimensions, Modal, StyleSheet} from 'react-native';
 import React, { useRef, useState } from 'react';
-import { englishData } from './EnglishQuestion';
-import { preguntasData } from './preguntasData';
+
+
 import QuestionItem from './QuestionItem';
 const { width } = Dimensions.get('window');
 
@@ -241,3 +241,4 @@ const Test = () => {
 
 export default Test;
 
+ */

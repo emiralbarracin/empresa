@@ -1,8 +1,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions, Button, ScrollView } from 'react-native';
 import api from '../../../services/api';
 import QuestionItem from './QuestionItem';
+import { green } from 'react-native-reanimated';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 const { width } = Dimensions.get('window');
 
 
@@ -96,47 +98,127 @@ const TestInversor = ({ navigation }) => {
   //console.log('Array Filtrado y Unido ', JSON.stringify(questionsWithOptions.pregunta, null, 4));
 
 
+  const handleSubmitAnswers = () => {
+    console.log('post a la api');
+  };
+
+  const handleSubmitAnswer = () => {
+    console.log('post a la api');
+  };
+
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+
+  const [currentSelectedAnswer, setCurrentSelectedAnswer] = useState();
+  const [currentSelectedQuestion, setCurrentSelectedQuestion] = useState();
+
+
+  const handleAnswerSelect = (idPregunta, idRespuesta) => {
+    console.log(idPregunta, 'y ', idRespuesta);
+    // Guardar la respuesta seleccionada en el estado
+    setCurrentSelectedQuestion(idPregunta);
+    setCurrentSelectedAnswer(idRespuesta);
+    handleAceptar();
+  };
+
+
+  /////////////ENVIA RESPUESTA DE CADA PREGUNTA AL BACK
+  const handleAceptar = async () => {
+
+    /* setModalVisible(false) */
+
+    try {
+
+      const parametros = {
+        codigoSucursal: 20,
+        idPregunta: currentSelectedQuestion,
+        idRespuesta: currentSelectedAnswer,
+      };
+
+      const { data: res } = await api.post('api/BERegistraUsuRespInv/RegistrarBERegistraUsuRespInv', parametros,);
+
+      if (res) {
+
+        //console.log('Respuesta Api >>>', res)
+
+        if (res.status === 0) {
+          console.log('Todo ok con la respuesta');
+        } else {
+          console.log('Todo mal con la respuesta');
+        }
+
+      } else {
+        console.log('Error HbCompraVentaMoneda');
+      }
+
+    } catch (error) {
+      console.log('catch >>> ', error);
+      return;
+    }
+  };
+
+
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header} >
-        <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
-      </View>
-      <View>
-        <Text>Hola</Text>
-          {/* {questionsWithOptions.map((pregunta) => {
-            return (
-            );
-          })} */}
+    <>
+      <ScrollView>
+
+        <View>
+          <View style={styles.header} >
+            <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
+          </View>
+          <View>
+            <FlatList
+              /* showsHorizontalScrollIndicator={false} */
+              pagingEnabled
+              horizontal
+              data={questionsWithOptions}
+              renderItem={({ item, index }) => {
+                return (
+                  <View style={styles.questionContainer}>
+                    <View style={styles.questionTextContianer}>
+
+                      <Text style={styles.quetionText}>
+                        {item.preguntaDescripcion}
+                      </Text>
+                    </View>
+                    {item.opciones.map(opcion => (
+                      <View style={styles.optionContainer}>
+                        <TouchableOpacity
+                          style={styles.optionButton}
+                          key={opcion.idRespuesta}
+                          onPress={() => handleAnswerSelect(item.idPregunta, opcion.idRespuesta)}
+                        >
+                          <Text style={styles.questionText}>
+                            {opcion.respuestaDescripcion}
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    ))}
+
+                  </View>
+                );
+              }} />
+
+          </View>
+
+          {/* <View>
+            {questionsWithOptions.map(question => (
+              <View key={question.idPregunta}>
+                <Text>{question.preguntaDescripcion}</Text>
+                {question.opciones.map(opcion => (
+                  <Button
+                    key={opcion.idRespuesta}
+                    title={opcion.respuestaDescripcion}
+                    onPress={() => handleAnswerSelect(question.idPregunta, opcion.idRespuesta)}
+                  />
+                ))}
+              </View>
+            ))}
+            <Button title="Enviar respuestas" onPress={handleSubmitAnswers} />
+          </View> */}
         </View>
-       
-      {/* <View style={styles.header} >
-        <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
-      </View>
-      <View style={{ marginTop: 30 }}>
-        <FlatList
-          ref={listRef}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          horizontal
-          onScroll={e => {
-            const x = e.nativeEvent.contentOffset.x / width + 1;
-            setCurrentQuestion(x.toFixed(0));
-          }}
-          data={questionsWithOptions}
-          renderItem={({ item, index }) => {
-            return (
-              <QuestionItem
-                data={item}
-                selectedOption={x => {
-                  OnSelectOption(index, x);
-                }}
-              />
-            );
-          }}
-        />
-      </View> */}
-    </View>
+      </ScrollView>
+    </>
   );
 };
 
@@ -165,6 +247,48 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 20,
     color: '#000',
+  },
+  questionContainer: {
+    width: width,
+    marginTop: 20,
+    backgroundColor: '#fff',
+  },
+  questionTextContianer: {
+    backgroundColor: 'green',
+    marginVertical: 10,
+    height: 100,
+  },
+  quetionText: {
+    color: 'white',
+    marginLeft: 20,
+    marginRight: 20,
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  optionContainer: {
+    marginHorizontal: 20,
+    paddingHorizontal: 20,
+  },
+  optionButton: {
+    width: width,
+    marginHorizontal: 25,
+    backgroundColor: 'green',
+    height: 70,
+    elevation: 6,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'center',
+    paddingHorizontal: 25,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  questionText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white',
+    fontSize: 17,
   },
 });
 

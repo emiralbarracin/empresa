@@ -337,18 +337,6 @@ const StackNavigator = () => {
           headerLeft:() => <ButtonBack />,
         }}
       />
-      {/**************************solo test*****************************/}
-      <Stack.Screen
-        name="Test"
-        component={Test}
-        options={{
-          title: 'Test',
-          headerTintColor: headerTintColor,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft:() => <ButtonBack />,
-        }}
-      />
 
 
       {/************************************************ Credito ************************************************/}
@@ -389,7 +377,7 @@ const StackNavigator = () => {
         name="CreditoDetalle"
         component={CreditoDetalle}
         options={{
-          title: '¡Acreditación exitosa!',
+          title: '¡ exitosa!',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
