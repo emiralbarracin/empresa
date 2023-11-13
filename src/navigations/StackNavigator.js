@@ -71,6 +71,7 @@ import ChequeDetalle from '../screens/Cheque/ChequeDetalle';
 import FondoComunInversion from '../screens/FondoComun/FondoComunInversion';
 import TestInversor from '../screens/FondoComun/TestInversor';
 import Test from '../screens/FondoComun/TestInversor/Test';
+import ModalTestInversor from '../screens/FondoComun/TestInversor/ModalTestInversor';
 
 
 const Stack = createStackNavigator();
@@ -331,6 +332,17 @@ const StackNavigator = () => {
         component={TestInversor}
         options={{
           title: 'Test del Inversor',
+          headerTintColor: headerTintColor,
+          headerTitleAlign: 'flex-start',
+          headerTitleStyle: { fontSize: size.large },
+          headerLeft:() => <ButtonBack />,
+        }}
+      />
+      <Stack.Screen
+        name="ModalTestInversor"
+        component={ModalTestInversor}
+        options={{
+          title: 'Modal del Inversor',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },

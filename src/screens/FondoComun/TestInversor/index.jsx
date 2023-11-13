@@ -1,23 +1,48 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions, Button, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList, Dimensions, Button, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import api from '../../../services/api';
-import QuestionItem from './QuestionItem';
-import { green } from 'react-native-reanimated';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-const { width } = Dimensions.get('window');
+
+const { width, height} = Dimensions.get('window');
 
 
 const TestInversor = ({ navigation }) => {
-  /* const [questions, setQuestions] = useState();
-  const [options, setOptions] = useState(); */
+
+  //>>>ARRAY COMPUESTO POR PREGUNTAS UNIFICADO CON SUS RESPUESTAS
   const [questionsWithOptions, setQuestionsWithOptions] = useState([]);
+  //>>>PREGUNTA ACTUAL PARA RENDERIZAR PANTALLA
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const listRef = useRef();
 
-  ////////FUNCION QUE TRAE PREGUNTAS Y OPCIONES DE RESPUESTA, FINALMENTE LAS UNE EN UN SOLO ARRAY PARA MANEJAR MAS FACILMENTE
+  const [answers, setAnswers] = useState(new Array(questionsWithOptions.length).fill(null));
+  const [showModal, setShowModal] = useState(false);
+  const [quizResult, setQuizResult] = useState(null);
 
-  const OnSelectOption = (index, x) => {
+/////////////////////funcion para captar respuesta de la api y desplegar modal para mortrarla
+
+  useEffect(() => {
+    if (answers.every((answer) => answer !== null)) {
+      // Envía las respuestas a la API y obtén el resultado
+      // Aquí debes implementar la lógica para enviar las respuestas y obtener el resultado
+      const result = "Resultado del cuestionario"; // Reemplaza con la respuesta real de la API
+      setQuizResult(result);
+      setShowModal(true);
+    }
+  }, [answers]);
+//////////////funcion para cargar respuestas
+  const handleAnswer = (option) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = option;
+    setAnswers(newAnswers);
+    if (currentQuestion < questionsWithOptions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
+
+
+
+
+  /* const OnSelectOption = (index, x) => {
     const tempData = questionsWithOptions;
     tempData.map((item, ind) => {
       if (index == ind) {
@@ -33,7 +58,7 @@ const TestInversor = ({ navigation }) => {
       temp.push(item);
     });
     setQuestionsWithOptions(temp);
-  };
+  }; */
 
   /* const getTextScore = () => {
     let marks = 0;
@@ -56,12 +81,13 @@ const TestInversor = ({ navigation }) => {
     });
     setQuestions(temp);
   }; */
+  //>>>>>>>>>FUNCION PARA SELECCIONAR PAGINA Y PASAR A LA SIGUIENTE
 
-
+  ////////FUNCION QUE TRAE PREGUNTAS Y OPCIONES DE RESPUESTA, FINALMENTE LAS UNE EN UN SOLO ARRAY PARA MANEJAR MAS FACILMENTE
   useEffect(() => {
     api
-      .get(
-        'api/BEListaPreguntasInversion/RecuperarBEListaPreguntasInversion?CodigoSucursal=20&IdMensaje=Sucursal+Virtual+Webapp',
+    .get(
+      'api/BEListaPreguntasInversion/RecuperarBEListaPreguntasInversion?CodigoSucursal=20&IdMensaje=Sucursal+Virtual+Webapp',
       )
       .then(response => {
         if (response) {
@@ -97,59 +123,51 @@ const TestInversor = ({ navigation }) => {
   }, []);
   //console.log('Array Filtrado y Unido ', JSON.stringify(questionsWithOptions.pregunta, null, 4));
 
+  //>>>>>>>>>>>>>>>>>>>ESTADO DE RESPUESTA SELECCIONADA
+  let preguntaActual;
+  let opcionActual;
 
-  const handleSubmitAnswers = () => {
-    console.log('post a la api');
+  //>>>>>>>>>>>>>>>>>>>SETEO DE PREGUNTA Y OPCION ELEGIDA, Y EJECUCION DE POST EN API
+  const handleEnviarRespuesta = (idPregunta, idRespuesta, index) => {
+    //console.log(idPregunta, 'y ', idRespuesta);
+    preguntaActual = idPregunta;
+    opcionActual = idRespuesta;
+    handleEnviarRespuestaApi();
   };
-
-  const handleSubmitAnswer = () => {
-    console.log('post a la api');
-  };
-
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-
-  const [currentSelectedAnswer, setCurrentSelectedAnswer] = useState();
-  const [currentSelectedQuestion, setCurrentSelectedQuestion] = useState();
-
-
-  const handleAnswerSelect = (idPregunta, idRespuesta) => {
-    console.log(idPregunta, 'y ', idRespuesta);
-    // Guardar la respuesta seleccionada en el estado
-    setCurrentSelectedQuestion(idPregunta);
-    setCurrentSelectedAnswer(idRespuesta);
-    handleAceptar();
-  };
-
-
-  /////////////ENVIA RESPUESTA DE CADA PREGUNTA AL BACK
-  const handleAceptar = async () => {
-
-    /* setModalVisible(false) */
-
+  //>>>>>>>>>>>>>>>>>>>ENVIA RESPUESTA DE CADA PREGUNTA AL BACK
+  const handleEnviarRespuestaApi = async () => {
     try {
-
       const parametros = {
         codigoSucursal: 20,
-        idPregunta: currentSelectedQuestion,
-        idRespuesta: currentSelectedAnswer,
+        idPregunta: preguntaActual,
+        idRespuesta: opcionActual,
       };
-
       const { data: res } = await api.post('api/BERegistraUsuRespInv/RegistrarBERegistraUsuRespInv', parametros,);
-
       if (res) {
-
-        //console.log('Respuesta Api >>>', res)
-
+        console.log('Respuesta Api >>>', res);
         if (res.status === 0) {
           console.log('Todo ok con la respuesta');
         } else {
           console.log('Todo mal con la respuesta');
         }
-
       } else {
         console.log('Error HbCompraVentaMoneda');
       }
+    } catch (error) {
+      console.log('catch >>> ', error);
+      return;
+    }
+  };
 
+  const handleEnviarPerfil = async () => {
+    try {
+      const { data: resp } = await api.get('api/BEUsuarioFinalizaTestInv/RecuperarBEUsuarioFinalizaTestInv?CodigoSucursal=20&IdMensaje=Sucursal+Virtual+Webapp');
+        console.log('Respuesta Api >>>', resp);
+        if (resp.status === 0) {
+          console.log('Todo ok con la respuesta');
+        } else {
+          console.log('Todo mal con la respuesta');
+        }
     } catch (error) {
       console.log('catch >>> ', error);
       return;
@@ -157,12 +175,12 @@ const TestInversor = ({ navigation }) => {
   };
 
 
-
   return (
     <>
       <ScrollView>
 
         <View>
+          {/* >>>>>>>>>>>>>>>>>NUMERO DE PREGUNTA<<<<<<<<<<<<<<<<<< */}
           <View style={styles.header} >
             <Text style={styles.headerText}>Pregunta: {' ' + currentQuestion + '/' + questionsWithOptions.length}</Text>
           </View>
@@ -175,18 +193,20 @@ const TestInversor = ({ navigation }) => {
               renderItem={({ item, index }) => {
                 return (
                   <View style={styles.questionContainer}>
+                    
+                    {/* >>>>>>>>>>>>>>>>TEXTO DE PREGUNTA<<<<<<<<< */}
                     <View style={styles.questionTextContianer}>
-
                       <Text style={styles.quetionText}>
                         {item.preguntaDescripcion}
                       </Text>
                     </View>
+                    {/* >>>>>>>>>>>>>>>>>OPCIONES PARA CADA PREGUNTA<<<<<<<<<< */}
                     {item.opciones.map(opcion => (
                       <View style={styles.optionContainer}>
                         <TouchableOpacity
                           style={styles.optionButton}
                           key={opcion.idRespuesta}
-                          onPress={() => handleAnswerSelect(item.idPregunta, opcion.idRespuesta)}
+                          onPress={() => handleEnviarRespuesta(item.idPregunta, opcion.idRespuesta, index)}
                         >
                           <Text style={styles.questionText}>
                             {opcion.respuestaDescripcion}
@@ -194,7 +214,12 @@ const TestInversor = ({ navigation }) => {
                         </TouchableOpacity>
                       </View>
                     ))}
+                    <View style={styles.buttonContianer}>
+                      <Button title="Anterior" onPress={() => setCurrentQuestion(currentQuestion - 1)} />
+                      <Button title="Siguiente" onPress={() => setCurrentQuestion(currentQuestion + 1)} />
+                      <Button title="Enviar" onPress={() => handleEnviarPerfil()} />
 
+                    </View>
                   </View>
                 );
               }} />
@@ -216,6 +241,7 @@ const TestInversor = ({ navigation }) => {
             ))}
             <Button title="Enviar respuestas" onPress={handleSubmitAnswers} />
           </View> */}
+
         </View>
       </ScrollView>
     </>
@@ -228,13 +254,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginTop: 10,
-    marginLeft: 20,
-    color: '#000',
   },
   header: {
     flexDirection: 'row',
@@ -256,7 +275,7 @@ const styles = StyleSheet.create({
   questionTextContianer: {
     backgroundColor: 'green',
     marginVertical: 10,
-    height: 100,
+    height: 120,
   },
   quetionText: {
     color: 'white',
@@ -264,14 +283,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
     fontSize: 20,
     fontWeight: '600',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   optionContainer: {
     marginHorizontal: 20,
     paddingHorizontal: 20,
   },
   optionButton: {
-    width: width,
-    marginHorizontal: 25,
+    width: width * 0.95,
     backgroundColor: 'green',
     height: 70,
     elevation: 6,
@@ -289,6 +309,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: 'white',
     fontSize: 17,
+  },
+  buttonContianer:{
+    marginTop:20,
+    height:40,
+ flex: 1,
+ flexDirection: 'row',
+ justifyContent: 'space-around',
   },
 });
 
