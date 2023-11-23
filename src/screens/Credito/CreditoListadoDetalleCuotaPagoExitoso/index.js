@@ -8,7 +8,7 @@ import { useRoute } from '@react-navigation/native';
 
 const CreditoListadoDetalleCuotaPagoExitoso = ({ navigation }) => {
 
-    const { numeroCuota, importe } = useRoute().params
+    const { numeroCuota, totalCuotas, importe } = useRoute().params
 
     const hoy = new Date();
     const dia = hoy.getDate();
@@ -18,7 +18,7 @@ const CreditoListadoDetalleCuotaPagoExitoso = ({ navigation }) => {
     const fechaFormateada = `${dia}/${mesFormateado}/${anio}`;
 
     const datosCredito = [
-        { title: 'N° de cuota', value: numeroCuota },
+        { title: 'N° de cuota', value: `${numeroCuota}/${totalCuotas}` },
         { title: 'Importe pagado', value: <MoneyConverter value={importe} /> },
         { title: 'Fecha de pago', value: fechaFormateada },
     ];

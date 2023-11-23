@@ -2,7 +2,7 @@ const entidadSeleccionada = 'BSR';
 
 const base = {
   white: '#fff',
-  gray: '#888',
+  gray: '#999',
   lightGray: '#eee',
   black: '#000',
 };

@@ -1,7 +1,6 @@
-import { Alert, Animated, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
-import ButtonFooter from '../../../components/ButtonFooter';
 import IconInput from '../../../components/IconInput';
 import LinkSmall from '../../../components/LinkSmall';
 import { environment } from '../../../services/environment';
@@ -21,6 +20,7 @@ import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
 import * as Keychain from 'react-native-keychain';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ButtonFooterOut from '../../../components/ButtonFooterOut';
 
 const IngresoNuevo = ({ navigation }) => {
 
@@ -43,6 +43,10 @@ const IngresoNuevo = ({ navigation }) => {
   const [contrasena, setContrasena] = useState('');
   //const [usuario, setUsuario] = useState('lopezmia');
   //const [contrasena, setContrasena] = useState('Censys23*');
+  //const [usuario, setUsuario] = useState('fatimat');
+  //const [contrasena, setContrasena] = useState('Censys2300*');
+  //const [usuario, setUsuario] = useState('albertom');
+  //const [contrasena, setContrasena] = useState('Censys2300*');
 
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -154,7 +158,6 @@ const IngresoNuevo = ({ navigation }) => {
     createKeys();
   }, []);
 
-  //
   const isSensorAvailable = async () => {
     const { biometryType } = await ReactNativeBiometrics.isSensorAvailable();
     if (biometryType === ReactNativeBiometrics.Biometrics) {
@@ -162,7 +165,6 @@ const IngresoNuevo = ({ navigation }) => {
     }
   };
 
-  //
   const createKeys = () => {
     ReactNativeBiometrics.createKeys('Confirm fingerprint').then(
       resultObject => {
@@ -228,7 +230,7 @@ const IngresoNuevo = ({ navigation }) => {
 
           } else {
             console.log('No hay credenciales almacenadas');
-            Alert.alert(null, 'Podés configurar la huella desde tu perfil.', [
+            Alert.alert(null, 'Puede configurar la huella desde su perfil.', [
               {
                 title: 'Ok',
                 onPress: () => {
@@ -275,9 +277,9 @@ const IngresoNuevo = ({ navigation }) => {
           onPress={() => setMostrarContrasena(!mostrarContrasena)}
         />
 
-        <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
+        <ButtonFooterOut title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
         <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
-        <LinkSmall title={'¿Olvidaste tu contraseña?'} onPress={() => handleMantenimiento()} />
+        <LinkSmall title={'¿Olvidó su contraseña?'} onPress={() => handleMantenimiento()} />
 
         <View style={styles.containerHuella}>
           <TouchableOpacity onPress={() => fingerprint()}>
@@ -286,6 +288,13 @@ const IngresoNuevo = ({ navigation }) => {
               style={styles.huella}
             />
           </TouchableOpacity>
+        </View>
+
+        <View style={{ alignItems: 'center', marginTop: '4%' }}>
+          <Image
+            source={require('../../../assets/images/footerSucredito3.png')}
+            style={{ resizeMode: 'contain', height: '70%', }} //aplica la escala según el valor de la animación
+          />
         </View>
 
       </View>

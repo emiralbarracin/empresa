@@ -88,7 +88,7 @@ const PlazoFijoPrecancelableListado = ({ navigation }) => {
 
             if (res2.status === 0) {
 
-                console.log('BEpfprecancelacionuva >>> ', JSON.stringify(res2.output, null, 4))
+                //console.log('BEpfprecancelacionuva >>> ', JSON.stringify(res2.output, null, 4))
                 nombreProducto = res2.output[0].nombreProducto
                 navigation.navigate('PlazoFijoPrecancelableConfirmacion', { numeroOperacion, fechaProceso, nombreProducto })
 

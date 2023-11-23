@@ -3,7 +3,6 @@ export const environment = {
   dominio: 'https://censys-sa.com.ar',
   dominioBird: 'https://rest.messagebird.com',
   baseUrlMessageBird: 'https://rest.messagebird.com',
-  access_key_messagebird: 'L5uAnEiojxtY37lTyYjsVZbcv',
   //principio del endpoint (dirección a la que se envían las solicitudes para realizar una acción específica en el servidor)
   //baseRuta: 'IBAPI_BMR_MH',
   //baseRuta: 'IBAPI_BANCA_EMPRESA', //desa

@@ -64,3 +64,6 @@ yarn-error.log
 
 # testing
 /coverage
+
+# Excluir el archivo env.js
+env.js

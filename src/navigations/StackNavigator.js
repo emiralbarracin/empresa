@@ -69,6 +69,7 @@ import Cheque from '../screens/Cheque/Cheque';
 import ChequeDetalle from '../screens/Cheque/ChequeDetalle';
 import ChequeInforme from '../screens/Cheque/ChequeInforme';
 
+import IngresoPrincipal from '../screens/Ingreso/IngresoPrincipal';
 
 
 const Stack = createStackNavigator();
@@ -88,6 +89,11 @@ const StackNavigator = () => {
 
       {/************************************************ Ingreso ************************************************/}
       <Stack.Screen
+        name="IngresoPrincipal" //nombre para reconocer a este componente stack
+        component={IngresoPrincipal} //componente que renderiza este componente stack
+        options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
+      />
+      <Stack.Screen
         name="IngresoNuevo" //nombre para reconocer a este componente stack
         component={IngresoNuevo} //componente que renderiza este componente stack
         options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
@@ -96,7 +102,7 @@ const StackNavigator = () => {
         name="IngresoMetodo"
         component={IngresoMetodo}
         options={{
-          title: 'Elegí el método de verificación',
+          title: 'Elija el método de verificación',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
@@ -664,42 +670,6 @@ const StackNavigator = () => {
           headerLeft: () => <MaterialCommunityIcons
             name={'check-circle'}
             style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
-        }}
-      />
-
-
-        {/* Cheque */}
-      <Stack.Screen
-        name="Cheque"
-        component={Cheque}
-        options={{
-          title: 'Cheque',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
-        }}
-      />
-      <Stack.Screen
-        name="ChequeDetalle"
-        component={ChequeDetalle}
-        options={{
-          title: 'ChequeDetalle',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
-        }}
-      />
-      <Stack.Screen
-        name="ChequeInforme"
-        component={ChequeInforme}
-        options={{
-          title: 'ChequeInforme',
-          headerTintColor: colors.colorA,
-          headerTitleAlign: 'flex-start',
-          headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <ButtonBack />,
         }}
       />
 

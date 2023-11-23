@@ -51,7 +51,7 @@ const RegistroReducidoDatoCuenta = ({ navigation }) => {
 
         if (!nombreUsuario || !email || !celular || !contrasena || !contrasenaRepetida) {
 
-            setMensajeModal('Todos los campos son obligatorios. Por favor, completa los datos.');
+            setMensajeModal('Todos los campos son obligatorios. Por favor, complete los datos.');
             setModalVisible(true);
 
         } else {

@@ -26,22 +26,22 @@ const TabNavigator = () => {
                         case 'inicioTab':
                             nombreIcono = 'home';
                             colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
-                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.gray) : null);
                             break;
                         case 'cuentaTab':
                             nombreIcono = 'card-text';
                             colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
-                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.gray) : null);
                             break;
                         case 'perfilTab':
                             nombreIcono = 'account';
                             colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
-                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.gray) : null);
                             break;
                         case 'masTab':
                             nombreIcono = 'menu';
                             colors.entidadSeleccionada === 'BMV' ? (colorIcono = focused ? colors.colorA : colors.gray)
-                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.lightGray) : null);
+                                : (colors.entidadSeleccionada === 'BSR' ? (colorIcono = focused ? colors.colorB : colors.gray) : null);
                             break;
                     }
                     return (
