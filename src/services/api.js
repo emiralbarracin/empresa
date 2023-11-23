@@ -10,7 +10,7 @@ const api = axios.create({
   //URL base a la que se agregarán todas las rutas relativas de las solicitudes HTTP
   baseURL: `${environment.dominio}/${environment.baseRuta}`,
   //tiempo máximo que esperará axios para una respuesta antes de lanzar un error de timeout
-  timeout: 10000,
+  timeout: 30000,
   //encabezados HTTP que se agregarán a todas las solicitudes HTTP
   /* headers: {
     //tipo de contenido que se enviará en el cuerpo de la solicitud HTTP

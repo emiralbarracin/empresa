@@ -8,10 +8,13 @@ import ParagraphMedium from '../../../components/ParagraphMedium';
 import TitleMediumBold from '../../../components/TitleMediumBold';
 import CheckboxGroup from '../../../components/CheckboxGroup';
 import ModalError from '../../../components/ModalError';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const RegistroReducidoValidacionDato = ({ navigation }) => {
 
     const { cuil } = useRoute().params
+
+    const [cargando, setCargando] = useState(true);
 
     const [domRandom1, setDomRandom1] = useState(null)
     const [domRandom2, setDomRandom2] = useState(null)
@@ -20,7 +23,6 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
     const [fechaRandom1, setFechaRandom1] = useState(null)
     const [fechaRandom2, setFechaRandom2] = useState(null)
     const [fechaRandom3, setFechaRandom3] = useState(null)
-
 
     useEffect(() => {
 
@@ -49,6 +51,7 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
                     setFechaRandom1(res2.output[0].fechaRandom1.slice(0, 10))
                     setFechaRandom2(res2.output[0].fechaRandom2.slice(0, 10))
                     setFechaRandom3(res2.output[0].fechaRandom3.slice(0, 10))
+                    setCargando(false);
 
                 } else {
                     console.log('ERROR OnBoGeneraFecha');
@@ -149,9 +152,9 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
 
     const verificarDatos = () => {
         if (pasaValidacionDomicilio === 1 && pasaValidacionFecha === 1) {
-            navigation.navigate('RegistroReducidoDatoCuenta', {cuil})
+            navigation.navigate('RegistroReducidoDatoCuenta', { cuil })
         } else {
-            setMensajeModal('Los datos seleccionados de validación son incorrectos. Tenés que dirigirte a una sucursal del banco.')
+            setMensajeModal('Los datos seleccionados de validación son incorrectos. Tiene que dirigirse a una sucursal del banco.')
             setModalVisible(true)
         }
     }
@@ -170,19 +173,29 @@ const RegistroReducidoValidacionDato = ({ navigation }) => {
 
             <View style={styles.body}>
 
-                <ParagraphMedium title={'Validá tu domicilio y fecha de nacimiento seleccionando la opción correcta o "Ninguna de las anteriores". Si seleccionás incorrectamente, tu cuenta se bloqueará y deberás contactar a un representante del banco para resolverlo.'} />
+                {cargando ? (
+                    <LoadingIndicator />
+                ) : (
 
-                <View style={{ alignSelf: 'flex-start', marginLeft: '4%' }}>
-                    <TitleMediumBold title={'Domicilio'} />
-                </View>
+                    <>
 
-                <CheckboxGroup options={domicilios} onOptionSelect={handleDomicilioSeleccionado} />
+                        <ParagraphMedium title={'Valide su domicilio y fecha de nacimiento seleccionando la opción correcta o "Ninguna de las anteriores". Si selecciona incorrectamente, su cuenta se bloqueará y deberá contactar a un representante del banco para resolverlo.'} />
 
-                <View style={{ alignSelf: 'flex-start', marginLeft: '4%' }}>
-                    <TitleMediumBold title={'Fecha de nacimiento'} />
-                </View>
+                        <View style={{ alignSelf: 'flex-start', marginLeft: '4%' }}>
+                            <TitleMediumBold title={'Domicilio'} />
+                        </View>
 
-                <CheckboxGroup options={fechas} onOptionSelect={handleFechaSeleccionada} />
+                        <CheckboxGroup options={domicilios} onOptionSelect={handleDomicilioSeleccionado} />
+
+                        <View style={{ alignSelf: 'flex-start', marginLeft: '4%' }}>
+                            <TitleMediumBold title={'Fecha de nacimiento'} />
+                        </View>
+
+                        <CheckboxGroup options={fechas} onOptionSelect={handleFechaSeleccionada} />
+
+                    </>
+
+                )}
 
             </View>
 

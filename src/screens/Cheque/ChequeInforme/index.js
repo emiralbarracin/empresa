@@ -26,19 +26,19 @@ const ChequeInforme = ({ navigation }) => {
 
   const { datosCheque } = useRoute().params;
 
-  //console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
-  //console.log('fechaCheque >>>', datosCheque.fechaCheque);
-  //console.log('eligeFecha >>>', datosCheque.eligeFecha);
-
+  /* console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
+  console.log('fechaCheque >>>', datosCheque.fechaCheque);
+  console.log('eligeFecha >>>', datosCheque.eligeFecha);
+ */
   useEffect(() => {
     api.get(
-        datosCheque.eligeFecha == 0
-          ? `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=&IdMensaje=Sucursal+virtual`
-          : `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=${datosCheque.fechaCheque}&IdMensaje=Sucursal+virtual`,
-      )
+      datosCheque.eligeFecha == 0
+        ? `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=&IdMensaje=Sucursal+virtual`
+        : `api/BEInformeCarteraCli/RecuperarBEInformeCarteraCli?CodigoSucursal=20&Comprobante=${datosCheque.tipoComprobanteCheque}&FechaVencimiento=${datosCheque.fechaCheque}&IdMensaje=Sucursal+virtual`,
+    )
       .then(res => {
         if (res) {
-          console.log('dataApi1 >>>',res.data.output);
+          console.log('dataApi1 >>>', res.data.output);
           setInformeCarteraCliente(res.data.output);
         }
       })

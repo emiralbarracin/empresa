@@ -72,6 +72,7 @@ import FondoComunInversion from '../screens/FondoComun/FondoComunInversion';
 import TestInversor from '../screens/FondoComun/TestInversor';
 import Test from '../screens/FondoComun/TestInversor/Test';
 import ModalTestInversor from '../screens/FondoComun/TestInversor/ModalTestInversor';
+import IngresoPrincipal from '../screens/Ingreso/IngresoPrincipal';
 
 
 const Stack = createStackNavigator();
@@ -91,6 +92,11 @@ const StackNavigator = () => {
 
       {/************************************************ Ingreso ************************************************/}
       <Stack.Screen
+        name="IngresoPrincipal" //nombre para reconocer a este componente stack
+        component={IngresoPrincipal} //componente que renderiza este componente stack
+        options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
+      />
+      <Stack.Screen
         name="IngresoNuevo" //nombre para reconocer a este componente stack
         component={IngresoNuevo} //componente que renderiza este componente stack
         options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
@@ -99,7 +105,7 @@ const StackNavigator = () => {
         name="IngresoMetodo"
         component={IngresoMetodo}
         options={{
-          title: 'Elegí el método de verificación',
+          title: 'Elija el método de verificación',
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
@@ -698,7 +704,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 

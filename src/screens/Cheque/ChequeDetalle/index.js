@@ -4,8 +4,8 @@ import {Paragraph} from 'react-native-paper';
 import {Title, Card, Appbar} from 'react-native-paper';
 import styles from './styles';
 import api from '../../../services/api';
-import {useRoute} from '@react-navigation/native';
-import {dateFormat, numberFormat} from '../../../utils/Format';
+import { useRoute } from '@react-navigation/native';
+import { dateFormat, numberFormat } from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
 import colors from '../../../styles/colors';
 
@@ -40,7 +40,7 @@ const ChequeDetalle = ({navigation}) => {
   //console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
-    navigation.navigate('inicioTab');
+    navigation.navigate('InicioTab');
   };
 
   useEffect(() => {

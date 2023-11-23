@@ -20,7 +20,7 @@ const IngresoMetodo = ({ navigation }) => {
 
                     <CardPerfil
                         title="Código SMS"
-                        subtitle="Se enviará un código a tu celular"
+                        subtitle="Se enviará un código a su celular"
                         iconName="cellphone"
                         onPress={handleSMS}
                     />
