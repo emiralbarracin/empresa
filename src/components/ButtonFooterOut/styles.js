@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         marginHorizontal: '4%',
         marginBottom: '4%',
         borderWidth: 1,
-        borderColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
+        borderColor: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.black : null),
         elevation: 4,
     },
     title: {

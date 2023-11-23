@@ -228,7 +228,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -394,7 +396,9 @@ const StackNavigator = () => {
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           //headerLeft: () => <ButtonBack screenName={'InicioTab'} />,
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen
@@ -449,7 +453,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -509,7 +515,9 @@ const StackNavigator = () => {
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
           //headerLeft: () => <ButtonBack screenName={'InicioTab'} />,
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen
@@ -564,7 +572,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -638,7 +648,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -710,7 +722,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
 
@@ -762,7 +776,9 @@ const StackNavigator = () => {
           headerTintColor: headerTintColor,
           headerTitleAlign: 'flex-start',
           headerTitleStyle: { fontSize: size.large },
-          headerLeft: () => <MaterialCommunityIcons name={'check-circle'} style={{ fontSize: 30, color: colors.colorA, marginLeft: 14 }} />,
+          headerLeft: () => <MaterialCommunityIcons
+            name={'check-circle'}
+            style={{ fontSize: 30, color: colors.entidadSeleccionada === 'BMV' ? colors.colorA : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null), marginLeft: 14 }} />,
         }}
       />
       <Stack.Screen

@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {View, Platform, StyleSheet, ScrollView, StatusBar} from 'react-native';
-import {Paragraph, Text, Button} from 'react-native-paper';
-import {Title, Card, Appbar} from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { View, Platform, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { Paragraph, Text, Button } from 'react-native-paper';
+import { Title, Card, Appbar } from 'react-native-paper';
 import styles from './styles';
 import api from '../../../services/api';
-import {useRoute} from '@react-navigation/native';
-import {dateFormat, numberFormat} from '../../../utils/Format';
+import { useRoute } from '@react-navigation/native';
+import { dateFormat, numberFormat } from '../../../utils/Format';
 import ButtonFooter from '../../../components/ButtonFooter';
 import colors from '../../../styles/colors';
 
-
-const ChequeInforme = ({navigation}) => {
+const ChequeInforme = ({ navigation }) => {
   const [variable, setVariable] = useState(false);
 
   const actualizarPantalla = () => {
@@ -25,12 +24,12 @@ const ChequeInforme = ({navigation}) => {
 
   const [informeCarteraCliente, setInformeCarteraCliente] = useState([]);
 
-  const {datosCheque} = useRoute().params;
+  const { datosCheque } = useRoute().params;
 
-  /* console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
-  console.log('fechaCheque >>>', datosCheque.fechaCheque);
-  console.log('eligeFecha >>>', datosCheque.eligeFecha);
- */
+  //console.log('tipoComprobanteCheque >>>', datosCheque.tipoComprobanteCheque);
+  //console.log('fechaCheque >>>', datosCheque.fechaCheque);
+  //console.log('eligeFecha >>>', datosCheque.eligeFecha);
+
   useEffect(() => {
     api.get(
         datosCheque.eligeFecha == 0
@@ -53,7 +52,7 @@ const ChequeInforme = ({navigation}) => {
   };
 
   const handleDetalle = index => {
-    console.log('index >>>', index);
+    //console.log('index >>>', index);
     navigation.navigate('ChequeDetalle', {
       datosChequeInforme: {
         tipoComprobanteChequeInforme: datosCheque.tipoComprobanteCheque,
@@ -64,11 +63,6 @@ const ChequeInforme = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{backgroundColor: colors.white}}>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Cheques" />
-      </Appbar.Header>
 
       <View style={styles.body}>
         <View style={styles.first}>
@@ -132,7 +126,7 @@ const ChequeInforme = ({navigation}) => {
                   ))
                 ) : (
                   <View style={styles.bodyTextContainer}>
-                    <Paragraph style={{color: colors.black}}>
+                    <Paragraph style={{ color: colors.black }}>
                       No se encontraron cheques
                     </Paragraph>
                   </View>
@@ -213,7 +207,7 @@ const ChequeInforme = ({navigation}) => {
                   ))
                 ) : (
                   <View style={styles.bodyTextContainer}>
-                    <Paragraph style={{color: colors.black}}>
+                    <Paragraph style={{ color: colors.black }}>
                       No se encontraron cheques
                     </Paragraph>
                   </View>
@@ -290,7 +284,7 @@ const ChequeInforme = ({navigation}) => {
                   ))
                 ) : (
                   <View style={styles.bodyTextContainer}>
-                    <Paragraph style={{color: colors.black}}>
+                    <Paragraph style={{ color: colors.black }}>
                       No se encontraron cheques
                     </Paragraph>
                   </View>
@@ -367,7 +361,7 @@ const ChequeInforme = ({navigation}) => {
                   ))
                 ) : (
                   <View style={styles.bodyTextContainer}>
-                    <Paragraph style={{color: colors.black}}>
+                    <Paragraph style={{ color: colors.black }}>
                       No se encontraron cheques
                     </Paragraph>
                   </View>
@@ -444,7 +438,7 @@ const ChequeInforme = ({navigation}) => {
                   ))
                 ) : (
                   <View style={styles.bodyTextContainer}>
-                    <Paragraph style={{color: colors.black}}>
+                    <Paragraph style={{ color: colors.black }}>
                       No se encontraron cheques
                     </Paragraph>
                   </View>

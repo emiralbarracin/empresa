@@ -25,7 +25,7 @@ const CreditoDetalle = ({ navigation }) => {
     const horaFormateada = `${hora}:${minutos}`;
 
     const datosCredito = [
-        { title: 'Numero de operación', value: numeroOperacion },
+        { title: 'N° de operación', value: numeroOperacion },
         { title: 'Fecha de liquidación', value: fechaFormateada },
         { title: 'Importe acreditado', value: <MoneyConverter value={importe} /> },
         { title: 'Cantidad de cuotas', value: cantidadCuotas },

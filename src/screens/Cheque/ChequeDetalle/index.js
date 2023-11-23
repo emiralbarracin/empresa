@@ -33,17 +33,14 @@ const ChequeDetalle = ({navigation}) => {
   const [banco, setBanco] = useState('');
   const [estado, setEstado] = useState('');
 
-  const {datosChequeInforme} = useRoute().params;
+  const { datosChequeInforme } = useRoute().params;
 
-  console.log(
-    'tipoComprobanteChequeInforme >>>',
-    datosChequeInforme.tipoComprobanteChequeInforme,
-  );
+  //console.log('tipoComprobanteChequeInforme >>>', datosChequeInforme.tipoComprobanteChequeInforme,);
 
-  console.log('index >>>', datosChequeInforme.indexChequeInforme);
+  //console.log('index >>>', datosChequeInforme.indexChequeInforme);
 
   const handleInicio = () => {
-    navigation.navigate('InicioTab');
+    navigation.navigate('inicioTab');
   };
 
   useEffect(() => {
@@ -95,11 +92,6 @@ const ChequeDetalle = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <Appbar.Header style={{backgroundColor: colors.white}}>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Detalle del Cheque" />
-      </Appbar.Header>
 
       <View style={styles.body}>
         <View style={styles.first}>

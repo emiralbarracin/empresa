@@ -62,7 +62,7 @@ const Mas = ({ navigation }) => {
                         <ButtonMenu iconName="cellphone" title="Recarga de celular" onPress={() => handleMantenimiento()} />
                         <ButtonMenu iconName="qrcode-scan" title="Pago con QR" onPress={() => handleMantenimiento()} />
                         <ButtonMenu iconName="format-list-bulleted-square" title="Comprobantes" onPress={() => handleMantenimiento()} />
-                        <ButtonMenu iconName="pencil-box-outline" title="Cheques" onPress={() => navigation.navigate('Cheque')} />
+                        <ButtonMenu iconName="pencil-box-outline" title="Cheques"  onPress={() => navigation.navigate('Cheque')}  />
 
 
                         <View style={styles.buttonTitle}>
