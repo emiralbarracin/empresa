@@ -1,11 +1,14 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import styles from './styles';
+import colors from '../../styles/colors';
+import size from '../../styles/size';
 
-const TitleLargeBold = ({title}) => {
+const TitleLargeBold = ({ title, alignSelf }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+    <View style={{ alignSelf: alignSelf || 'center', marginHorizontal: '4%', marginBottom: '4%', }}>
+      <Text style={{ color: colors.black, fontSize: size.large, fontWeight: 'bold' }}>
+        {title}
+      </Text>
     </View>
   );
 };

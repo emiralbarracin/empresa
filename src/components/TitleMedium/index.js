@@ -1,11 +1,14 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import styles from './styles';
+import colors from '../../styles/colors';
+import size from '../../styles/size';
 
-const TitleMedium = ({title}) => {
+const TitleMedium = ({ title, alignSelf }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+    <View style={{ marginBottom: '2%', alignSelf: alignSelf || 'center' }}>
+      <Text style={{ color: colors.black, fontSize: size.medium }}>
+        {title}
+      </Text>
     </View>
   );
 };
