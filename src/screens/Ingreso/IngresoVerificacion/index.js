@@ -231,7 +231,7 @@ const IngresoVerificacion = ({ navigation }) => {
 
       <View style={styles.body}>
         <View style={styles.title}>
-          <TitleLarge title={'Ingresá el código de verificación'} />
+          <TitleLarge title={'Ingrese el código de verificación'} />
         </View>
         <View style={styles.codigo}>
           {[0, 1, 2, 3, 4, 5].map(index => (

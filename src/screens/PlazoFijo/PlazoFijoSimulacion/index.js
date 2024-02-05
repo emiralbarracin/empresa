@@ -122,7 +122,9 @@ const PlazoFijoSimulacion = ({ navigation }) => {
 
             <View style={styles.body}>
 
-                <TitleMediumBold title={nombreProducto} />
+                <View style={{ marginBottom: '2%' }} >
+                    <TitleMediumBold title={nombreProducto} />
+                </View>
 
                 {codigoMoneda === 2 ?
                     (<IconInputMoneyDollar placeholder={'Ingrese el importe'} onChangeText={handleImporte} value={importe} />)
