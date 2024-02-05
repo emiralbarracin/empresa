@@ -18,7 +18,7 @@ const entidades = {
   },
   BSR: {
     colorA: '#e41e2f',
-    colorB: '#ffe91a',
+    colorB: '#f7e845',
   },
 };
 

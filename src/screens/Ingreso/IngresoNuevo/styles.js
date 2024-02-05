@@ -4,7 +4,8 @@ import colors from '../../../styles/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.entidadSeleccionada === 'BMV' ? colors.lightGray : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
+    //backgroundColor: colors.entidadSeleccionada === 'BMV' ? colors.lightGray : (colors.entidadSeleccionada === 'BSR' ? colors.colorB : null),
+    backgroundColor: colors.lightGray
   },
   backgroundImage: {
     flex: 1,

@@ -20,24 +20,12 @@ import LinkMedium from '../../../components/LinkMedium'; //prueba rama emir
 import * as Keychain from 'react-native-keychain';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ButtonFooterOut from '../../../components/ButtonFooterOut';
+import LogoAnimation from '../../../components/LoadingAnimation';
+import ButtonFooter from '../../../components/ButtonFooter';
 
 const IngresoNuevo = ({ navigation }) => {
 
   const [cargandoBoton, setCargandoBoton] = useState(false)
-
-  const [logoScale] = useState(new Animated.Value(0)); //inicializa el valor de la animación en 0
-
-  useEffect(() => {
-
-    //crea una animación para escalar el logo desde 0 a 1
-    Animated.timing(logoScale, {
-      toValue: 1,
-      duration: 1000, //duración de la animación en milisegundos
-      useNativeDriver: true, //usa el driver nativo para mejorar el rendimiento
-    }).start(); //inicia la animación al montar el componente
-
-  }, []);
 
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
@@ -246,67 +234,84 @@ const IngresoNuevo = ({ navigation }) => {
     });
   };
 
+  const [mostrarIngreso, setMostrarIngreso] = useState(false);
+
+  const handleAnimationComplete = () => {
+    setMostrarIngreso(true);  //se llama cuando la animación del logo se completa
+  };
 
   return (
-    <View style={styles.container}>
 
-      <View style={styles.header}>
-        <Animated.Image //Animated.Image para aplicar la animación
-          //source={require('../../../assets/images/logoBMV.png')}
-          source={require('../../../assets/images/logoSucredito.png')}
-          style={[styles.image, { transform: [{ scale: logoScale }] }]} //aplica la escala según el valor de la animación
-        />
-      </View>
+    <View style={{ flex: 1 }}>
 
-      <View style={styles.body}>
+      {!mostrarIngreso && (
+        <LogoAnimation onAnimationComplete={handleAnimationComplete} />
+      )}
+      {mostrarIngreso && (
 
-        <IconInput
-          iconName={'account-outline'}
-          placeholder={'Ingrese el usuario'}
-          onChangeText={handleUsuario}
-          value={usuario}
-        />
+        <View style={styles.container}>
 
-        <IconInputButton
-          iconName={'lock-outline'}
-          placeholder={'Ingrese la contraseña'}
-          secureTextEntry={!mostrarContrasena}
-          onChangeText={handleContrasena}
-          value={contrasena}
-          iconNameButton={mostrarContrasena ? 'eye-outline' : 'eye-off-outline'}
-          onPress={() => setMostrarContrasena(!mostrarContrasena)}
-        />
-
-        <ButtonFooterOut title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
-        <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
-        <LinkSmall title={'¿Olvidó su contraseña?'} onPress={() => handleMantenimiento()} />
-
-        <View style={styles.containerHuella}>
-          <TouchableOpacity onPress={() => fingerprint()}>
-            <MaterialCommunityIcons
-              name='fingerprint'
-              style={styles.huella}
+          <View style={styles.header}>
+            <Image
+              source={require('../../../assets/images/logoSucredito.png')}
+              style={styles.image}
             />
-          </TouchableOpacity>
-        </View>
+          </View>
 
-        <View style={{ alignItems: 'center', marginTop: '4%' }}>
-          <Image
-            source={require('../../../assets/images/footerSucredito3.png')}
-            style={{ resizeMode: 'contain', height: '70%', }} //aplica la escala según el valor de la animación
+          <View style={styles.body}>
+
+            <IconInput
+              iconName={'account-outline'}
+              placeholder={'Ingrese el usuario'}
+              onChangeText={handleUsuario}
+              value={usuario}
+            />
+
+            <IconInputButton
+              iconName={'lock-outline'}
+              placeholder={'Ingrese la contraseña'}
+              secureTextEntry={!mostrarContrasena}
+              onChangeText={handleContrasena}
+              value={contrasena}
+              iconNameButton={mostrarContrasena ? 'eye-outline' : 'eye-off-outline'}
+              onPress={() => setMostrarContrasena(!mostrarContrasena)}
+            />
+
+            <ButtonFooter title={'Ingresar'} onPress={() => loginEmailTelefono()} loading={cargandoBoton} />
+            <LinkMedium title={'Registrarse'} onPress={() => navigation.navigate('RegistroInformacionPersonal')} />
+            <LinkSmall title={'¿Olvidó su contraseña?'} onPress={() => handleMantenimiento()} />
+
+            <View style={styles.containerHuella}>
+              <TouchableOpacity onPress={() => fingerprint()}>
+                <MaterialCommunityIcons
+                  name='fingerprint'
+                  style={styles.huella}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={{ alignItems: 'center', marginTop: '4%' }}>
+              <Image
+                source={require('../../../assets/images/footerSucredito3.png')}
+                style={{ resizeMode: 'contain', height: '75%', }} //aplica la escala según el valor de la animación
+              />
+            </View>
+
+          </View>
+
+          <ModalError
+            visible={modalVisible}
+            title={mensajeModal}
+            titleButton="Aceptar"
+            onPressButton={handleAceptar}
           />
+
         </View>
 
-      </View>
-
-      <ModalError
-        visible={modalVisible}
-        title={mensajeModal}
-        titleButton="Aceptar"
-        onPressButton={handleAceptar}
-      />
+      )}
 
     </View>
+
   );
 };
 

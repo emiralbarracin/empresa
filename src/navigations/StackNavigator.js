@@ -87,11 +87,11 @@ const StackNavigator = () => {
 
 
       {/************************************************ Ingreso ************************************************/}
-      <Stack.Screen
+      {/* <Stack.Screen
         name="IngresoPrincipal" //nombre para reconocer a este componente stack
         component={IngresoPrincipal} //componente que renderiza este componente stack
         options={{ headerShown: false }} //headerShown: false -> oculta la barra superior stack
-      />
+      /> */}
       <Stack.Screen
         name="IngresoNuevo" //nombre para reconocer a este componente stack
         component={IngresoNuevo} //componente que renderiza este componente stack
