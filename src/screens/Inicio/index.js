@@ -1,4 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux'; //con el hook useSelector puedo acceder al estado global de la app y traer los datos que me interesan
@@ -21,6 +21,7 @@ import tokenWithCompany from '../../services/tokenWithCompany';
 import { environment } from '../../services/environment';
 import HorizontalLine from '../../components/HorizontalLinea';
 import LoadingIndicator from '../../components/LoadingIndicator';
+import DateTimeConverter from '../../utils/DateTimeConverter';
 
 const Inicio = ({ navigation }) => {
 
@@ -196,26 +197,36 @@ const Inicio = ({ navigation }) => {
             <ButtonSquare iconName="calendar-arrow-right" title={'Turno'} onPress={() => navigation.navigate('TurnoNuevo')} />
           </View>
 
-          <TitleMedium title={'Últimos movimientos'} />
-
-          <HorizontalLine />
-          <ScrollView>
-            {ultimosMovimientos.map((item) => (
-              <CardMovimiento
-                key={`${item.codigoMovimiento}${item.numeroComprobante}`}
-                producto={item.descripcion}
-                fecha={<DateConverter date={item.fechaReal} />}
-                importe={<MoneyConverter money={item.codigoMoneda} value={item.importeAccesorio} />}
-                tipoFuncion={item.tipoFuncion}
-                onPress={() => navigation.navigate('MovimientoDetalle', {
-                  descripcion: item.descripcion,
-                  fecha: item.fechaReal,
-                  importe: item.importeAccesorio,
-                  numeroComprobante: item.numeroComprobante,
-                })}
-              />
-            ))}
-          </ScrollView>
+          {
+            ultimosMovimientos.length === 0 ? (
+              <TitleMedium title={'No hay movimientos en la cuenta.'} />
+            ) : (
+              <>
+                <TitleMedium title={'Últimos movimientos'} />
+                <HorizontalLine />
+                <FlatList
+                  style={{ flex: 1 }}
+                  data={ultimosMovimientos}
+                  keyExtractor={(item) => `${item.codigoMovimiento}${item.numeroComprobante}`}
+                  renderItem={({ item }) => (
+                    <CardMovimiento
+                      key={`${item.codigoMovimiento}${item.numeroComprobante}`}
+                      producto={item.descripcion}
+                      fecha={<DateTimeConverter date={item.fechaReal} />}
+                      importe={ojoAbierto ? <MoneyConverter money={item.codigoMoneda} value={item.importeAccesorio} /> : '*****'}
+                      tipoFuncion={item.tipoFuncion}
+                      onPress={() => navigation.navigate('MovimientoDetalle', {
+                        descripcion: item.descripcion,
+                        fecha: item.fechaReal,
+                        importe: item.importeAccesorio,
+                        numeroComprobante: item.numeroComprobante,
+                      })}
+                    />
+                  )}
+                />
+              </>
+            )
+          }
 
         </View>
 
